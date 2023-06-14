@@ -1,0 +1,6 @@
+[10-Jul-2022 23:40:41 UTC] PHP Warning:  rmdir(../../assets/images/20220709103923/): No such file or directory in /home/yqfxijun/public_html/administrador/model/carModel.php on line 88
+[12-Aug-2022 03:01:15 UTC] PHP Warning:  rmdir(../../assets/images/20220711121827/): No such file or directory in /home/yqfxijun/public_html/administrador/model/carModel.php on line 120
+[12-Aug-2022 03:01:37 UTC] PHP Warning:  rmdir(../../assets/images/20220711121827/): No such file or directory in /home/yqfxijun/public_html/administrador/model/carModel.php on line 120
+[12-Aug-2022 03:02:31 UTC] PHP Warning:  rmdir(../../assets/images/20220711121827/): No such file or directory in /home/yqfxijun/public_html/administrador/model/carModel.php on line 120
+[12-Aug-2022 03:02:34 UTC] PHP Warning:  rmdir(../../assets/images/20220711121827/): No such file or directory in /home/yqfxijun/public_html/administrador/model/carModel.php on line 120
+[12-Aug-2022 03:06:06 UTC] PHP Warning:  rmdir(../../assets/images/20220711121827/): No such file or directory in /home/yqfxijun/public_html/administrador/model/carModel.php on line 120
