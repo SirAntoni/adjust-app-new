@@ -17,7 +17,7 @@
                             </div>
                             <div class="info text-center">
                                 <p class="name font-weight-bold mb-0">
-                                    <?php echo $_SESSION['name']; ?></p>
+                                    <?php echo $_SESSION['usuario']; ?></p>
                                 <p class="email text-muted mb-3">Administrador</p>
                             </div>
                         </div>

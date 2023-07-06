@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adjust App | HOME</title>
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,18 +25,18 @@
 
 <body>
 
-    <div class="container">
-        <div class="row text-center content">
+    <div class="container h-100">
+        <div class="row text-center text-white mt-5 pt-5">
             <div class="col-md-12 video">
                 <h3>Guía de usuario</h3>
-                <a href="#" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/video.png"
+                <a href="#" data-toggle="modal" data-target="#exampleModal"><img width='100px' src="assets/images/video.png"
                         alt=""></a>
             </div>
             <div class="col-md-12 video">
                 <h3>Visión</h3>
-                <a href="#" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/video.png"
+                <a href="#" data-toggle="modal" data-target="#exampleModal"><img width='100px' src="assets/images/video.png"
                         alt=""></a>
-                        <a href="index"><h5 ><i class="fas fa-chevron-left mr-2"></i>Volver</h5></a>
+                        <a href="index" class='text-white'><h5 ><i class="fas fa-chevron-left mr-2"></i>Volver</h5></a>
             </div>
         </div>
     </div>

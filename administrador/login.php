@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['usuario'])) {
     header('Location:main?modulo=dashboard');
 }
 ?>
@@ -49,15 +49,15 @@ if (isset($_SESSION['user'])) {
                                             Ingrese a su cuenta.
                                         </h5>
                                         <form id="formLogin">
-                                            <input type="hidden" name="option" value="login-admin">
+                                            <input type="hidden" name="opcion" value="login-admin">
                                             <div class="form-group">
-                                                <label for="user">usuario</label>
-                                                <input type="text" name="user" class="form-control"
+                                                <label for="usuario">usuario</label>
+                                                <input type="text" id='usuario' name="usuario" class="form-control"
                                                     placeholder="Usuario">
                                             </div>
                                             <div class="form-group">
                                                 <label for="contrasena">Contraseña</label>
-                                                <input type="password" class="form-control" name="password"
+                                                <input type="password" class="form-control" name="contrasena"
                                                     id="contrasena" placeholder="Ingrese su contraseña">
                                             </div>
                                             <div class="mt-3">

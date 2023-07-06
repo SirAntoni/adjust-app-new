@@ -3,7 +3,7 @@
         <h4 class="mb-3 mb-md-0">Marcas</h4>
     </div>
     <div class="d-flex align-items-center flex-wrap text-nowrap">
-        <button type="button" data-toggle="modal" data-target="#modalAddBrands"
+        <button type="button" data-toggle="modal" data-target="#modalCrearMarcas"
             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
             <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
             Agregar marca
@@ -17,11 +17,12 @@
         <div class="card overflow-hidden">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataTableBrands" class="table table-stripe table-hover table-bordered">
+                    <table id="dataTableMarcas" class="table table-stripe table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>id</th>
                                 <th>Marca</th>
+                                <th>Usuario</th>
                                 <th>Estado</th>
                                 <th>created_at</th>
                                 <th>updated_at</th>
@@ -39,7 +40,7 @@
 
 <!-- Modals -->
 
-<div class="modal fade" id="modalAddBrands" tabindex="-1" role="dialog" aria-labelledby="modalAddBrands"
+<div class="modal fade" id="modalCrearMarcas" tabindex="-1" role="dialog" aria-labelledby="modalCrearMarcas"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -49,13 +50,20 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formAddBrands">
+            <form id="formCrearMarcas">
                 <div class="modal-body">
-                    <input type="hidden" value="insert" name="option">
+                    <input type="hidden" value="crear" name="opcion">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" name="brand" class="form-control" placeholder="Marca">
+                                <input type="text" name="marca" class="form-control" placeholder="Marca">
+                            </div>
+                            <div class="form-group">
+                                <select name="tipo" class='form-control'>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="1">Premium</option>
+                                    <option value="2">Regular</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -69,7 +77,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalEditBrands" tabindex="-1" role="dialog" aria-labelledby="modalEditBrands"
+<div class="modal fade" id="modalEditarMarcas" tabindex="-1" role="dialog" aria-labelledby="modalEditarMarcas"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -79,14 +87,21 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formEditBrands">
+            <form id="formEditarMarcas">
                 <div class="modal-body">
-                    <input type="hidden" value="update" name="option">
+                    <input type="hidden" value="editar" name="opcion">
                     <input type="hidden" class="id" name="id">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" id="brand" name="brand" class="form-control" placeholder="Marca">
+                                <input type="text" id="marca" name="marca" class="form-control" placeholder="Marca">
+                            </div>
+                            <div class="form-group">
+                                <select id='tipo' name="tipo" class='form-control'>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="1">Premium</option>
+                                    <option value="2">Regular</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -100,13 +115,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalDeleteBrands" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBrands"
+<div class="modal fade" id="modalEliminarMarcas" tabindex="-1" role="dialog" aria-labelledby="modalEliminarMarcas"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="formDeleteBrands">
+            <form id="formEliminarMarcas">
                 <div class="modal-body">
-                    <input type="hidden" value="delete" name="option">
+                    <input type="hidden" value="eliminar" name="opcion">
                     <input type="hidden" class="id" name="id">
                     <div class="d-flex justify-content-center align-items-center p-4">
                         <div class="mr-3">

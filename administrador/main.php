@@ -1,7 +1,8 @@
 <?php
+
 ob_start();
 session_start();
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['usuario'])) {
     header('Location:login');
 }
 
@@ -19,7 +20,7 @@ require "config/conexion.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DASHBOARD | Sistema Interno de control de stock | <?php echo date("Y"); ?></title>
+    <title>DASHBOARD | ADJUST APP <?php echo date("Y"); ?></title>
     <!-- core:css -->
     <link rel="stylesheet" href="assets/vendors/core/core.css">
     <!-- endinject -->
@@ -30,18 +31,20 @@ require "config/conexion.php";
     <link rel="stylesheet" href="assets/vendors/select2/select2.min.css">
     <link rel="stylesheet" href="assets/fonts/feather-font/css/iconfont.css">
     <link rel="stylesheet" href="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/estilos/style.css">
     <link rel="stylesheet" href="assets/css/estilos/custom.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <input type="hidden" id="rolMain" value="<?php echo $_SESSION['rol'] ?>">
     <div class="main-wrapper">
 
         <!-- partial:partials/_navbar.html -->
@@ -85,21 +88,29 @@ require "config/conexion.php";
                         require_once "views/anios.php";
                         break;
 
-                    case 'crear-auto':
-                        require_once "views/crear-auto.php";
+                    case 'negocios':
+                        require_once "views/negocios.php";
                         break;
 
-                    case 'asignar-categoria':
-                        require_once "views/asignar-categoria.php";
-                        break;
-
-                    case 'asignar-autoparte':
-                        require_once "views/asignar-autoparte.php";
+                    case 'autos':
+                        require_once "views/autos.php";
                         break;
                     
-                    case 'categorias':
-                            require_once "views/categorias.php";
-                            break;
+                    case 'configurar-auto':
+                        require_once "views/configurar-auto.php";
+                        break;
+                    
+                    case 'configurar-color':
+                        require_once "views/configurar-color.php";
+                        break;
+
+                    case 'configurar-color-autoparte':
+                        require_once "views/configurar-color-autoparte.php";
+                        break;
+
+                    case 'autopartes':
+                        require_once "views/autopartes.php";
+                        break;
 
                     default:
                         require_once "views/dashboard.php";
@@ -137,30 +148,6 @@ require "config/conexion.php";
     <script src="assets/js/select2.js"></script>
     <script src="assets/js/file-upload.js"></script>
     <script src="app/app.js"></script>
-
-    <?php
-    
-    switch($module) {
-        case 'crear-auto':
-            echo "<script src='app/app-crear-auto.js'></script>";
-            break;
-        case 'asignar-categoria':
-            echo "<script src='app/app-asignar-categoria.js'></script>";
-            break;
-        case 'asignar-autoparte':
-            echo "<script src='app/app-asignar-autoparte.js'></script>";
-            break;
-        case 'dashboard':
-                echo "<script src='app/app-dashboard.js'></script>";
-                break;
-        default:
-            echo "";
-            break;
-    }
-    
-    ?>
-    
-    <!-- end custom js for this page -->
 </body>
 
 </html>

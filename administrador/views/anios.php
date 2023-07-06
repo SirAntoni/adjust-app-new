@@ -3,7 +3,7 @@
         <h4 class="mb-3 mb-md-0">Años</h4>
     </div>
     <div class="d-flex align-items-center flex-wrap text-nowrap">
-        <button type="button" data-toggle="modal" data-target="#modalAddAnios"
+        <button type="button" data-toggle="modal" data-target="#modalCrearAnios"
             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
             <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
             Agregar año
@@ -22,6 +22,7 @@
                             <tr>
                                 <th>id</th>
                                 <th>Año</th>
+                                <th>Usuario</th>
                                 <th>Estado</th>
                                 <th>created_at</th>
                                 <th>updated_at</th>
@@ -39,7 +40,7 @@
 
 <!-- Modals -->
 
-<div class="modal fade" id="modalAddAnios" tabindex="-1" role="dialog" aria-labelledby="modalAddAnios"
+<div class="modal fade" id="modalCrearAnios" tabindex="-1" role="dialog" aria-labelledby="modalCrearAnios"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -49,13 +50,20 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formAddAnios">
+            <form id="formCrearAnios">
                 <div class="modal-body">
-                    <input type="hidden" value="insert" name="option">
+                    <input type="hidden" value="crear" name="opcion">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <input type="text" name="anio" class="form-control" placeholder="Año">
+                            </div>
+                            <div class="form-group">
+                                <select name="tipo" class='form-control'>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="1">Premium</option>
+                                    <option value="2">Regular</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -69,7 +77,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalEditAnios" tabindex="-1" role="dialog" aria-labelledby="modalEditAnios"
+<div class="modal fade" id="modalEditarAnios" tabindex="-1" role="dialog" aria-labelledby="modalEditarAnios"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -79,14 +87,21 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formEditAnios">
+            <form id="formEditarAnios">
                 <div class="modal-body">
-                    <input type="hidden" value="update" name="option">
+                    <input type="hidden" value="editar" name="opcion">
                     <input type="hidden" class="id" name="id">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <input type="text" id="anio" name="anio" class="form-control" placeholder="Año">
+                            </div>
+                            <div class="form-group">
+                                <select id='tipo' name="tipo" class='form-control'>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="1">Premium</option>
+                                    <option value="2">Regular</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -100,13 +115,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalDeleteAnios" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAnios"
+<div class="modal fade" id="modalEliminarAnios" tabindex="-1" role="dialog" aria-labelledby="modalEliminarAnios"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="formDeleteAnios">
+            <form id="formEliminarAnios">
                 <div class="modal-body">
-                    <input type="hidden" value="delete" name="option">
+                    <input type="hidden" value="eliminar" name="opcion">
                     <input type="hidden" class="id" name="id">
                     <div class="d-flex justify-content-center align-items-center p-4">
                         <div class="mr-3">

@@ -22,11 +22,11 @@
 <div class="row">
     <div class="col-12 col-md-4 grid-margin stretch-card cantidad-alumnos">
         <div class="card overflow-hidden bg-primary text-dark">
-            <div class="card-header">Autos</div>
+            <div class="card-header">Negocios</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-6 col-md-12 col-xl-8">
-                        <h3 id="dashboard_autos" class="my-2 text-center text-dark"></h3>
+                        <h3 id="dashboard_negocios" class="my-2 text-center text-dark"></h3>
                     </div>
                     <div class="col-6 col-md-12 col-xl-4 text-center">
                         <i class="fas fa-car fa-2x text-dark" style="font-size: 4em !important;"></i>
@@ -39,12 +39,12 @@
     <div class="col-12 col-md-4 grid-margin stretch-card">
         <div class="card overflow-hidden bg-warning text-dark">
             <div class="card-header">
-                Categorias Asginadas
+                Autos
             </div>
             <div class="card-body">
                 <div class="row">
                 <div class="col-6 col-md-12 col-xl-8">
-                        <h3 id="dashboard_categorias" class="my-2 text-center text-dark"></h3>
+                        <h3 id="dashboard_autos" class="my-2 text-center text-dark"></h3>
                     </div>
                     <div class="col-6 col-md-12 col-xl-4 text-center">
                         <i class="fas fa-car fa-2x text-dark" style="font-size: 4em !important;"></i>
@@ -56,11 +56,11 @@
 
     <div class="col-12 col-md-4 grid-margin stretch-card ">
         <div class="card overflow-hidden text-white bg-success">
-            <div class="card-header">Autopartes asignadas</div>
+            <div class="card-header">Autopartes</div>
             <div class="card-body">
                 <div class="row">
                 <div class="col-6 col-md-12 col-xl-8">
-                        <h3 id="dashboard_partes" class="my-2 text-center text-dark"></h3>
+                        <h3 id="dashboard_autopartes" class="my-2 text-center text-dark"></h3>
                     </div>
                     <div class="col-6 col-md-12 col-xl-4 text-center">
                         <i class="fas fa-car fa-2x text-dark" style="font-size: 4em !important;"></i>

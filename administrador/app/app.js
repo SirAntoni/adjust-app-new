@@ -1,62 +1,277 @@
-$(function(){
+$(function() {
 
     //Marcas
 
-    list_brands();
-    add_brand();
-    edit_brand();
-    delete_brand();
+    listar_marcas();
+    crear_marca();
+    editar_marca();
+    eliminar_marca();
 
     //Tipos
 
-    list_types();
-    add_type();
-    edit_type();
-    delete_type();
+    listar_tipos();
+    crear_tipo();
+    editar_tipo();
+    eliminar_tipo();
 
     //modelos
 
-    list_models();
-    add_model();
-    edit_model();
-    delete_model();
+    listar_modelos();
+    crear_modelo();
+    editar_modelo();
+    eliminar_modelo();
 
     //Años
 
-    list_anios();
-    add_anio();
-    edit_anio();
-    delete_anio();
+    listar_anios();
+    crear_anio();
+    editar_anio();
+    eliminar_anio();
 
-    //Crear auto
+    //Negocios
 
-    list_cars();
-    add_car();
-    delete_car();
+    listar_negocios();
+    crear_negocio();
+    editar_negocio();
+
+    //Autos
+
+    listar_autos();
+    crear_auto();
+    editar_auto();
+    eliminar_auto();
+
+    //Colores
+    listar_colores();
+    crear_color();
+    editar_color();
+    eliminar_color();
 
     //Categorias
 
-    list_categories();
-    add_category();
-    edit_category();
-    delete_category();
+    listar_categorias();
+    crear_categoria();
+    editar_categoria();
+    eliminar_categoria();
 
-    //Asignar Categorias
+    //Autopartes
+    listar_autopartes();
+    crear_autoparte();
+    editar_autoparte();
+    eliminar_autoparte();
 
-    list_category_to_car();
-    add_category_to_car();
-    edit_category_to_car();
-    delete_category_to_car();
+    //SELECTS
+    select_marcas();
+    select_marcas_editar();
+    select_tipos();
+    select_modelos();
+    select_modelos_editar();
+    select_anios();
+    obtener_nombre_auto();
+    obtener_nombre_autoparte();
+    obtener_nombre_categoria();
 
-    //Asignar autopartes
-    list_part_to_category();
-    add_part();
-    delete_part();
+    //Dashboard
+    dashboard();
+
+    //Dropzone
+    localStorage.removeItem("documentos");
+    limpiar();
+    activarDropzone();
+    subir();
+
+
+
+    //IMAGENES
+    listar_imagenes();
+
+
+
 
 })
 
-var list_brands = function() {
-    var table_brands = $("#dataTableBrands").DataTable({
+//DASHBOARD
+
+const dashboard = function() {
+    $.ajax({
+        url: 'controller/dashboard.php',
+        method: 'GET',
+        success: function(response) {
+            const data = JSON.parse(response);
+
+            $('#dashboard_negocios').html(data[0]);
+            $('#dashboard_autos').html(data[1]);
+            $('#dashboard_autopartes').html(data[2]);
+        }
+    })
+}
+
+
+// LISTAR UTILIARIOS GENERALES
+
+let select_marcas = () => {
+    $.ajax({
+        url: 'controller/marcas.php',
+        method: 'POST',
+        data: { opcion: 'listar_marcas' },
+        success: function(response) {
+            const marcas = JSON.parse(response);
+            let html = `<option value=''>Seleccione una marca</option>`;
+            marcas.forEach(marca => {
+                html = html + `<option value='${marca.id}'>${marca.marca}</option>`;
+            })
+
+            $(".select_marcas").html(html);
+        }
+    })
+}
+
+let select_marcas_editar = () => {
+    $.ajax({
+        url: 'controller/marcas.php',
+        method: 'POST',
+        data: { opcion: 'listar_marcas' },
+        success: function(response) {
+            const marcas = JSON.parse(response);
+            let html = `<option value=''>Seleccione una marca</option>`;
+            marcas.forEach(marca => {
+                html = html + `<option value='${marca.id}'>${marca.marca}</option>`;
+            })
+
+            $("#marca").html(html);
+        }
+    })
+}
+
+let select_tipos = () => {
+    $.ajax({
+        url: 'controller/tipos.php',
+        method: 'POST',
+        data: { opcion: 'listar_tipos' },
+        success: function(response) {
+            const tipos = JSON.parse(response);
+            let html = `<option value=''>Seleccione un tipo</option>`;
+            tipos.forEach(tipo => {
+                html = html + `<option value='${tipo.id}'>${tipo.tipo}</option>`;
+            })
+
+            $(".select_tipos").html(html);
+        }
+    })
+}
+
+let select_modelos = function() {
+    $(".select_marcas").change(() => {
+        $.ajax({
+            url: 'controller/modelos.php',
+            method: 'POST',
+            data: { opcion: 'listar_modelos', marca: $(".select_marcas").val() },
+            success: function(response) {
+
+                const modelos = JSON.parse(response);
+                let html = `<option value=''>Seleccione un modelo</option>`;
+                modelos.forEach(modelo => {
+                    html = html + `<option value='${modelo.id}'>${modelo.modelo}</option>`;
+                })
+
+                $(".select_modelos").html(html);
+            }
+        });
+
+    })
+}
+
+let select_modelos_editar = function() {
+    $("#marca").change(() => {
+        $.ajax({
+            url: 'controller/modelos.php',
+            method: 'POST',
+            data: { opcion: 'listar_modelos', marca: $("#marca").val() },
+            success: function(response) {
+                const modelos = JSON.parse(response);
+                let html = `<option value=''>Seleccione un modelo</option>`;
+                modelos.forEach(modelo => {
+                    html = html + `<option value='${modelo.id}'>${modelo.modelo}</option>`;
+                })
+                console.log(response)
+                $("#modelo").html(html);
+            }
+        });
+
+    })
+}
+
+let select_anios = function() {
+    $.ajax({
+        url: 'controller/anios.php',
+        method: 'POST',
+        data: { opcion: 'listar_anios' },
+        success: function(response) {
+            const anios = JSON.parse(response);
+            let html = `<option value=''>Seleccione un anio</option>`;
+            anios.forEach(anio => {
+                html = html + `<option value='${anio.id}'>${anio.anio}</option>`;
+            })
+
+            $(".select_anios").html(html);
+        }
+    });
+}
+
+const obtener_nombre_auto = function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const uuid = urlParams.get('auto');
+
+    $.ajax({
+        url: 'controller/autos.php',
+        method: 'POST',
+        data: { opcion: 'obtener_nombre_auto', uuid },
+        success: function(response) {
+            $("#nombre_auto").html(response);
+        }
+    });
+
+};
+
+const obtener_nombre_categoria = function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const uuid = urlParams.get('categoria');
+
+    $.ajax({
+        url: 'controller/categorias.php',
+        method: 'POST',
+        data: { opcion: 'obtener_nombre_categoria', uuid },
+        success: function(response) {
+            $("#nombre_categoria").html(response);
+        }
+    });
+
+};
+
+const obtener_nombre_autoparte = function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const uuid = urlParams.get('autoparte');
+
+    $.ajax({
+        url: 'controller/autopartes.php',
+        method: 'POST',
+        data: { opcion: 'obtener_nombre_autoparte', uuid },
+        success: function(response) {
+            $("#nombre_autoparte").html(response);
+        }
+    });
+
+};
+
+// FIN UTILIARIOS GENERALES
+
+// INICIAR NEGOCIOS
+
+var listar_marcas = function() {
+    var table_marcas = $("#dataTableMarcas").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -65,33 +280,39 @@ var list_brands = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/brandController.php",
+            url: "controller/marcas.php",
             method: "POST",
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
-            { bSearchable: false, bVisible: false, aTargets: [2] },
             { bSearchable: false, bVisible: false, aTargets: [3] },
-            { bSearchable: false, bVisible: false, aTargets: [4] }
+            { bSearchable: false, bVisible: false, aTargets: [4] },
+            { bSearchable: false, bVisible: false, aTargets: [5] }
         ],
         columns: [
             { data: "id" },
-            { data: "mark" },
-            { data: "status" },
-            { data: "created_at" },
-            { data: "updated_at" },
+            { data: "marca" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='edit mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "tipo_usuario",
+                render: function(data, type, row) {
+                    return data === '1' ? 'premium' : 'regular';
+                }
+            },
+            { data: "estado" },
+            { data: "fecha_creacion" },
+            { data: "fecha_modificacion" },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_edit_brand("#dataTableBrands tbody", table_brands);
-    data_delete_brand("#dataTableBrands tbody", table_brands);
+    data_editar_marca("#dataTableMarcas tbody", table_marcas);
+    data_eliminar_marca("#dataTableMarcas tbody", table_marcas);
 
-    $("#dataTableBrands").each(function() {
+    $("#dataTableMarcas").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -108,30 +329,31 @@ var list_brands = function() {
 
 };
 
-var data_edit_brand = function(tbody, table) {
-    $(tbody).on("click", ".edit", function() {
+var data_editar_marca = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#brand").val(data.mark);
-        $("#modalEditBrands").modal("show");
+        $("#marca").val(data.marca);
+        $("#tipo").val(data.tipo_usuario);
+        $("#modalEditarMarcas").modal("show");
     })
 }
 
-var data_delete_brand = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
+var data_eliminar_marca = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#modalDeleteBrands").modal("show");
+        $("#modalEliminarMarcas").modal("show");
     })
 }
 
-var add_brand = function() {
+var crear_marca = function() {
 
-    $("#formAddBrands").submit(function(e) {
+    $("#formCrearMarcas").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/brandController.php",
+            url: "controller/marcas.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -149,9 +371,9 @@ var add_brand = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableBrands").DataTable().ajax.reload();
-                    $("#formAddBrands").trigger('reset');
-                    $("#modalAddBrands").modal("hide");
+                    $("#dataTableMarcas").DataTable().ajax.reload();
+                    $("#formCrearMarcas").trigger('reset');
+                    $("#modalCrearMarcas").modal("hide");
 
                 } else {
                     Swal.fire({
@@ -168,13 +390,13 @@ var add_brand = function() {
 
 }
 
-var edit_brand = function() {
+var editar_marca = function() {
 
-    $("#formEditBrands").submit(function(e) {
+    $("#formEditarMarcas").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/brandController.php",
+            url: "controller/marcas.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -192,9 +414,9 @@ var edit_brand = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableBrands").DataTable().ajax.reload();
-                    $("#formEditBrands").trigger('reset');
-                    $("#modalEditBrands").modal("hide");
+                    $("#dataTableMarcas").DataTable().ajax.reload();
+                    $("#formEditarMarcas").trigger('reset');
+                    $("#modalEditarMarcas").modal("hide");
 
 
                 } else {
@@ -212,13 +434,13 @@ var edit_brand = function() {
 
 }
 
-var delete_brand = function() {
+var eliminar_marca = function() {
 
-    $("#formDeleteBrands").submit(function(e) {
+    $("#formEliminarMarcas").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/brandController.php",
+            url: "controller/marcas.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -235,9 +457,9 @@ var delete_brand = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableBrands").DataTable().ajax.reload();
-                    $("#formDeleteBrands").trigger('reset');
-                    $("#modalDeleteBrands").modal("hide");
+                    $("#dataTableMarcas").DataTable().ajax.reload();
+                    $("#formEliminarMarcas").trigger('reset');
+                    $("#modalEliminarMarcas").modal("hide");
 
 
                 } else {
@@ -255,9 +477,8 @@ var delete_brand = function() {
 
 }
 
-
-var list_types = function() {
-    var table_types = $("#dataTableTypes").DataTable({
+var listar_tipos = function() {
+    var table_tipos = $("#dataTableTipos").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -266,33 +487,39 @@ var list_types = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/typeController.php",
+            url: "controller/tipos.php",
             method: "POST",
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
-            { bSearchable: false, bVisible: false, aTargets: [2] },
             { bSearchable: false, bVisible: false, aTargets: [3] },
-            { bSearchable: false, bVisible: false, aTargets: [4] }
+            { bSearchable: false, bVisible: false, aTargets: [4] },
+            { bSearchable: false, bVisible: false, aTargets: [5] }
         ],
         columns: [
             { data: "id" },
-            { data: "type" },
-            { data: "status" },
-            { data: "created_at" },
-            { data: "updated_at" },
+            { data: "tipo" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='edit mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "tipo_usuario",
+                render: function(data, type, row) {
+                    return data === '1' ? 'premium' : 'regular';
+                }
+            },
+            { data: "estado" },
+            { data: "fecha_creacion" },
+            { data: "fecha_modificacion" },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_edit_type("#dataTableTypes tbody", table_types);
-    data_delete_type("#dataTableTypes tbody", table_types);
+    data_editar_tipo("#dataTableTipos tbody", table_tipos);
+    data_eliminar_tipo("#dataTableTipos tbody", table_tipos);
 
-    $("#dataTableTypes").each(function() {
+    $("#dataTableTipos").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -309,30 +536,31 @@ var list_types = function() {
 
 };
 
-var data_edit_type = function(tbody, table) {
-    $(tbody).on("click", ".edit", function() {
+var data_editar_tipo = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#type").val(data.type);
-        $("#modalEditTypes").modal("show");
+        $("#tipo").val(data.tipo);
+        $("#tipo_usuario").val(data.tipo_usuario);
+        $("#modalEditarTipos").modal("show");
     })
 }
 
-var data_delete_type = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
+var data_eliminar_tipo = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#modalDeleteTypes").modal("show");
+        $("#modalEliminarTipos").modal("show");
     })
 }
 
-var add_type = function() {
+var crear_tipo = function() {
 
-    $("#formAddTypes").submit(function(e) {
+    $("#formCrearTipos").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/typeController.php",
+            url: "controller/tipos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -350,9 +578,9 @@ var add_type = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableTypes").DataTable().ajax.reload();
-                    $("#formAddTypes").trigger('reset');
-                    $("#modalAddTypes").modal("hide");
+                    $("#dataTableTipos").DataTable().ajax.reload();
+                    $("#formCrearTipos").trigger('reset');
+                    $("#modalCrearTipos").modal("hide");
 
                 } else {
                     Swal.fire({
@@ -369,13 +597,13 @@ var add_type = function() {
 
 }
 
-var edit_type = function() {
+var editar_tipo = function() {
 
-    $("#formEditTypes").submit(function(e) {
+    $("#formEditarTipos").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/typeController.php",
+            url: "controller/tipos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -393,9 +621,9 @@ var edit_type = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableTypes").DataTable().ajax.reload();
-                    $("#formEditTypes").trigger('reset');
-                    $("#modalEditTypes").modal("hide");
+                    $("#dataTableTipos").DataTable().ajax.reload();
+                    $("#formEditarTipos").trigger('reset');
+                    $("#modalEditarTipos").modal("hide");
 
 
                 } else {
@@ -413,13 +641,13 @@ var edit_type = function() {
 
 }
 
-var delete_type = function() {
+var eliminar_tipo = function() {
 
-    $("#formDeleteTypes").submit(function(e) {
+    $("#formEliminarTipos").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/typeController.php",
+            url: "controller/tipos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -436,9 +664,9 @@ var delete_type = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableTypes").DataTable().ajax.reload();
-                    $("#formDeleteTypes").trigger('reset');
-                    $("#modalDeleteTypes").modal("hide");
+                    $("#dataTableTipos").DataTable().ajax.reload();
+                    $("#formEliminarTipos").trigger('reset');
+                    $("#modalEliminarTipos").modal("hide");
 
 
                 } else {
@@ -456,9 +684,8 @@ var delete_type = function() {
 
 }
 
-
-var list_models = function() {
-    var table_models = $("#dataTableModels").DataTable({
+var listar_modelos = function() {
+    var table_modelos = $("#dataTableModelos").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -467,33 +694,42 @@ var list_models = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/modelController.php",
+            url: "controller/modelos.php",
             method: "POST",
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
             { bSearchable: false, bVisible: false, aTargets: [2] },
-            { bSearchable: false, bVisible: false, aTargets: [3] },
-            { bSearchable: false, bVisible: false, aTargets: [4] }
+            { bSearchable: false, bVisible: false, aTargets: [5] },
+            { bSearchable: false, bVisible: false, aTargets: [6] },
+            { bSearchable: false, bVisible: false, aTargets: [7] }
         ],
         columns: [
             { data: "id" },
-            { data: "model" },
-            { data: "status" },
-            { data: "created_at" },
-            { data: "updated_at" },
+            { data: "marca" },
+            { data: "marca_id" },
+            { data: "modelo" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='edit mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "tipo_usuario",
+                render: function(data, type, row) {
+                    return data === '1' ? 'premium' : 'regular';
+                }
+            },
+            { data: "estado" },
+            { data: "fecha_creacion" },
+            { data: "fecha_modificacion" },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_edit_model("#dataTableModels tbody", table_models);
-    data_delete_model("#dataTableModels tbody", table_models);
+    data_editar_modelo("#dataTableModelos tbody", table_modelos);
+    data_eliminar_modelo("#dataTableModelos tbody", table_modelos);
 
-    $("#dataTableModels").each(function() {
+    $("#dataTableModelos").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -510,30 +746,32 @@ var list_models = function() {
 
 };
 
-var data_edit_model = function(tbody, table) {
-    $(tbody).on("click", ".edit", function() {
+var data_editar_modelo = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#model").val(data.model);
-        $("#modalEditModels").modal("show");
+        $("#marca").val(data.marca_id);
+        $("#modelo").val(data.modelo);
+        $("#tipo").val(data.tipo_usuario);
+        $("#modalEditarModelos").modal("show");
     })
 }
 
-var data_delete_model = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
+var data_eliminar_modelo = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#modalDeleteModels").modal("show");
+        $("#modalEliminarModelos").modal("show");
     })
 }
 
-var add_model = function() {
+var crear_modelo = function() {
 
-    $("#formAddModels").submit(function(e) {
+    $("#formCrearModelos").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/modelController.php",
+            url: "controller/modelos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -551,9 +789,9 @@ var add_model = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableModels").DataTable().ajax.reload();
-                    $("#formAddModels").trigger('reset');
-                    $("#modalAddModels").modal("hide");
+                    $("#dataTableModelos").DataTable().ajax.reload();
+                    $("#formCrearModelos").trigger('reset');
+                    $("#modalCrearModelos").modal("hide");
 
                 } else {
                     Swal.fire({
@@ -570,13 +808,13 @@ var add_model = function() {
 
 }
 
-var edit_model = function() {
+var editar_modelo = function() {
 
-    $("#formEditModels").submit(function(e) {
+    $("#formEditarModelos").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/modelController.php",
+            url: "controller/modelos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -594,9 +832,9 @@ var edit_model = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableModels").DataTable().ajax.reload();
-                    $("#formEditModels").trigger('reset');
-                    $("#modalEditModels").modal("hide");
+                    $("#dataTableModelos").DataTable().ajax.reload();
+                    $("#formEditarModelos").trigger('reset');
+                    $("#modalEditarModelos").modal("hide");
 
 
                 } else {
@@ -614,13 +852,13 @@ var edit_model = function() {
 
 }
 
-var delete_model = function() {
+var eliminar_modelo = function() {
 
-    $("#formDeleteModels").submit(function(e) {
+    $("#formEliminarModelos").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/modelController.php",
+            url: "controller/modelos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -637,9 +875,9 @@ var delete_model = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableModels").DataTable().ajax.reload();
-                    $("#formDeleteModels").trigger('reset');
-                    $("#modalDeleteModels").modal("hide");
+                    $("#dataTableModelos").DataTable().ajax.reload();
+                    $("#formEliminarModelos").trigger('reset');
+                    $("#modalEliminarModelos").modal("hide");
 
 
                 } else {
@@ -657,9 +895,7 @@ var delete_model = function() {
 
 }
 
-
-
-var list_anios = function() {
+var listar_anios = function() {
     var table_anios = $("#dataTableAnios").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
@@ -669,31 +905,37 @@ var list_anios = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/anioController.php",
+            url: "controller/anios.php",
             method: "POST",
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
-            { bSearchable: false, bVisible: false, aTargets: [2] },
             { bSearchable: false, bVisible: false, aTargets: [3] },
-            { bSearchable: false, bVisible: false, aTargets: [4] }
+            { bSearchable: false, bVisible: false, aTargets: [4] },
+            { bSearchable: false, bVisible: false, aTargets: [5] }
         ],
         columns: [
             { data: "id" },
             { data: "anio" },
-            { data: "status" },
-            { data: "created_at" },
-            { data: "updated_at" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='edit mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "tipo_usuario",
+                render: function(data, type, row) {
+                    return data === '1' ? 'premium' : 'regular';
+                }
+            },
+            { data: "estado" },
+            { data: "fecha_creacion" },
+            { data: "fecha_modificacion" },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_edit_anio("#dataTableAnios tbody", table_anios);
-    data_delete_anio("#dataTableAnios tbody", table_anios);
+    data_editar_anio("#dataTableAnios tbody", table_anios);
+    data_eliminar_anio("#dataTableAnios tbody", table_anios);
 
     $("#dataTableAnios").each(function() {
         var datatable = $(this);
@@ -712,30 +954,31 @@ var list_anios = function() {
 
 };
 
-var data_edit_anio = function(tbody, table) {
-    $(tbody).on("click", ".edit", function() {
+var data_editar_anio = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
         $("#anio").val(data.anio);
-        $("#modalEditAnios").modal("show");
+        $("#tipo").val(data.tipo_usuario);
+        $("#modalEditarAnios").modal("show");
     })
 }
 
-var data_delete_anio = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
+var data_eliminar_anio = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#modalDeleteAnios").modal("show");
+        $("#modalEliminarAnios").modal("show");
     })
 }
 
-var add_anio = function() {
+var crear_anio = function() {
 
-    $("#formAddAnios").submit(function(e) {
+    $("#formCrearAnios").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/anioController.php",
+            url: "controller/anios.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -754,8 +997,8 @@ var add_anio = function() {
                     })
 
                     $("#dataTableAnios").DataTable().ajax.reload();
-                    $("#formAddAnios").trigger('reset');
-                    $("#modalAddAnios").modal("hide");
+                    $("#formCrearAnios").trigger('reset');
+                    $("#modalCrearAnios").modal("hide");
 
                 } else {
                     Swal.fire({
@@ -772,13 +1015,13 @@ var add_anio = function() {
 
 }
 
-var edit_anio = function() {
+var editar_anio = function() {
 
-    $("#formEditAnios").submit(function(e) {
+    $("#formEditarAnios").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/anioController.php",
+            url: "controller/anios.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -797,8 +1040,8 @@ var edit_anio = function() {
                     })
 
                     $("#dataTableAnios").DataTable().ajax.reload();
-                    $("#formEditAnios").trigger('reset');
-                    $("#modalEditAnios").modal("hide");
+                    $("#formEditarAnios").trigger('reset');
+                    $("#modalEditarAnios").modal("hide");
 
 
                 } else {
@@ -816,13 +1059,13 @@ var edit_anio = function() {
 
 }
 
-var delete_anio = function() {
+var eliminar_anio = function() {
 
-    $("#formDeleteAnios").submit(function(e) {
+    $("#formEliminarAnios").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/anioController.php",
+            url: "controller/anios.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -840,8 +1083,8 @@ var delete_anio = function() {
                     })
 
                     $("#dataTableAnios").DataTable().ajax.reload();
-                    $("#formDeleteAnios").trigger('reset');
-                    $("#modalDeleteAnios").modal("hide");
+                    $("#formEliminarAnios").trigger('reset');
+                    $("#modalEliminarAnios").modal("hide");
 
 
                 } else {
@@ -859,8 +1102,12 @@ var delete_anio = function() {
 
 }
 
-var list_cars = function() {
-    var table_cars = $("#dataTableCars").DataTable({
+// FIN COFIGURACION
+
+// INICIO NEGOCIOS
+
+var listar_negocios = function() {
+    var table_negocios = $("#dataTableNegocios").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -869,7 +1116,7 @@ var list_cars = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/carController.php",
+            url: "controller/negocios.php",
             method: "POST",
         },
         aoColumnDefs: [
@@ -877,22 +1124,32 @@ var list_cars = function() {
         ],
         columns: [
             { data: "id" },
-            { data: "mark" },
-            { data: "type" },
-            { data: "model" },
-            { data: "anio" },
-            { data: "name" },
+            { data: "ruc" },
+            { data: "razon_social" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "rango",
+                render: function(data, type, row) {
+                    return data === '1' ? 'premium' : 'regular';
+                }
+            },
+            {
+                data: "estado",
+                render: function(data, type, row) {
+                    return data === '1' ? 'activo' : 'suspendido';
+                }
+            },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_delete_car("#dataTableCars tbody", table_cars);
+    data_editar_negocio("#dataTableNegocios tbody", table_negocios);
+    data_configurar_negocio("#dataTableNegocios tbody", table_negocios);
 
-    $("#dataTableCars").each(function() {
+    $("#dataTableNegocios").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -909,35 +1166,38 @@ var list_cars = function() {
 
 };
 
-var data_delete_car = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
+var data_editar_negocio = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#modalDeleteCars").modal("show");
+        $("#ruc").val(data.ruc);
+        $("#razon_social").val(data.razon_social);
+        $("#rango").val(data.rango);
+        $("#estado").val(data.estado);
+        $("#modalEditarNegocio").modal("show");
     })
 }
 
-var add_car = function(){
+var data_configurar_negocio = function(tbody, table) {
+    $(tbody).on("click", ".configurar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        window.location = 'main?module=autos&negocio=' + data.id;
+    })
+}
 
-    $("#formAddCars").submit(function(e){
+var crear_negocio = function() {
+
+    $("#formCrearNegocio").submit(function(e) {
         e.preventDefault();
-        const formData = new FormData($('#formAddCars')[0]);
+        const data = $(this).serialize();
         $.ajax({
-            url:"controller/carController.php",
-            method:"POST",
-            data:formData,
-            contentType:false,
-            cache:false,
-            processData:false,
-            beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
-            },
-            complete: function() {
-                Notiflix.Block.Remove('.modal-content');
-            },
+            url: "controller/negocios.php",
+            method: "POST",
+            data: data,
             success: function(response) {
                 var response = JSON.parse(response);
                 if (response.status == "success") {
+
                     Swal.fire({
                         title: 'Success!',
                         text: response.message,
@@ -945,9 +1205,9 @@ var add_car = function(){
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCars").DataTable().ajax.reload();
-                    $("#formAddCars").trigger('reset');
-                    $("#modalAddCars").modal("hide");
+                    $("#dataTableNegocios").DataTable().ajax.reload();
+                    $("#formCrearNegocio").trigger('reset');
+                    $("#modalCrearNegocio").modal("hide");
 
 
                 } else {
@@ -964,22 +1224,18 @@ var add_car = function(){
 
 }
 
-var delete_car = function() {
-
-    $("#formDeleteCars").submit(function(e) {
+var editar_negocio = function() {
+    $("#formEditarNegocio").submit(function(e) {
         e.preventDefault();
-        var data = $(this).serialize();
+        const data = $(this).serialize();
         $.ajax({
-            url: "controller/carController.php",
+            url: "controller/negocios.php",
             method: "POST",
             data: data,
-            beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
-            },
             success: function(response) {
-                Notiflix.Block.Remove('.modal-content');
                 var response = JSON.parse(response);
-               if (response.status == "success") {
+                if (response.status == "success") {
+
                     Swal.fire({
                         title: 'Success!',
                         text: response.message,
@@ -987,9 +1243,9 @@ var delete_car = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCars").DataTable().ajax.reload();
-                    $("#formDeleteCars").trigger('reset');
-                    $("#modalDeleteCars").modal("hide");
+                    $("#dataTableNegocios").DataTable().ajax.reload();
+                    $("#formEditarNegocio").trigger('reset');
+                    $("#modalEditarNegocio").modal("hide");
 
 
                 } else {
@@ -1000,15 +1256,16 @@ var delete_car = function() {
                         confirmButtonText: 'Ok'
                     })
                 }
-
             }
         })
     })
-
 }
 
-var list_categories = function() {
-    var table_category = $("#dataTableCategories").DataTable({
+var listar_autos = function() {
+
+    const negocio = $("#negocio").val()
+
+    var table_autos = $("#dataTableAutos").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -1017,35 +1274,56 @@ var list_categories = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/categoryController.php",
+            url: "controller/autos.php",
             method: "POST",
+            data: function(d) {
+                // Crea el objeto con los datos a enviar en el cuerpo
+                var bodyData = {
+                    opcion: 'listar_autos',
+                    negocio: negocio
+                        // Agrega otros parámetros según sea necesario
+                };
+
+                // Convierte el objeto en una cadena JSON
+                var jsonData = JSON.stringify(bodyData);
+
+                // Agrega la cadena JSON al cuerpo de la solicitud
+                d.data = jsonData;
+
+                // Retornar el objeto modificado
+                return d;
+            },
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
-            { bSearchable: false, bVisible: false, aTargets: [2] },
             { bSearchable: false, bVisible: false, aTargets: [3] },
             { bSearchable: false, bVisible: false, aTargets: [4] },
-            { bSearchable: false, bVisible: false, aTargets: [5] }
+            { bSearchable: false, bVisible: false, aTargets: [5] },
+            { bSearchable: false, bVisible: false, aTargets: [6] },
+            { bSearchable: false, bVisible: false, aTargets: [7] }
         ],
         columns: [
             { data: "id" },
-            { data: "name" },
-            { data: "image" },
-            { data: "status" },
-            { data: "created_at" },
-            { data: "updated_at" },
+            { data: "uuid" },
+            { data: "nombre" },
+            { data: "marca_id" },
+            { data: "tipo_id" },
+            { data: "modelo_id" },
+            { data: "anio_id" },
+            { data: "color_uuid" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='edit mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_edit_category("#dataTableCategories tbody", table_category);
-    data_delete_category("#dataTableCategories tbody", table_category);
+    data_editar_auto("#dataTableAutos tbody", table_autos);
+    data_configurar_auto("#dataTableAutos tbody", table_autos);
+    data_eliminar_auto("#dataTableAutos tbody", table_autos);
 
-    $("#dataTableCategories").each(function() {
+    $("#dataTableAutos").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -1062,42 +1340,77 @@ var list_categories = function() {
 
 };
 
-var data_edit_category = function(tbody, table) {
-    $(tbody).on("click", ".edit", function() {
+var data_editar_auto = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#category").val(data.name);
-        $("#archivo").val(data.image);
-        $("#modalEditCategories").modal("show");
-    })
-}
+        $("#nombre").val(data.nombre);
+        $("#marca").val(data.marca_id);
+        $("#tipo").val(data.tipo_id);
 
-var data_delete_category = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
-        var data = table.row($(this).parents("tr")).data();
-        $(".id").val(data.id);
-        $("#modalDeleteCategories").modal("show");
-    })
-}
-
-var add_category = function(){
-
-    $("#formAddCategories").submit(function(e){
-        e.preventDefault();
-        const formData = new FormData($('#formAddCategories')[0]);
         $.ajax({
-            url:"controller/categoryController.php",
-            method:"POST",
-            data:formData,
-            contentType:false,
-            cache:false,
-            processData:false,
-            beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
-            },
-            complete: function() {
-                Notiflix.Block.Remove('.modal-content');
-            },
+            url: 'controller/modelos.php',
+            method: 'POST',
+            data: { opcion: 'listar_modelos', marca: data.marca_id },
+            success: function(response) {
+                const modelos = JSON.parse(response);
+                let html = `<option value=''>Seleccione un modelo</option>`;
+                modelos.forEach(modelo => {
+                    html = html + `<option value='${modelo.id}'>${modelo.modelo}</option>`;
+                })
+
+                $("#modelo").html(html);
+                $("#modelo").val(data.modelo_id);
+            }
+        });
+
+        $.ajax({
+            url: 'controller/colores.php',
+            method: 'POST',
+            data: { opcion: 'listar_colores', auto: data.uuid },
+            success: function(response) {
+
+                const colores = JSON.parse(response);
+                console.log(colores);
+                let html = `<option value=''>Seleccione un color</option>`;
+                colores['data'].forEach((color) => {
+                    console.log(color);
+                    html = html + `<option value='${color.uuid}'>${color.color}</option>`;
+                })
+
+                $("#color").html(html);
+                $("#color").val(data.color_uuid);
+            }
+        });
+
+        $("#anio").val(data.anio_id);
+        $("#modalEditarAuto").modal("show");
+    })
+}
+
+var data_eliminar_auto = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#modalEliminarAuto").modal("show");
+    })
+}
+
+var data_configurar_auto = function(tbody, table) {
+    $(tbody).on("click", ".configurar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        window.location = 'main?module=configurar-auto&auto=' + data.uuid;
+    })
+}
+
+var crear_auto = function() {
+    $("#formCrearAuto").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: "controller/autos.php",
+            method: "POST",
+            data: data,
             success: function(response) {
                 var response = JSON.parse(response);
                 if (response.status == "success") {
@@ -1108,9 +1421,9 @@ var add_category = function(){
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCategories").DataTable().ajax.reload();
-                    $("#formAddCategories").trigger('reset');
-                    $("#modalAddCategories").modal("hide");
+                    $("#dataTableAutos").DataTable().ajax.reload();
+                    $("#formCrearAutos").trigger('reset');
+                    $("#modalCrearAuto").modal("hide");
 
 
                 } else {
@@ -1127,24 +1440,15 @@ var add_category = function(){
 
 }
 
-var edit_category = function(){
+var editar_auto = function() {
 
-    $("#formEditCategories").submit(function(e){
+    $("#formEditarAuto").submit(function(e) {
         e.preventDefault();
-        const formData = new FormData($('#formEditCategories')[0]);
+        const data = $(this).serialize();
         $.ajax({
-            url:"controller/categoryController.php",
-            method:"POST",
-            data:formData,
-            contentType:false,
-            cache:false,
-            processData:false,
-            beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
-            },
-            complete: function() {
-                Notiflix.Block.Remove('.modal-content');
-            },
+            url: "controller/autos.php",
+            method: "POST",
+            data: data,
             success: function(response) {
                 var response = JSON.parse(response);
                 if (response.status == "success") {
@@ -1155,9 +1459,9 @@ var edit_category = function(){
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCategories").DataTable().ajax.reload();
-                    $("#formEditCategories").trigger('reset');
-                    $("#modalEditCategories").modal("hide");
+                    $("#dataTableAutos").DataTable().ajax.reload();
+                    $("#formEditarAuto").trigger('reset');
+                    $("#modalEditarAuto").modal("hide");
 
 
                 } else {
@@ -1174,13 +1478,13 @@ var edit_category = function(){
 
 }
 
-var delete_category = function() {
+var eliminar_auto = function() {
 
-    $("#formDeleteCategories").submit(function(e) {
+    $("#formEliminarAuto").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/categoryController.php",
+            url: "controller/autos.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -1189,7 +1493,7 @@ var delete_category = function() {
             success: function(response) {
                 Notiflix.Block.Remove('.modal-content');
                 var response = JSON.parse(response);
-               if (response.status == "success") {
+                if (response.status == "success") {
                     Swal.fire({
                         title: 'Success!',
                         text: response.message,
@@ -1197,9 +1501,9 @@ var delete_category = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCategories").DataTable().ajax.reload();
-                    $("#formDeleteCategories").trigger('reset');
-                    $("#modalDeleteCategories").modal("hide");
+                    $("#dataTableAutos").DataTable().ajax.reload();
+                    $("#formEliminarAuto").trigger('reset');
+                    $("#modalEliminarAuto").modal("hide");
 
 
                 } else {
@@ -1217,8 +1521,10 @@ var delete_category = function() {
 
 }
 
-var list_category_to_car = function() {
-    var table_category_to_car = $("#dataTableCategoryToCar").DataTable({
+var listar_categorias = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const auto = urlParams.get('auto');
+    var table_categorias = $("#dataTableCategorias").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -1227,29 +1533,54 @@ var list_category_to_car = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/categoryToCarController.php",
+            url: "controller/categorias.php",
             method: "POST",
+            data: function(d) {
+                // Crea el objeto con los datos a enviar en el cuerpo
+                var bodyData = {
+                    opcion: 'listar_categorias',
+                    auto
+                    // Agrega otros parámetros según sea necesario
+                };
+
+                // Convierte el objeto en una cadena JSON
+                var jsonData = JSON.stringify(bodyData);
+
+                // Agrega la cadena JSON al cuerpo de la solicitud
+                d.data = jsonData;
+
+                // Retornar el objeto modificado
+                return d;
+            }
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] }
         ],
         columns: [
             { data: "id" },
-            { data: "category" },
-            { data: "automovil" },
-            { data: "name_config" },
+            { data: "uuid" },
+            { data: "categoria" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='edit mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "cover",
+                render: function(data, type, row) {
+                    return `<center><img src='../assets/images/categorias/${data}'></center>`;
+                }
+            },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_edit_category_to_car("#dataTableCategoryToCar tbody", table_category_to_car);
-    data_delete_category_to_car("#dataTableCategoryToCar tbody", table_category_to_car);
 
-    $("#dataTableCategoryToCar").each(function() {
+    data_editar_categoria("#dataTableCategorias tbody", table_categorias);
+    data_configurar_categoria("#dataTableCategorias tbody", table_categorias);
+    data_eliminar_categoria("#dataTableCategorias tbody", table_categorias);
+
+
+    $("#dataTableCategorias").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -1266,36 +1597,48 @@ var list_category_to_car = function() {
 
 };
 
-var data_edit_category_to_car = function(tbody, table) {
-    $(tbody).on("click", ".edit", function() {
+var data_editar_categoria = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id_categoria").val(data.id);
+        $("#categoria").val(data.categoria);
+        $("#archivo_categoria").val(data.cover);
+        $("#modalEditarCategoria").modal("show");
+    })
+}
+
+var data_configurar_categoria = function(tbody, table) {
+    $(tbody).on("click", ".configurar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        window.location = 'main?module=autopartes&categoria=' + data.uuid;
+    })
+}
+
+var data_eliminar_categoria = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#category_id").val(data.category_id);
-        $("#mtma_id").val(data.mtma_id);
-        $("#name").val(data.name_config);
-        $("#modalEditCategoryToCar").modal("show");
+        $("#modalEliminarCategoria").modal("show");
     })
 }
 
-var data_delete_category_to_car = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
-        var data = table.row($(this).parents("tr")).data();
-        $(".id").val(data.id);
-        $("#modalDeleteCategoryToCar").modal("show");
-    })
-}
+var crear_categoria = function() {
 
-var add_category_to_car = function() {
-
-    $("#formAddCategoryToCar").submit(function(e) {
+    $("#formCrearCategoria").submit(function(e) {
         e.preventDefault();
-        var data = $(this).serialize();
+        const formData = new FormData($('#formCrearCategoria')[0]);
         $.ajax({
-            url: "controller/categoryToCarController.php",
+            url: "controller/categorias.php",
             method: "POST",
-            data: data,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
             beforeSend: function() {
                 Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
             },
             success: function(response) {
                 Notiflix.Block.Remove('.modal-content');
@@ -1309,9 +1652,9 @@ var add_category_to_car = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCategoryToCar").DataTable().ajax.reload();
-                    $("#formAddCategoryToCar").trigger('reset');
-                    $("#modalAddCategoryToCar").modal("hide");
+                    $("#dataTableCategorias").DataTable().ajax.reload();
+                    $("#formCrearCategoria").trigger('reset');
+                    $("#modalCrearCategoria").modal("hide");
 
                 } else {
                     Swal.fire({
@@ -1328,17 +1671,23 @@ var add_category_to_car = function() {
 
 }
 
-var edit_category_to_car = function() {
+var editar_categoria = function() {
 
-    $("#formEditCategoryToCar").submit(function(e) {
+    $("#formEditarCategoria").submit(function(e) {
         e.preventDefault();
-        var data = $(this).serialize();
+        const formData = new FormData($('#formEditarCategoria')[0]);
         $.ajax({
-            url: "controller/categoryToCarController.php",
+            url: "controller/categorias.php",
             method: "POST",
-            data: data,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
             beforeSend: function() {
                 Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
             },
             success: function(response) {
                 Notiflix.Block.Remove('.modal-content');
@@ -1352,52 +1701,9 @@ var edit_category_to_car = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTableCategoryToCar").DataTable().ajax.reload();
-                    $("#formEditCategoryToCar").trigger('reset');
-                    $("#modalEditCategoryToCar").modal("hide");
-
-
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: response.message,
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    })
-                }
-
-            }
-        })
-    })
-
-}
-
-var delete_category_to_car = function() {
-
-    $("#formDeleteCategoryToCar").submit(function(e) {
-        e.preventDefault();
-        var data = $(this).serialize();
-        $.ajax({
-            url: "controller/categoryToCarController.php",
-            method: "POST",
-            data: data,
-            beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
-            },
-            success: function(response) {
-                Notiflix.Block.Remove('.modal-content');
-                var response = JSON.parse(response);
-                if (response.status == "success") {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: response.message,
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                    })
-
-                    $("#dataTableCategoryToCar").DataTable().ajax.reload();
-                    $("#formDeleteCategoryToCar").trigger('reset');
-                    $("#modalDeleteCategoryToCar").modal("hide");
+                    $("#dataTableCategorias").DataTable().ajax.reload();
+                    $("#formEditarCategoria").trigger('reset');
+                    $("#modalEditarCategoria").modal("hide");
 
 
                 } else {
@@ -1415,8 +1721,61 @@ var delete_category_to_car = function() {
 
 }
 
-var list_part_to_category = function() {
-    var table_part_to_category = $("#dataTablePartToCategory").DataTable({
+var eliminar_categoria = function() {
+
+    $("#formEliminarCategoria").submit(function(e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            url: "controller/categorias.php",
+            method: "POST",
+            data: data,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableCategorias").DataTable().ajax.reload();
+                    $("#formEliminarCategoria").trigger('reset');
+                    $("#modalEliminarCategoria").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+var listar_colores = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const module = urlParams.get('module');
+    let uuid = '';
+    if (module === 'configurar-color-autoparte') {
+        uuid = urlParams.get('autoparte');
+    } else {
+        uuid = urlParams.get('auto');
+    }
+
+
+    var table_colores = $("#dataTableColores").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
             [10, 30, 50, -1],
@@ -1425,39 +1784,53 @@ var list_part_to_category = function() {
         destroy: true,
         iDisplayLength: 10,
         ajax: {
-            url: "controller/partToCategoryController.php",
+            url: "controller/colores.php",
             method: "POST",
+            data: function(d) {
+                // Crea el objeto con los datos a enviar en el cuerpo
+                var bodyData = {
+                    opcion: 'listar_colores',
+                    auto: uuid
+                        // Agrega otros parámetros según sea necesario
+                };
+
+                // Convierte el objeto en una cadena JSON
+                var jsonData = JSON.stringify(bodyData);
+
+                // Agrega la cadena JSON al cuerpo de la solicitud
+                d.data = jsonData;
+
+                // Retornar el objeto modificado
+                return d;
+            },
         },
         aoColumnDefs: [
-            { bSearchable: false, bVisible: false, aTargets: [0] },
-            { bSearchable: false, bVisible: false, aTargets: [3] },
-            { bSearchable: false, bVisible: false, aTargets: [9] }
-            
-
+            { bSearchable: false, bVisible: false, aTargets: [0] }
 
         ],
         columns: [
             { data: "id" },
-            { data: "category" },
-            { data: "accesorio" },
-            { data: "image" },
-            { data: "stock" },
-            { data: "facebook" },
-            { data: "instagram" },
-            { data: "whatsapp" },
-            { data: "messenger" },
-            { data: "src" },
+            { data: "uuid" },
+            { data: "color" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Eliminar' class='delete text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+                data: "cover",
+                render: function(data, type, row) {
+                    return `<center><img src='../assets/images/colores/${data}'></center>`;
+                }
+            },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
         ],
 
         language: esp,
     });
 
-    data_delete_part_to_category("#dataTablePartToCategory tbody", table_part_to_category);
+    data_editar_color("#dataTableColores tbody", table_colores);
+    data_configurar_color("#dataTableColores tbody", table_colores);
+    data_eliminar_color("#dataTableColores tbody", table_colores);
 
-    $("#dataTablePartToCategory").each(function() {
+    $("#dataTableColores").each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable
@@ -1473,27 +1846,43 @@ var list_part_to_category = function() {
     });
 
 };
-
-var data_delete_part_to_category = function(tbody, table) {
-    $(tbody).on("click", ".delete", function() {
+var data_editar_color = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
         $(".id").val(data.id);
-        $("#modalDeletePartToCategory").modal("show");
+        $("#color").val(data.color);
+        $("#archivo").val(data.cover);
+        $("#modalEditarColor").modal("show");
     })
 }
 
-var add_part = function(){
+var data_configurar_color = function(tbody, table) {
+    $(tbody).on("click", ".configurar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        window.location = 'main?module=configurar-color&color=' + data.uuid;
+    })
+}
 
-    $("#formAddPartToCategory").submit(function(e){
+var data_eliminar_color = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#modalEliminarColor").modal("show");
+    })
+}
+
+var crear_color = function() {
+
+    $("#formCrearColor").submit(function(e) {
         e.preventDefault();
-        const formData = new FormData($('#formAddPartToCategory')[0]);
+        const formData = new FormData($('#formCrearColor')[0]);
         $.ajax({
-            url:"controller/partToCategoryController.php",
-            method:"POST",
-            data:formData,
-            contentType:false,
-            cache:false,
-            processData:false,
+            url: "controller/colores.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
             beforeSend: function() {
                 Notiflix.Block.Pulse('.modal-content');
             },
@@ -1510,9 +1899,9 @@ var add_part = function(){
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTablePartToCategory").DataTable().ajax.reload();
-                    $("#formAddPartToCategory").trigger('reset');
-                    $("#modalAddPartToCategory").modal("hide");
+                    $("#dataTableColores").DataTable().ajax.reload();
+                    $("#formCrearColor").trigger('reset');
+                    $("#modalCrearColor").modal("hide");
 
 
                 } else {
@@ -1529,13 +1918,60 @@ var add_part = function(){
 
 }
 
-var delete_part = function() {
+var editar_color = function() {
 
-    $("#formDeletePartToCategory").submit(function(e) {
+    $("#formEditarColor").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formEditarColor')[0]);
+        $.ajax({
+            url: "controller/colores.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableColores").DataTable().ajax.reload();
+                    $("#formEditarColor").trigger('reset');
+                    $("#modalEditarColor").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+        })
+    })
+
+}
+
+var eliminar_color = function() {
+
+    $("#formEliminarColor").submit(function(e) {
         e.preventDefault();
         var data = $(this).serialize();
         $.ajax({
-            url: "controller/partToCategoryController.php",
+            url: "controller/colores.php",
             method: "POST",
             data: data,
             beforeSend: function() {
@@ -1544,7 +1980,7 @@ var delete_part = function() {
             success: function(response) {
                 Notiflix.Block.Remove('.modal-content');
                 var response = JSON.parse(response);
-               if (response.status == "success") {
+                if (response.status == "success") {
                     Swal.fire({
                         title: 'Success!',
                         text: response.message,
@@ -1552,9 +1988,9 @@ var delete_part = function() {
                         confirmButtonText: 'Ok'
                     })
 
-                    $("#dataTablePartToCategory").DataTable().ajax.reload();
-                    $("#formDeletePartToCategory").trigger('reset');
-                    $("#modalDeletePartToCategory").modal("hide");
+                    $("#dataTableColores").DataTable().ajax.reload();
+                    $("#formEliminarColor").trigger('reset');
+                    $("#modalEliminarColor").modal("hide");
 
 
                 } else {
@@ -1572,11 +2008,380 @@ var delete_part = function() {
 
 }
 
+const listar_imagenes = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const color = urlParams.get('color');
+    $.ajax({
+        url: 'controller/imagenes.php',
+        method: 'POST',
+        data: { opcion: 'listar_imagenes', color },
+        beforeSend: function() {
+            Notiflix.Block.Pulse('.card-loading');
+        },
+        complete: function() {
+            Notiflix.Block.Remove('.card-loading');
+        },
+        success: function(response) {
+            const data = JSON.parse(response);
+            let html = ``;
+            if (data.length === 0) {
+                html = `<p>No haz agregado imágenes aún.</p>`
+            } else {
+                html = html + `<h5 class="card-title">Imagenes</h5><form id='formOrdenar'><div class="row">`;
 
 
+                data.forEach(imagen => {
+
+                    html = html + `<div class="col-md-2">
+                                <img class='img-fluid' src="../assets/images/autopartes/${imagen.imagen}" alt="${imagen.imagen}">
+                            </div>`;
+                })
+
+            }
+            html = html + `</div>
+                </form>`;
+            console.log(html);
+            $("#contenedor_imagenes").html(html);
+        }
+    })
+}
+
+//Dropzone 
+const dropzoneElement = document.querySelector('#miDropzone');
+
+const activarDropzone = function() {
+    localStorage.removeItem("imagenes");
+    var miDropzone = new Dropzone("#miDropzone", {
+        url: "./upload.php",
+        maxFilesize: 5,
+        maxFiles: 12,
+        dictDefaultMessage: "Arrastra archivos aquí para subirlos, puedes subir hasta 12 fotos.",
+        acceptedFiles: ".jpeg,.jpg,.png,.pdf",
+        renameFile: function(file) {
+            var numeroAleatorio = Math.floor(Math.random() * 101);
+            if (typeof(Storage) !== "undefined") {
+                var datosGuardados = localStorage.getItem("imagenes");
+                var imagenes = datosGuardados ? JSON.parse(
+                    datosGuardados) : [];
+                imagenes.push(numeroAleatorio + "-" + file.lastModified + "-" + file.name);
+                localStorage.setItem("imagenes", JSON.stringify(
+                    imagenes));
+            } else {
+                console.log(
+                    "El navegador no admite el almacenamiento local.");
+            }
+            return numeroAleatorio + "-" + file.lastModified + "-" + file
+                .name;
+        }
+    });
+}
+
+const subir = function() {
+    $('#subir').click(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const color = urlParams.get('color');
+        dropzoneElement.dropzone.processQueue();
+        $.ajax({
+            url: "controller/imagenes.php",
+            method: "POST",
+            data: { opcion: "subir_imagenes", color, imagenes: localStorage.getItem("imagenes") },
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.card-subir-loading');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.card-subir-loading');
+            },
+            success: function(response) {
+
+                listar_imagenes();
+                localStorage.removeItem("imagenes");
+                dropzoneElement.dropzone.removeAllFiles();
+                dropzoneElement.dropzone.destroy();
+                activarDropzone();
+
+            }
+        })
 
 
+    });
+};
 
+const limpiar = function() {
+
+    $("#limpiar").click(function() {
+        localStorage.removeItem("imagenes");
+        dropzoneElement.dropzone.removeAllFiles();
+        dropzoneElement.dropzone.destroy();
+        activarDropzone();
+    })
+}
+
+var listar_autopartes = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoria = urlParams.get('categoria');
+    var table_autopartes = $("#dataTableAutopartes").DataTable({
+        buttons: ["pdf"],
+        aLengthMenu: [
+            [10, 30, 50, -1],
+            [10, 30, 50, "Todo"],
+        ],
+        destroy: true,
+        iDisplayLength: 10,
+        ajax: {
+            url: "controller/autopartes.php",
+            method: "POST",
+            data: function(d) {
+                // Crea el objeto con los datos a enviar en el cuerpo
+                var bodyData = {
+                    opcion: 'listar_autopartes',
+                    categoria
+                    // Agrega otros parámetros según sea necesario
+                };
+
+                // Convierte el objeto en una cadena JSON
+                var jsonData = JSON.stringify(bodyData);
+
+                // Agrega la cadena JSON al cuerpo de la solicitud
+                d.data = jsonData;
+
+                // Retornar el objeto modificado
+                return d;
+            },
+        },
+        aoColumnDefs: [
+            { bSearchable: false, bVisible: false, aTargets: [0] },
+            { bSearchable: false, bVisible: false, aTargets: [5] }
+
+        ],
+        columns: [
+            { data: "id" },
+            { data: "uuid" },
+            { data: "autoparte" },
+            {
+                data: "stock",
+                render: function(data, type, row) {
+                    if (data === '1') {
+                        return `<center>SI</center>`;
+                    } else {
+                        return `<center>NO</center>`;
+                    }
+                }
+            },
+            {
+                data: "cover",
+                render: function(data, type, row) {
+                    return `<center><img src='../assets/images/autopartes/${data}'></center>`;
+                }
+            },
+            { data: "color_uuid" },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+            },
+        ],
+
+        language: esp,
+    });
+
+    data_editar_autoparte("#dataTableAutopartes tbody", table_autopartes);
+    data_configurar_autoparte("#dataTableAutopartes tbody", table_autopartes);
+    data_eliminar_autoparte("#dataTableAutopartes tbody", table_autopartes);
+
+    $("#dataTableAutopartes").each(function() {
+        var datatable = $(this);
+        // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+        var search_input = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_filter] input");
+        search_input.attr("placeholder", "Buscar");
+        search_input.removeClass("form-control-sm");
+        // LENGTH - Inline-Form control
+        var length_sel = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_length] select");
+        length_sel.removeClass("form-control-sm");
+    });
+
+};
+
+var data_editar_autoparte = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#autoparte").val(data.autoparte);
+        $("#stock").val(data.stock);
+        $("#archivo_autoparte").val(data.cover);
+        $.ajax({
+            url: 'controller/colores.php',
+            method: 'POST',
+            data: { opcion: 'listar_colores', auto: data.uuid },
+            success: function(response) {
+
+                const colores = JSON.parse(response);
+                console.log(colores);
+                let html = `<option value=''>Seleccione un color</option>`;
+                colores['data'].forEach((color) => {
+                    console.log(color);
+                    html = html + `<option value='${color.uuid}'>${color.color}</option>`;
+                })
+
+                $("#color").html(html);
+                $("#color").val(data.color_uuid);
+            }
+        });
+        $("#modalEditarAutoparte").modal("show");
+    })
+}
+
+var data_configurar_autoparte = function(tbody, table) {
+    $(tbody).on("click", ".configurar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        window.location = 'main?module=configurar-color-autoparte&autoparte=' + data.uuid;
+    })
+}
+
+var data_eliminar_autoparte = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#modalEliminarAutoparte").modal("show");
+    })
+}
+
+var crear_autoparte = function() {
+
+    $("#formCrearAutoparte").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formCrearAutoparte')[0]);
+        $.ajax({
+            url: "controller/autopartes.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableAutopartes").DataTable().ajax.reload();
+                    $("#formCrearAutoparte").trigger('reset');
+                    $("#modalCrearAutoparte").modal("hide");
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+        })
+    })
+
+}
+
+var editar_autoparte = function() {
+
+    $("#formEditarAutoparte").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formEditarAutoparte')[0]);
+        $.ajax({
+            url: "controller/autopartes.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableAutopartes").DataTable().ajax.reload();
+                    $("#formEditarAutoparte").trigger('reset');
+                    $("#modalEditarAutoparte").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+        })
+    })
+
+}
+
+var eliminar_autoparte = function() {
+
+    $("#formEliminarAutoparte").submit(function(e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            url: "controller/autopartes.php",
+            method: "POST",
+            data: data,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableAutopartes").DataTable().ajax.reload();
+                    $("#formEliminarAutoparte").trigger('reset');
+                    $("#modalEliminarAutoparte").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
 
 
 

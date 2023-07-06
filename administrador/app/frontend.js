@@ -10,7 +10,7 @@ var login = function() {
         console.log(data);
         $.ajax({
             method: "POST",
-            url: "controller/userController.php",
+            url: "controller/usuarios.php",
             data: data,
             beforeSend: function() {
                 Notiflix.Loading.Pulse("Procesando...");

@@ -1,122 +1,72 @@
-$(function(){
-    register();
+$(function() {
     login();
-    get_marcas();
-    get_tipos();
-    get_modelos();
-    get_anios();
+    listar_marcas();
+    listar_tipos();
+    listar_modelos();
+    listar_anios();
     buscar();
-    get_categorias();
-    guardar_configuracion();
-    
+    obtener_auto();
+
 })
 
-const login = ()=>{
+const login = () => {
 
-    $("#form-login").submit(function(e){
+    $("#login").submit(function(e) {
 
         e.preventDefault();
-
         const data = $(this).serialize();
+        const button = document.getElementById('entrar');
+
         $.ajax({
-            url:'administrador/controller/userController.php',
-            method:'POST',
-            data:data,
+            url: 'administrador/controller/negocios.php',
+            method: 'POST',
+            data: data,
             beforeSend: function() {
-                Notiflix.Loading.Standard('Iniciando sesión...');
+                button.disabled = true;
             },
-            success: function(response){
-                Notiflix.Loading.Remove();
+            success: function(response) {
+                console.log(response)
+                button.disabled = false;
                 var response = JSON.parse(response);
                 if (response.status == "error") {
 
-                    Notiflix.Report.Failure(
-                        'Error',
+                    Swal.fire(
+                        'Opps Ocurrió un error!!',
                         response.message,
-                        'Ok',
-                        );
+                        'error'
+                    )
 
-                }else if(response.status == "success"){
-                   
-                    $("#form-login").trigger('reset');
+                } else if (response.status == "success") {
+
+                    $("#login").trigger('reset');
                     window.location = response.url;
 
-                }else{
-                    Notiflix.Report.Failure(
-                        'Error',
+                } else {
+                    Swal.fire(
+                        'Opps Ocurrió un error!!',
                         'Hubo un error en el servidor. Contactate con el administrador del sistema',
-                        'Ok',
-                        );
-                } 
-            }
-
-        })
-
-    })
-}
-
-const register = ()=> {
-    
-    $("#form-signup").submit(function(e){
-        
-        e.preventDefault();
-        const data = $(this).serialize();
-        console.log(data);
-        $.ajax({
-            url:'administrador/controller/userController.php',
-            method:'POST',
-            data:data,
-            beforeSend: function() {
-                Notiflix.Loading.Standard('Registrandote...');
-            },
-            success: function(response){
-                
-                Notiflix.Loading.Remove();
-                var response = JSON.parse(response);
-                if (response.status == "error") {
-
-                    Notiflix.Report.Failure(
-                        'Error',
-                        response.message,
-                        'Ok',
-                        );
-
-                }else if(response.status == "success"){
-                   
-                    Notiflix.Report.Success(
-                        'Success',
-                        response.message,
-                        'Ok',
-                        );
-                    
-                    $("#form-signup").trigger('reset');
-
-                }else{
-                    Notiflix.Report.Failure(
-                        'Error',
-                        'Hubo un error en el servidor. Contactate con el administrador del sistema',
-                        'Ok',
-                        );
+                        'success',
+                    );
                 }
             }
-        })
-    })
 
+        })
+
+    })
 }
 
-const get_marcas = ()=>{
+const listar_marcas = () => {
 
     $.ajax({
 
-        url:'administrador/controller/galeriaController',
-        method:'GET',
-        data:'option=get_marcas',
-        success: function(response){
-
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'listar_marcas' },
+        success: function(response) {
             const data = JSON.parse(response);
             let html = '<option value="">Seleccione una opción</option>';
             data.forEach((element) => {
-                html += `<option value="${element['id']}">${element['mark']}</option>`;
+                html += `<option value="${element['id']}">${element['marca']}</option>`;
             })
 
             $("#marcas").html(html);
@@ -127,283 +77,243 @@ const get_marcas = ()=>{
 
 }
 
-const get_tipos = ()=>{
+const listar_tipos = () => {
 
-    $("#marcas").change(function(){
+    $.ajax({
 
-        const marca_id = $(this).val();
-        const text_default = '<option value="">Seleccione una opción</option>';
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'listar_tipos' },
+        success: function(response) {
 
-        $.ajax({
+            const data = JSON.parse(response);
+            let html = '<option value="">Seleccione una opción</option>';
+            data.forEach((element) => {
+                html += `<option value="${element['id']}">${element['tipo']}</option>`;
+            })
 
-            url:'administrador/controller/galeriaController',
-            method:'GET',
-            data:'option=get_tipos&marca_id=' + marca_id,
-            success: function(response){
-                const data = JSON.parse(response);
-                let html = '<option value="">Seleccione una opción</option>';
-                data.forEach((element) => {
-                    html += `<option value="${element['id']}">${element['type']}</option>`;
-                })
-                $("#tipos").html(text_default);
-                $("#modelos").html(text_default);
-                $("#anios").html(text_default);
-                $("#tipos").html(html);
-    
-            }
-    
-        })
+            $("#tipos").html(html);
+
+        }
 
     })
 
 }
 
-const get_modelos = ()=>{
+const listar_modelos = () => {
 
-    $("#tipos").change(function(){
+    $("#marcas").change(function() {
 
-        const marca_id = $('#marcas').val();
-        const tipo_id = $('#tipos').val();
-        const text_default = '<option value="">Seleccione una opción</option>';
+        const marca = $(this).val();
+
         $.ajax({
 
-            url:'administrador/controller/galeriaController',
-            method:'GET',
-            data:'option=get_modelos&marca_id=' + marca_id + '&tipo_id=' + tipo_id,
-            success: function(response){
-                
+            url: 'administrador/controller/frontend',
+            method: 'POST',
+            data: { opcion: 'listar_modelos', marca },
+            success: function(response) {
+
                 const data = JSON.parse(response);
                 let html = '<option value="">Seleccione una opción</option>';
                 data.forEach((element) => {
-                    html += `<option value="${element['id']}">${element['model']}</option>`;
+                    html += `<option value="${element['id']}">${element['modelo']}</option>`;
                 })
-                $("#anios").html(text_default);
                 $("#modelos").html(html);
-    
+
             }
-    
+
         })
 
     })
 
 }
 
-const get_anios = ()=>{
+const listar_anios = () => {
+    $.ajax({
 
-    $("#modelos").change(function(){
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'listar_anios' },
+        success: function(response) {
+            const data = JSON.parse(response);
+            let html = '<option value="">Seleccione una opción</option>';
+            data.forEach((element) => {
+                html += `<option value="${element['id']}">${element['anio']}</option>`;
+            })
+            $("#anios").html(html);
 
-        const marca_id = $('#marcas').val();
-        const tipo_id = $('#tipos').val();
-        const model_id = $('#modelos').val();
-        $.ajax({
-
-            url:'administrador/controller/galeriaController',
-            method:'GET',
-            data:'option=get_anios&marca_id=' + marca_id + '&tipo_id=' + tipo_id + '&model_id=' + model_id,
-            success: function(response){
-                
-                const data = JSON.parse(response);
-                let html = '<option value="">Seleccione una opción</option>';
-                data.forEach((element) => {
-                    html += `<option value="${element['id']}">${element['anio']}</option>`;
-                })
-                $("#anios").html(html);
-    
-            }
-    
-        })
+        }
 
     })
-
 }
 
-const buscar = ()=> {
-
-    $("#form-buscar").submit(function(e){
+const buscar = function() {
+    $('#form-buscar').submit(function(e) {
         e.preventDefault();
         const data = $(this).serialize();
+
         $.ajax({
-            url:'administrador/controller/galeriaController.php',
-            method:"GET",
-            data:data,
-            success: function(response){
-                window.location = "detalle?id=" + response;
-            }
-        })
-    })
-
-}
-
-const get_categorias = ()=>{
-
-    const id = $("#auto_id").val();
-    const tipo = $("#tipo_config").val();
-
-    if(tipo == 1){
-        $.ajax({
-            url:'administrador/controller/galeriaController.php',
-            method:'GET',
-            data: 'option=get_categorias_auto&id=' + id,
-            success: function(response){
-    
+            url: 'administrador/controller/frontend',
+            method: 'POST',
+            data: data,
+            success: function(response) {
                 const data = JSON.parse(response);
-                let html = ``;
-                
-                const categoria_inicial = data[0]['id'];
-    
-                $.ajax({
-                    url:'administrador/controller/galeriaController.php',
-                    method:'GET',
-                    data: 'option=get_categorias_auto_accesorios&mtmac_id=' + categoria_inicial,
-                    success: function(response){
-                        let data = JSON.parse(response);
-            
-                        let html = ``;
-            
-                        data.forEach((element) =>{
-                            html += `<div class="carousel-cell-prod"><img src="assets/images/categorias/${element['image']}" class="products" data-target="${element['id']}" width="100%" alt="" onclick="get_accesorio_detalle(${element['id']})" ></div>`;
-                        })
-                        
-                        $("#carousel_accesorios").html(html);
-                        $("#carousel_accesorios").flickity({
-                            contain: true
-                        });
-            
-                    }
-            
-            
-                })
-                
-                data.forEach((element) => {
-                    html += `<div class="carousel-cell"><img src="assets/images/categorias/${element['image']}" class="category"
-                    data-target="" width="100%" alt="" onclick="get_accesorios(${element['id']})"></div>`;
-                })          
-    
-                $("#carousel_categorias").html(html);
-                $("#carousel_categorias").flickity();
-                
-    
+                console.log(data);
+                if (data.length > 0) {
+                    let html = ``;
+
+                    data.forEach((element) => {
+                        html = html + `<tr><td>${element.nombre}</td><td class='text-center' width='50px' ><a href='detalle?auto=${element.uuid}' class='btn btn-primary'>Ver</a></td></tr>`;
+                    })
+
+                    $('#resultado').html(html);
+
+                    $('#modalBuscar').modal('show');
+                } else {
+                    Swal.fire(
+                        'Sin resultados',
+                        'No se encontraron resultados',
+                        'error'
+                    )
+                }
             }
+
         })
-    }
-    
+
+    })
 }
 
-function get_accesorios (id){
-    
+function cambiarColor(color) {
     $.ajax({
-        url:'administrador/controller/galeriaController.php',
-        method:'GET',
-        data: 'option=get_categorias_auto_accesorios&mtmac_id=' + id,
-        success: function(response){
-            let data = JSON.parse(response);
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'obtener_auto_color', color },
+        success: function(response) {
 
+            const data = JSON.parse(response);
             let html = ``;
-            
-            data.forEach((element) =>{
-                html += `<div class="carousel-cell-prod"><img src="assets/images/categorias/${element['image']}" class="products" data-target="${element['id']}" width="100%" alt="" onclick="get_accesorio_detalle(${element['id']})"></div>`;
+            data.forEach(imagen => {
+                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='300px'>`;
+            });
+
+            console.log(html);
+            html = html + '<div id="loader"></div>';
+            $("#auto360").html('<div id="circlrDiv"></div>');
+            $("#circlrDiv").html(html);
+
+            var crl = circlr('circlrDiv', {
+                loader: 'loader'
+            });
+        }
+    })
+}
+
+function mostrarAutoparte(autoparte) {
+    $.ajax({
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'mostrar_autoparte', autoparte },
+        success: function(response) {
+
+            const data = JSON.parse(response);
+            $("#accesorio").html(data.autoparte.autoparte)
+            $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
+            let html = ``;
+            data.imagenes.forEach(imagen => {
+                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='300px'>`;
+            });
+            let html_colores = ``;
+            data.colores.forEach(color => {
+                html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
+                src="assets/images/colores/${color.cover}" alt=""></div>`;
             })
-            
-            $("#carousel_accesorios").flickity('destroy');
-            $("#carousel_accesorios").html(html);
-            $("#carousel_accesorios").flickity({
-                contain: true
+
+            $("#auto360").html('<div id="circlrDiv"></div>');
+            $("#circlrDiv").html(html);
+            $("#detalle_colores").html(html_colores);
+            $('[data-toggle="tooltip"]').tooltip()
+            var crl = circlr('circlrDiv', {
+                loader: 'loader'
             });
 
         }
-
-
     })
-
 }
 
-
-function get_accesorio_detalle(id){
-    
-    
+function obtenerAutoparte(categoria) {
+    var titulo = document.getElementById("autoparte_seccion_titulo");
+    var cotenido = document.getElementById("autoparte_seccion_contenido");
+    cotenido.classList.remove("d-none");
+    titulo.classList.remove("d-none");
 
     $.ajax({
-        url:'administrador/controller/galeriaController.php',
-        method:'GET',
-        data: 'option=get_accesorio_detalle&mtmaca_id=' + id,
-        success: function(response){
-
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'obtener_autopartes', categoria },
+        success: function(response) {
             const data = JSON.parse(response);
-            $(".product").html('');
-            $("#accesorio_titulo").html(data['accesorio']);
-            $("#accesorio_stock").html(data['stock']);
-
-            $("#config_temporal").val(2);
-            $("#auto_id_config").val(data['id']);
-            $("#src_config").val(data['src']);
             let html = ``;
-            $("#accesorio_contacto").html('');
-            if(data['facebook'].length >= 0){
-                html += `<a href="${data['facebook']}"><i class="fa-brands fa-facebook-square fa-xl mr-2"></i></a>`;
-            }
-            if(data['instagram'].length >= 0){
-                html += `<a href="${data['instagram']}"><i class="fa-brands fa-instagram-square fa-xl mr-2"></i></a>`;
-            }
-            if(data['whatsapp'].length >= 0){
-                html += `<a href="${data['whatsapp']}"><i class="fa-brands fa-whatsapp-square fa-xl mr-2"></i></a>`;
-            }
-            if(data['messenger'].length >= 0){
-                html += `<a href="${data['messenger']}"><i class="fa-brands fa-facebook-messenger fa-xl"></i></a>`;
-            }
+            data.forEach(autoparte => {
+                html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"></div>`;
+            })
 
-            $("#accesorio_contacto").html(html);
-
-
-            $('.product').TreeSixtyImageRotate({
-                totalFrames: 11,
-                endFrame: 11,
-                currentFrame: 0,
-                extension: ".jpeg",
-                imagesFolder: "assets/images/" + data['src'] + "/",
-                smallWidth: 450,
-                smallHeight: 350,
-                largeWidth: 1280,
-                largeHeight: 900,
-                imagePlaceholderClass: "images-placeholder"
-            }).initTreeSixty();
-
+            $("#carousel_autopartes").flickity('destroy');
+            $("#carousel_autopartes").html(html);
+            $("#carousel_autopartes").flickity({
+                contain: true
+            });
         }
     })
 
 }
 
-var guardar_configuracion = ()=> {
-    $("#guardar_configuracion").click(function(){
+const obtener_auto = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const auto = urlParams.get('auto');
+    const module = urlParams.get('module');
+    if (module !== 'galeria') {
+        $.ajax({
+            url: 'administrador/controller/frontend',
+            method: 'POST',
+            data: { opcion: 'obtener_auto', auto },
+            success: function(response) {
 
-        let temporal = $("#config_temporal").val();
-        let id = 0;
-        let src_config;
-        if(temporal == 1){
-            Notiflix.Report.Failure(
-                'Error',
-                'Debe realizar una modificación',
-                'Ok', 
-                );
-        }else{
-            id = $("#auto_id_config").val();
-            src_config = $("#src_config").val();
+                const data = JSON.parse(response);
+                $("#detalle_nombre_auto").html(data.auto.nombre);
+                let html = ``;
+                data.imagenes.forEach(imagen => {
+                    html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='300px'>`;
+                });
+                let html_colores = ``;
+                data.colores.forEach(color => {
+                    html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
+                    src="assets/images/colores/${color.cover}" alt=""></div>`;
+                })
 
-            $.ajax({
-                url:"administrador/controller/galeriaController.php",
-                data:"option=guardar_configuracion&id=" + id + "&src_config="+src_config,
-                method:"GET",
-                success: function(response){
-                    Notiflix.Report.Success(
-                        'Success',
-                        'Configuración guardada',
-                        'Ok', ()=>{
-                            window.location = "mi-garage";
-                        }
-                        );
-                }
-            })
+                let html_categorias = ``;
+                data.categorias.forEach(categoria => {
+                    html_categorias = html_categorias + `<div class="carousel-cell"><img src="assets/images/categorias/${categoria.cover}" onclick="obtenerAutoparte('${categoria.uuid}')" alt="${categoria.categoria}"></div>`;
+                })
 
-        }
+                // $("carousel_categorias").flickity('destroy');
+                $("#carousel_categorias").html(html_categorias);
+                $("#carousel_categorias").flickity({
+                    contain: true
+                });
 
-    })
+                $("#auto360").html('<div id="circlrDiv"></div>');
+                $("#circlrDiv").html(html);
+                $("#detalle_colores").html(html_colores);
+                $('[data-toggle="tooltip"]').tooltip()
+                var crl = circlr('circlrDiv', {
+                    loader: 'loader'
+                });
+
+            }
+        })
+    }
+
+
+
+
 }
