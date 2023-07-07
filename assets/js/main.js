@@ -193,7 +193,7 @@ function cambiarColor(color) {
             const data = JSON.parse(response);
             let html = ``;
             data.forEach(imagen => {
-                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='300px'>`;
+                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='100%'>`;
             });
 
             console.log(html);
@@ -282,7 +282,7 @@ const obtener_auto = function() {
                 $("#detalle_nombre_auto").html(data.auto.nombre);
                 let html = ``;
                 data.imagenes.forEach(imagen => {
-                    html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='300px'>`;
+                    html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='100%'>`;
                 });
                 let html_colores = ``;
                 data.colores.forEach(color => {

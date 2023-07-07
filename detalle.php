@@ -161,7 +161,7 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
-                <div class="col-md-12 auto" style='height:400px'>
+                <div class="col-md-12 auto" style='height:300px'>
                     <div id='auto360' class="img-wrap" >
                         <div id="circlrDiv">
 
