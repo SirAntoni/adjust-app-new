@@ -125,11 +125,20 @@ session_start();
         height: 150px;
     }
 
+    .auto{
+        height: 300px !important;
+    }
+
 
     @media (max-width : 780px) {
         .color img {
             width: 20px;
         }
+
+        .auto{
+        height: 200px !important;
+    }
+
 
         .accesorio {
             border-right: 0px solid !important;
@@ -161,7 +170,7 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
-                <div class="col-md-12 auto" style='height:300px'>
+                <div class="col-md-12 auto">
                     <div id='auto360' class="img-wrap" >
                         <div id="circlrDiv">
 
