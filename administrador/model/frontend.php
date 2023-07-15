@@ -44,18 +44,21 @@ class Frontend extends Conectar
         
     }
 
-    public function listar_modelos($marca,$rango)
+    public function listar_modelos($marca,$tipo,$rango)
     {
+        
         if($rango === '1'){
-            $sql = "SELECT * FROM modelos WHERE marca_id = ? and estado = 1";
+            $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and estado = 1";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $marca);
+            $sql->bindValue(2, $tipo);
         }else{
            
-            $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_usuario = ? and estado = 1";
+            $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and tipo_usuario = ? and estado = 1";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $marca);
-            $sql->bindValue(2, $rango);
+            $sql->bindValue(2, $tipo);
+            $sql->bindValue(3, $rango);
         }
         
         $sql->execute();

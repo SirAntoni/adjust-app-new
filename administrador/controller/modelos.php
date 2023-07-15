@@ -9,6 +9,7 @@ $id = '';
 $modelo = '';
 $marca = '';
 $tipo = '';
+$tipo_auto = '';
 $opcion = '';
 
 if(isset($_POST['opcion'])){
@@ -31,6 +32,10 @@ if(isset($_POST['tipo'])){
     $tipo = $_POST['tipo'];
 }
 
+if(isset($_POST['tipo_auto'])){
+    $tipo_auto = $_POST['tipo_auto'];
+}
+
 
 switch ($opcion){
     case 'listar_modelos':
@@ -38,10 +43,10 @@ switch ($opcion){
         echo $listar;
         break;
     case 'crear':
-        $modelos->crear_modelo($marca,$modelo,$tipo);
+        $modelos->crear_modelo($marca,$tipo_auto,$modelo,$tipo);
     break;
     case 'editar':
-        $modelos->editar_modelo($id,$marca,$modelo,$tipo);
+        $modelos->editar_modelo($id,$marca,$tipo_auto,$modelo,$tipo);
     break;
     case 'eliminar':
         $modelos->eliminar_modelo($id);

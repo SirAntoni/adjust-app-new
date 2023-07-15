@@ -71,7 +71,7 @@ switch ($opcion){
         echo $listar;
     break;
     case 'listar_modelos':
-        $listar = json_encode($frontend->listar_modelos($marca,$rango));
+        $listar = json_encode($frontend->listar_modelos($marca,$tipo,$rango));
         echo $listar;
     break;
     case 'listar_anios':

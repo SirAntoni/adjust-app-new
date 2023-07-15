@@ -23,6 +23,8 @@
                                 <th>id</th>
                                 <th>Marca</th>
                                 <th>Marca ID</th>
+                                <th>TIPO ID</th>
+                                <th>Tipo</th>
                                 <th>Modelo</th>
                                 <th>Usuario</th>
                                 <th>Estado</th>
@@ -59,6 +61,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <select name="marca" class='form-control select_marcas'>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="tipo_auto" class='form-control select_tipos'>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -101,6 +107,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <select id='marca' name="marca" class='form-control select_marcas'>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id='tipo_auto' name="tipo_auto" class='form-control select_tipos'>
                                 </select>
                             </div>
                             <div class="form-group">

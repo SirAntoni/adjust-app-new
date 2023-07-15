@@ -700,14 +700,17 @@ var listar_modelos = function() {
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
             { bSearchable: false, bVisible: false, aTargets: [2] },
-            { bSearchable: false, bVisible: false, aTargets: [5] },
+            { bSearchable: false, bVisible: false, aTargets: [3] },
             { bSearchable: false, bVisible: false, aTargets: [6] },
-            { bSearchable: false, bVisible: false, aTargets: [7] }
+            { bSearchable: false, bVisible: false, aTargets: [7] },
+            { bSearchable: false, bVisible: false, aTargets: [8] }
         ],
         columns: [
             { data: "id" },
             { data: "marca" },
             { data: "marca_id" },
+            { data: "tipo_id" },
+            { data: "tipo" },
             { data: "modelo" },
             {
                 data: "tipo_usuario",
@@ -752,6 +755,7 @@ var data_editar_modelo = function(tbody, table) {
         $(".id").val(data.id);
         $("#marca").val(data.marca_id);
         $("#modelo").val(data.modelo);
+        $("#tipo_auto").val(data.tipo_id);
         $("#tipo").val(data.tipo_usuario);
         $("#modalEditarModelos").modal("show");
     })

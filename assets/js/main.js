@@ -104,13 +104,40 @@ const listar_modelos = () => {
 
     $("#marcas").change(function() {
 
+
         const marca = $(this).val();
+        const tipo = $('#tipos').val();
 
         $.ajax({
 
             url: 'administrador/controller/frontend',
             method: 'POST',
-            data: { opcion: 'listar_modelos', marca },
+            data: { opcion: 'listar_modelos', marca, tipo },
+            success: function(response) {
+
+                const data = JSON.parse(response);
+                let html = '<option value="">Seleccione una opción</option>';
+                data.forEach((element) => {
+                    html += `<option value="${element['id']}">${element['modelo']}</option>`;
+                })
+                $("#modelos").html(html);
+
+            }
+
+        })
+
+    })
+
+    $("#tipos").change(function() {
+
+        const marca = $("#marcas").val();
+        const tipo = $(this).val();
+
+        $.ajax({
+
+            url: 'administrador/controller/frontend',
+            method: 'POST',
+            data: { opcion: 'listar_modelos', marca, tipo },
             success: function(response) {
 
                 const data = JSON.parse(response);
@@ -271,7 +298,9 @@ const obtener_auto = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const auto = urlParams.get('auto');
     const module = urlParams.get('module');
-    if (module !== 'galeria') {
+    const validar = window.location.pathname
+    if (!validar.includes('galeria')) {
+        console.log('no es galeria');
         $.ajax({
             url: 'administrador/controller/frontend',
             method: 'POST',
