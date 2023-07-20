@@ -68,6 +68,7 @@
                                     <option value="">Seleccione un rango</option>
                                     <option value="1">Premium</option>
                                     <option value="2">Regular</option>
+                                    <option value="3">Basico</option>
                                 </select>
                             </div>
                         </div>
@@ -113,6 +114,7 @@
                                     <option value="">Seleccione un rango</option>
                                     <option value="1">Premium</option>
                                     <option value="2">Regular</option>
+                                    <option value="3">Basico</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -165,6 +167,7 @@
                                     <option value="">Seleccione un rango</option>
                                     <option value="1">Premium</option>
                                     <option value="2">Regular</option>
+                                    <option value="3">Basico</option>
                                 </select>
                             </div>
                         </div>

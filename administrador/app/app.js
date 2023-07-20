@@ -1134,7 +1134,13 @@ var listar_negocios = function() {
             {
                 data: "rango",
                 render: function(data, type, row) {
-                    return data === '1' ? 'premium' : 'regular';
+                    if (data === '1') {
+                        return 'premium';
+                    } else if (data === '2') {
+                        return 'regular';
+                    } else if (data === '3') {
+                        return 'basico';
+                    }
                 }
             },
             {
