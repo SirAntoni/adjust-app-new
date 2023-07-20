@@ -10,81 +10,45 @@ class Frontend extends Conectar
         $this->db = Conectar::conexion();
     }
 
-    public function listar_marcas($rango)
+    public function listar_marcas()
     {
-        if($rango === '1'){
-            $sql = "SELECT * FROM marcas WHERE estado = 1";
-            $sql = $this->db->prepare($sql);
-        }else{
-            $sql = "SELECT * FROM marcas WHERE tipo_usuario = ? and estado = 1";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $rango);
-        }
-        
-       
+        $sql = "SELECT * FROM marcas WHERE estado = 1";
+        $sql = $this->db->prepare($sql);
+    
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function listar_tipos($rango)
+    public function listar_tipos()
     {
-        if($rango === '1'){
-            $sql = "SELECT * FROM tipos WHERE estado = 1";
-            $sql = $this->db->prepare($sql);
-        }else{
-            $sql = "SELECT * FROM tipos WHERE tipo_usuario = ? and estado = 1";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $rango);
-        }
-        
-       
+        $sql = "SELECT * FROM tipos WHERE estado = 1";
+        $sql = $this->db->prepare($sql);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
         
     }
 
-    public function listar_modelos($marca,$tipo,$rango)
+    public function listar_modelos($marca,$tipo)
     {
         
-        if($rango === '1'){
-            $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and estado = 1";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $marca);
-            $sql->bindValue(2, $tipo);
-        }else{
-           
-            $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and tipo_usuario = ? and estado = 1";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $marca);
-            $sql->bindValue(2, $tipo);
-            $sql->bindValue(3, $rango);
-        }
-        
+        $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and estado = 1";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $marca);
+        $sql->bindValue(2, $tipo);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
         
     }
 
-    public function listar_anios($rango,$marca,$tipo,$modelo)
+    public function listar_anios($marca,$tipo,$modelo)
     {
-        if($rango === '1'){
-            $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.tipo_id = ? AND au.modelo_id = ? AND an.estado = 1";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1,$marca);
-            $sql->bindValue(2,$tipo);
-            $sql->bindValue(3,$modelo);
-
-        }else{
-            $sql = "SELECT * FROM anios WHERE tipo_usuario = ? and estado = 1";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $rango);
-        }
-        
-       
+        $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.tipo_id = ? AND au.modelo_id = ? AND an.estado = 1";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1,$marca);
+        $sql->bindValue(2,$tipo);
+        $sql->bindValue(3,$modelo);       
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
-        
     }
 
     public function buscar($marca,$tipo,$modelo,$anio,$negocio)

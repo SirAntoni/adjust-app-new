@@ -16,10 +16,6 @@ $categoria = '';
 $autoparte = '';
 $opcion = '';
 
-if(isset($_SESSION['rango'])){
-    $rango = $_SESSION['rango'];
-}
-
 if(isset($_SESSION['id'])){
     $negocio = $_SESSION['id'];
 }
@@ -62,19 +58,19 @@ if(isset($_POST['opcion'])){
 
 switch ($opcion){
     case 'listar_marcas':
-       $listar = json_encode($frontend->listar_marcas($rango));
+       $listar = json_encode($frontend->listar_marcas());
        echo $listar;
     break;
     case 'listar_tipos':
-        $listar = json_encode($frontend->listar_tipos($rango));
+        $listar = json_encode($frontend->listar_tipos());
         echo $listar;
     break;
     case 'listar_modelos':
-        $listar = json_encode($frontend->listar_modelos($marca,$tipo,$rango));
+        $listar = json_encode($frontend->listar_modelos($marca,$tipo));
         echo $listar;
     break;
     case 'listar_anios':
-        $listar = json_encode($frontend->listar_anios($rango,$marca,$tipo,$modelo));
+        $listar = json_encode($frontend->listar_anios($marca,$tipo,$modelo));
         echo $listar;
     break;
     case 'buscar':
