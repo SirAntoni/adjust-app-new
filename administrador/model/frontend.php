@@ -66,11 +66,15 @@ class Frontend extends Conectar
         
     }
 
-    public function listar_anios($rango)
+    public function listar_anios($rango,$marca,$tipo,$modelo)
     {
         if($rango === '1'){
-            $sql = "SELECT * FROM anios WHERE estado = 1";
+            $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.tipo_id = ? AND au.modelo_id = ? AND an.estado = 1";
             $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$marca);
+            $sql->bindValue(2,$tipo);
+            $sql->bindValue(3,$modelo);
+
         }else{
             $sql = "SELECT * FROM anios WHERE tipo_usuario = ? and estado = 1";
             $sql = $this->db->prepare($sql);

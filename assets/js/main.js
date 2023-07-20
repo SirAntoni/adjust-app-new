@@ -156,20 +156,35 @@ const listar_modelos = () => {
 }
 
 const listar_anios = () => {
-    $.ajax({
 
-        url: 'administrador/controller/frontend',
-        method: 'POST',
-        data: { opcion: 'listar_anios' },
-        success: function(response) {
-            const data = JSON.parse(response);
-            let html = '<option value="">Seleccione una opción</option>';
-            data.forEach((element) => {
-                html += `<option value="${element['id']}">${element['anio']}</option>`;
-            })
-            $("#anios").html(html);
+    $("#modelos").change(function() {
 
+        const opcion = 'listar_anios';
+        const marca = $("#marcas").val();
+        const tipo = $("#tipos").val();
+        const modelo = $("#modelos").val();
+        const body = {
+            opcion,
+            marca,
+            tipo,
+            modelo
         }
+
+        console.log(body);
+
+        $.ajax({
+            url: 'administrador/controller/frontend',
+            method: 'POST',
+            data: body,
+            success: function(response) {
+                const data = JSON.parse(response);
+                let html = '<option value="">Seleccione una opción</option>';
+                data.forEach((element) => {
+                    html += `<option value="${element['id']}">${element['anio']}</option>`;
+                })
+                $("#anios").html(html);
+            }
+        })
 
     })
 }

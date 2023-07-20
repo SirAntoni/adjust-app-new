@@ -1188,17 +1188,17 @@ var data_duplicar_negocio = function(tbody, table) {
     $(tbody).on("click", ".duplicar", function() {
         var data = table.row($(this).parents("tr")).data();
         Swal.fire({
-                title: 'Ups!',
-                text: 'En construcción',
-                icon: 'info',
-                confirmButtonText: 'Volver mas tarde'
-            })
-            // $(".id").val(data.id);
-            // $("#ruc").val(data.ruc);
-            // $("#razon_social").val(data.razon_social);
-            // $("#rango").val(data.rango);
-            // $("#estado").val(data.estado);
-            // $("#modalDuplicarNegocio").modal("show");
+            title: 'Ups!',
+            text: 'En construcción',
+            icon: 'info',
+            confirmButtonText: 'Volver mas tarde'
+        });
+        // $(".id").val(data.id);
+        // $("#ruc").val(data.ruc);
+        // $("#razon_social").val(data.razon_social);
+        // $("#rango").val(data.rango);
+        // $("#estado").val(data.estado);
+        // $("#modalDuplicarNegocio").modal("show");
     })
 }
 

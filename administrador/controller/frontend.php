@@ -60,7 +60,6 @@ if(isset($_POST['opcion'])){
     $opcion = $_POST['opcion'];
 }
 
-
 switch ($opcion){
     case 'listar_marcas':
        $listar = json_encode($frontend->listar_marcas($rango));
@@ -75,7 +74,7 @@ switch ($opcion){
         echo $listar;
     break;
     case 'listar_anios':
-        $listar = json_encode($frontend->listar_anios($rango));
+        $listar = json_encode($frontend->listar_anios($rango,$marca,$tipo,$modelo));
         echo $listar;
     break;
     case 'buscar':
