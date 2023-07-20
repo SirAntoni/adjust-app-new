@@ -47,6 +47,9 @@ switch($opcion){
     case 'editar':
         $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado);
     break;
+    case 'duplicar':
+        $negocios->duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango);
+    break;
     case "login":
         $negocios->login($ruc,$contrasena);
         break;

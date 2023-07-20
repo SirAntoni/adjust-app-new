@@ -102,7 +102,8 @@
                                 <input type="text" id='ruc' name="ruc" class="form-control" placeholder="Ruc">
                             </div>
                             <div class="form-group">
-                                <input type="text" id='razon_social' name="razon_social" class="form-control" placeholder="Razon social">
+                                <input type="text" id='razon_social' name="razon_social" class="form-control"
+                                    placeholder="Razon social">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="contrasena" class="form-control" placeholder="Contraseña">
@@ -127,6 +128,51 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDuplicarNegocio" tabindex="-1" role="dialog" aria-labelledby="modalDuplicarNegocio"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Duplicar Negocio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formDuplicarNegocio">
+                <div class="modal-body">
+                    <input type="hidden" value="duplicar" name="opcion">
+                    <input type="hidden" class="id" name="id">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="ruc" class="form-control" placeholder="Ruc">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="razon_social" class="form-control"
+                                    placeholder="Razon social">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="contrasena" class="form-control" placeholder="Contraseña">
+                            </div>
+                            <div class="form-group">
+                                <select name="rango" class='form-control'>
+                                    <option value="">Seleccione un rango</option>
+                                    <option value="1">Premium</option>
+                                    <option value="2">Regular</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Duplicar</button>
                 </div>
             </form>
         </div>

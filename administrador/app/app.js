@@ -33,6 +33,7 @@ $(function() {
     listar_negocios();
     crear_negocio();
     editar_negocio();
+    duplicar_negocio();
 
     //Autos
 
@@ -1143,7 +1144,7 @@ var listar_negocios = function() {
                 }
             },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a></div>",
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Duplicar' class='duplicar mr-1 text-dark'><i class='fas fa-copy fa-lg'></i></a></div>",
             },
         ],
 
@@ -1152,6 +1153,7 @@ var listar_negocios = function() {
 
     data_editar_negocio("#dataTableNegocios tbody", table_negocios);
     data_configurar_negocio("#dataTableNegocios tbody", table_negocios);
+    data_duplicar_negocio("#dataTableNegocios tbody", table_negocios);
 
     $("#dataTableNegocios").each(function() {
         var datatable = $(this);
@@ -1179,6 +1181,18 @@ var data_editar_negocio = function(tbody, table) {
         $("#rango").val(data.rango);
         $("#estado").val(data.estado);
         $("#modalEditarNegocio").modal("show");
+    })
+}
+
+var data_duplicar_negocio = function(tbody, table) {
+    $(tbody).on("click", ".duplicar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#ruc").val(data.ruc);
+        $("#razon_social").val(data.razon_social);
+        $("#rango").val(data.rango);
+        $("#estado").val(data.estado);
+        $("#modalDuplicarNegocio").modal("show");
     })
 }
 
@@ -1250,6 +1264,44 @@ var editar_negocio = function() {
                     $("#dataTableNegocios").DataTable().ajax.reload();
                     $("#formEditarNegocio").trigger('reset');
                     $("#modalEditarNegocio").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+        })
+    })
+}
+
+var duplicar_negocio = function() {
+    $("#formDuplicarNegocio").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: "controller/negocios.php",
+            method: "POST",
+            data: data,
+            success: function(response) {
+                console.log(response);
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableNegocios").DataTable().ajax.reload();
+                    $("#formDuplicarNegocio").trigger('reset');
+                    $("#modalDuplicarNegocio").modal("hide");
 
 
                 } else {
