@@ -42,11 +42,11 @@ class Frontend extends Conectar
 
     public function listar_anios($marca,$tipo,$modelo)
     {
-        $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.tipo_id = ? AND au.modelo_id = ? AND an.estado = 1";
+        $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.tipo_id = ? AND au.modelo_id = ? AND an.estado = 1 GROUP BY an.anio";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,$marca);
         $sql->bindValue(2,$tipo);
-        $sql->bindValue(3,$modelo);       
+        $sql->bindValue(3,$modelo);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }

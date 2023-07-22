@@ -182,6 +182,7 @@ class Negocios extends Conectar
                         $insertar_categoria->bindValue(4,$auto_uuid);
                         $insertar_categoria->bindValue(5,$categoria['estado']);
                         $insertar_categoria->execute();
+
                     }
 
                     $buscar_colores_autos = "SELECT * FROM colores WHERE auto_uuid = ?";
