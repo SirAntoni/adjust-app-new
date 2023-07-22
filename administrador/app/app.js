@@ -1293,8 +1293,11 @@ var duplicar_negocio = function() {
             url: "controller/negocios.php",
             method: "POST",
             data: data,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content', 'Cargando... puede tomar unos minutos');
+            },
             success: function(response) {
-                console.log(response);
+                Notiflix.Block.Remove('.modal-content');
                 var response = JSON.parse(response);
                 if (response.status == "success") {
 
