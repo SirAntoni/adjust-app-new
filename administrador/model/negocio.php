@@ -150,7 +150,10 @@ class Negocios extends Conectar
                     $insertar_auto = "INSERT INTO autos (uuid,nombre,marca_id,tipo_id,modelo_id,anio_id,negocio_id,color_uuid,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,?,?,?,?,?,now(),now())";
 
                     $insertar_auto = $this->db->prepare($insertar_auto);
-                    $insertar_auto->bindValue(1,Uuid::uuid4()->toString());
+
+                    $auto_uuid = Uuid::uuid4()->toString();
+
+                    $insertar_auto->bindValue(1,$auto_uuid);
                     $insertar_auto->bindValue(2,$auto['nombre']);
                     $insertar_auto->bindValue(3,$auto['marca_id']);
                     $insertar_auto->bindValue(4,$auto['tipo_id']);
@@ -160,6 +163,66 @@ class Negocios extends Conectar
                     $insertar_auto->bindValue(8,$auto['color_uuid']);
                     $insertar_auto->bindValue(9,$auto['estado']);
                     $insertar_auto->execute();
+
+                    $buscar_categorias = "SELECT * FROM categorias WHERE auto_uuid =?";
+                    $buscar_categorias = $this->db->prepare($buscar_categorias);
+                    $buscar_categorias->bindValue(1,$auto['uuid']);
+                    $buscar_categorias->execute();
+                    $categorias = $buscar_categorias->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($categorias as $categoria){
+                        
+                        $insertar_categoria = "INSERT INTO categorias(uuid,categoria,cover,auto_uuid,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,?,now(),now())";
+                        $insertar_categoria = $this->db->prepare($insertar_categoria);
+                        $categoria_uuid = Uuid::uuid4()->toString();
+
+                        $insertar_categoria->bindValue(1,$categoria_uuid);
+                        $insertar_categoria->bindValue(2,$categoria['categoria']);
+                        $insertar_categoria->bindValue(3,$categoria['cover']);
+                        $insertar_categoria->bindValue(4,$auto_uuid);
+                        $insertar_categoria->bindValue(5,$categoria['estado']);
+                        $insertar_categoria->execute();
+                    }
+
+                    $buscar_colores_autos = "SELECT * FROM colores WHERE auto_uuid = ?";
+                    $buscar_colores_autos = $this->db->prepare($buscar_colores_autos);
+                    $buscar_colores_autos->bindValue(1,$auto['uuid']);
+                    $buscar_colores_autos->execute();
+                    $colores_auto = $buscar_colores_autos->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach($colores_auto as $color){
+
+                        $insertar_colores_auto = "INSERT INTO colores(uuid, color, cover, auto_uuid, estado, fecha_creacion, fecha_modificacion) VALUES(?,?,?,?,?,now(),now())";
+                        $color_auto_uuid = Uuid::uuid4()->toString();
+                        $insertar_colores_auto = $this->db->prepare($insertar_colores_auto);
+                        $insertar_colores_auto->bindValue(1, $color_auto_uuid);
+                        $insertar_colores_auto->bindValue(2, $color['color']);
+                        $insertar_colores_auto->bindValue(3, $color['cover']);
+                        $insertar_colores_auto->bindValue(4, $auto_uuid);
+                        $insertar_colores_auto->bindValue(5, $color['estado']);
+                        $insertar_colores_auto->execute();
+
+                        $buscar_imagenes_auto = "SELECT * FROM imagenes WHERE color_uuid = ?";
+                        $buscar_imagenes_auto = $this->db->prepare($buscar_imagenes_auto);
+                        $buscar_imagenes_auto->bindValue(1, $color['uuid']);
+                        $buscar_imagenes_auto->execute();
+                        $imagenes_auto = $buscar_imagenes_auto->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($imagenes_auto as $imagen){
+
+                            $insertar_imagen_auto = "INSERT INTO imagenes(uuid, color_uuid, imagen) VALUES(?,?,?)";
+                            $insertar_imagen_auto = $this->db->prepare($insertar_imagen_auto);
+                            $imagen_auto_uuid = Uuid::uuid4()->toString();
+                            $insertar_imagen_auto->bindValue(1,$imagen_auto_uuid);
+                            $insertar_imagen_auto->bindvalue(2,$color_auto_uuid);
+                            $insertar_imagen_auto->bindValue(3,$imagen['imagen']);
+                            $insertar_imagen_auto->execute();
+
+                        }
+
+
+                    }
+
 
                 }
 
