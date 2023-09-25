@@ -34,9 +34,10 @@ session_start();
     }
 
     .img-wrap {
-        width: 40%;
+        width: 100%;
         margin: auto;
         background: #FFF;
+        height: 650px;
     }
 
     .color img {
@@ -124,33 +125,22 @@ session_start();
         width: 200px;
         height: 150px;
     }
-
-    .auto{
-        height: 300px !important;
-    }
-
-
     @media (max-width : 780px) {
         .color img {
             width: 20px;
         }
+        .img-wrap{
+            height: 250px;
+        }
 
-        .auto{
-        height: 200px !important;
+
+    .accesorio {
+        border-right: 0px solid !important;
     }
 
-
-        .accesorio {
-            border-right: 0px solid !important;
-        }
-
-        .app {
-            width: 100%;
-        }
-
-        .img-wrap {
-            width: 60%;
-        }
+    .app {
+        width: 100%;
+    }
     }
     </style>
     <style>
@@ -171,7 +161,7 @@ session_start();
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
                 <div class="col-md-12 auto">
-                    <div id='auto360' class="img-wrap" >
+                    <div id='auto360' class="img-wrap">
                         <div id="circlrDiv">
 
 
@@ -185,8 +175,8 @@ session_start();
                 </div>
                 <div class="col-md-12 categorias">
                     <div id="carousel_categorias" class="carousel_categorias">
-                       
-                        
+
+
                     </div>
                 </div>
                 <div id="autoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
@@ -194,12 +184,12 @@ session_start();
                 </div>
                 <div id="autoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
                     <div id="carousel_autopartes" class="carousel_autopartes">
-                      
 
-                            <div class="carousel-cell"><img src="assets/images/body_kits.jpeg" alt=""></div>
-                            <div class="carousel-cell"><img src="assets/images/fr_bumper.jpeg" alt=""></div>
-                            <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
-            
+
+                        <div class="carousel-cell"><img src="assets/images/body_kits.jpeg" alt=""></div>
+                        <div class="carousel-cell"><img src="assets/images/fr_bumper.jpeg" alt=""></div>
+                        <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
+
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -210,7 +200,7 @@ session_start();
                 <div id='accesorio' class="col-md-6 accesorio">
                     Seleccione un accesorio
                 </div>
-                <div  class="col-md-6 stock">
+                <div class="col-md-6 stock">
                     <span id='stock'>Seleccione un accesorio</span>
                 </div>
             </div>
@@ -227,14 +217,14 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
-    
+
 
     <script src="assets/js/circlr.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/notiflix.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script>
-
     $(function() {
         $('[data-toggle="tooltip"]').tooltip();
     })

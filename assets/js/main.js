@@ -262,7 +262,7 @@ function mostrarAutoparte(autoparte) {
             $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
             let html = ``;
             data.imagenes.forEach(imagen => {
-                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='300px'>`;
+                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}">`;
             });
             let html_colores = ``;
             data.colores.forEach(color => {
