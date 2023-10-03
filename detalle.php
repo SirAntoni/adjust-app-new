@@ -34,10 +34,10 @@ session_start();
     }
 
     .img-wrap {
-        width: 100%;
+        width: 500px;
         margin: auto;
         background: #FFF;
-        height: 650px;
+        height: 300px;
     }
 
     .color img {
@@ -130,7 +130,7 @@ session_start();
             width: 20px;
         }
         .img-wrap{
-            height: 250px;
+            height: 350px;
         }
 
 
