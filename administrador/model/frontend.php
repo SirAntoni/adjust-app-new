@@ -88,7 +88,7 @@ class Frontend extends Conectar
 
         $resultado['imagenes'] = $imagenes;
 
-        $color = "SELECT * FROM colores WHERE auto_uuid = ?";
+        $color = "SELECT * FROM colores WHERE auto_uuid = ? AND estado = 1";
         $color =  $this->db->prepare($color);
         $color->bindValue(1, $auto['uuid']);
         $color->execute();
@@ -140,7 +140,7 @@ class Frontend extends Conectar
     }
 
     public function obtener_auto_color($color){
-        $sql = "SELECT imagen FROM imagenes WHERE color_uuid = ?";
+        $sql = "SELECT imagen FROM imagenes WHERE color_uuid = ? AND estado = 1";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $color);
         $sql->execute();
