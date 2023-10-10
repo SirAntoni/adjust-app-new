@@ -121,7 +121,8 @@
                                 <select id='estado' name="estado" class='form-control'>
                                     <option value="">Seleccione un estado</option>
                                     <option value="1">Activo</option>
-                                    <option value="2">Suspendido</option>
+                                    <option value="2">Eliminado</option>
+                                    <option value="3">Suspendido</option>
                                 </select>
                             </div>
                         </div>

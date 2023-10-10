@@ -15,7 +15,7 @@ class Negocios extends Conectar
     }
 
     public function listar_negocios(){
-        $sql = "SELECT id,ruc,razon_social,rango,estado FROM negocios";
+        $sql = "SELECT id,ruc,razon_social,rango,estado FROM negocios WHERE estado in (1,3)";
         $sql = $this->db->prepare($sql);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
