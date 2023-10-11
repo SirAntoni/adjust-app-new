@@ -87,18 +87,17 @@ if(!isset($_SESSION['id'])){
         color: #000;
     }
 
-    div.codepen p a{
+    div.codepen p {
         color: #DCDCDC;
         line-height: 300px;
         text-align: center;
         font-size: 45px;
-
     }
 
-    div.codepen p a:hover {
+    div.codepen p:hover {
         transition: color 0.8s linear;
         color: #000;
-        text-decoration:none;
+        text-decoration: none;
     }
     </style>
 </head>
@@ -111,13 +110,13 @@ if(!isset($_SESSION['id'])){
     <div class="container">
         <div class="row text-center content">
             <div class="col-md-6">
-                <div class="codepen">
-                    <p class='nombre'><a href="galeria">Galeria</a></p>
+                <div id='galeria' class="codepen">
+                    <p class='nombre'>Galeria</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="codepen">
-                    <p class='nombre'><a href="#">Nosotros</a></p>
+                    <p class='nombre'>Nosotros</p>
                 </div>
             </div>
         </div>
@@ -126,5 +125,12 @@ if(!isset($_SESSION['id'])){
 
 
 </body>
+
+<script>
+    const btnGaleria = document.getElementById('galeria');
+    btnGaleria.addEventListener('click', function(e){
+        window.location = 'galeria'
+    })
+</script>
 
 </html>
