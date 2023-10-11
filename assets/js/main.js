@@ -87,7 +87,7 @@ const listar_tipos = () => {
         success: function(response) {
 
             const data = JSON.parse(response);
-            let html = '<option value="">Seleccione una opción</option>';
+            let html = '<option value="">Seleccione una opción</option><option value="todos">Todos</option>';
             data.forEach((element) => {
                 html += `<option value="${element['id']}">${element['tipo']}</option>`;
             })

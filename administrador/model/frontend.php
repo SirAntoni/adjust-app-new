@@ -30,11 +30,17 @@ class Frontend extends Conectar
 
     public function listar_modelos($marca,$tipo)
     {
-        
-        $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and estado = 1";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $marca);
-        $sql->bindValue(2, $tipo);
+        if($tipo === 'todos'){
+            $sql = "SELECT * FROM modelos WHERE marca_id = ? and estado = 1";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $marca);
+        }else{
+            $sql = "SELECT * FROM modelos WHERE marca_id = ? and tipo_id = ? and estado = 1";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $marca);
+            $sql->bindValue(2, $tipo);
+        }
+    
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
         
@@ -42,26 +48,27 @@ class Frontend extends Conectar
 
     public function listar_anios($marca,$tipo,$modelo)
     {
-        $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.tipo_id = ? AND au.modelo_id = ? AND an.estado = 1 GROUP BY an.anio";
+
+        $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.modelo_id = ? AND an.estado = 1 GROUP BY an.anio";
+
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,$marca);
-        $sql->bindValue(2,$tipo);
-        $sql->bindValue(3,$modelo);
+        $sql->bindValue(2,$modelo);
         $sql->execute();
+
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function buscar($marca,$tipo,$modelo,$anio,$negocio)
     {
         
-        $sql = "SELECT * FROM autos WHERE marca_id = ? AND tipo_id = ? AND modelo_id = ? AND anio_id = ? AND negocio_id = ? AND estado = 1 AND color_uuid IS NOT NULL";
+        $sql = "SELECT * FROM autos WHERE marca_id = ? AND modelo_id = ? AND anio_id = ? AND negocio_id = ? AND estado = 1 AND color_uuid IS NOT NULL";
 
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $marca);
-        $sql->bindValue(2, $tipo);
-        $sql->bindValue(3, $modelo);
-        $sql->bindValue(4, $anio);
-        $sql->bindValue(5, $negocio);
+        $sql->bindValue(2, $modelo);
+        $sql->bindValue(3, $anio);
+        $sql->bindValue(4, $negocio);
         $sql->execute();
 
         return $sql->fetchAll(PDO::FETCH_ASSOC);
