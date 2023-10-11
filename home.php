@@ -62,6 +62,44 @@ if(!isset($_SESSION['id'])){
             width: 220px !important;
         }
     }
+
+    div.codepen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: block;
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        background-color: #121212;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: color 0.8s linear,
+            background 0.8s linear,
+            box-shadow 0.1s linear,
+            transform 0.1s linear;
+    }
+
+    div.codepen:hover {
+        background: #DCDCDC;
+        box-shadow: 0 0 1em 0.1em rgba(0, 0, 0, 0.75);
+        transform: scale(1.02);
+        color: #000;
+    }
+
+    div.codepen p a{
+        color: #DCDCDC;
+        line-height: 300px;
+        text-align: center;
+        font-size: 45px;
+
+    }
+
+    div.codepen p a:hover {
+        transition: color 0.8s linear;
+        color: #000;
+        text-decoration:none;
+    }
     </style>
 </head>
 
@@ -73,10 +111,14 @@ if(!isset($_SESSION['id'])){
     <div class="container">
         <div class="row text-center content">
             <div class="col-md-6">
-                <a href="galeria"><img src="assets/images/galeria.png" class="opcion-home" alt=""></a>
+                <div class="codepen">
+                    <p class='nombre'><a href="galeria">Galeria</a></p>
+                </div>
             </div>
             <div class="col-md-6">
-                <a href="videos"> <img src="assets/images/videos.png" class="opcion-home" alt=""></a>
+                <div class="codepen">
+                    <p class='nombre'><a href="#">Nosotros</a></p>
+                </div>
             </div>
         </div>
     </div>
