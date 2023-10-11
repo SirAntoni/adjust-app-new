@@ -140,7 +140,7 @@ class Frontend extends Conectar
     }
 
     public function obtener_auto_color($color){
-        $sql = "SELECT imagen FROM imagenes WHERE color_uuid = ? AND estado = 1";
+        $sql = "SELECT imagen FROM imagenes WHERE color_uuid = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $color);
         $sql->execute();
