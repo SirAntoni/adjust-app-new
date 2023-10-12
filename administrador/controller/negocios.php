@@ -10,7 +10,12 @@ $ruc = '';
 $razon_social = '';
 $rango = '';
 $contrasena = '';
+$facebook = '';
+$instagram = '';
+$tiktok = '';
+$youtube = '';
 $opcion = '';
+
 
 if(isset($_POST['id'])){
     $id = $_POST['id'];
@@ -32,6 +37,22 @@ if(isset($_POST['estado'])){
     $estado = $_POST['estado'];
 }
 
+if(isset($_POST['facebook'])){
+    $facebook = $_POST['facebook'];
+}
+
+if(isset($_POST['instagram'])){
+    $instagram = $_POST['instagram'];
+}
+
+if(isset($_POST['tiktok'])){
+    $tiktok = $_POST['tiktok'];
+}
+
+if(isset($_POST['youtube'])){
+    $youtube = $_POST['youtube'];
+}
+
 if(isset($_POST['contrasena'])){
     $contrasena = $_POST['contrasena'];
 }
@@ -42,10 +63,10 @@ if(isset($_POST['opcion'])){
 
 switch($opcion){
     case 'crear':
-        $negocios->crear_negocio($ruc,$razon_social,$contrasena,$rango);
+        $negocios->crear_negocio($ruc,$razon_social,$contrasena,$rango,$facebook,$instagram,$tiktok,$youtube);
     break;
     case 'editar':
-        $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado);
+        $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube);
     break;
     case 'duplicar':
         $negocios->duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango);

@@ -93,6 +93,10 @@ switch ($opcion){
         $listar = json_encode($frontend->obtener_autopartes($categoria));
         echo $listar;
     break;
+    case 'obtener_negocio':
+        $obtener = json_encode($frontend->obtener_negocio($negocio));
+        echo $obtener;
+    break;
     default:
         echo 'ERROR';
     break;

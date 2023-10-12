@@ -6,6 +6,7 @@ $(function() {
     listar_anios();
     buscar();
     obtener_auto();
+    obtener_negocio();
 
 })
 
@@ -359,5 +360,28 @@ const obtener_auto = function() {
 
 
 
+
+}
+
+
+const obtener_negocio = function() {
+
+    $.ajax({
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'obtener_negocio' },
+        success: function(response) {
+
+            const data = JSON.parse(response);
+            let html = `<a href="${data.facebook}" target='_blank' class='social'><i class="fab fa-facebook fa-lg"></i></a><a href="${data.instagram}" target='_blank' class='social'><i
+            class="fab fa-instagram-square fa-lg""></i></a><a href="${data.tiktok}" target='_blank' class='social'><i
+                class="fab fa-tiktok fa-lg""></i></a><a href="${data.youtube}"  target='_blank' class='social'><i
+                    class="fab fa-youtube fa-lg""></i></a>`;
+
+            $("#redes").html(html)
+
+
+        }
+    })
 
 }

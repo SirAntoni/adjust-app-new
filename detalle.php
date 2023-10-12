@@ -59,10 +59,20 @@ session_start();
         color: #FFF;
         display: flex;
         align-items: center;
-        border-right: 1px solid #fff;
         justify-content: center;
         border-radius: 0px 0px 0px 10px;
 
+    }
+
+    .redes {
+        background: #1c1c1c;
+        height: 60px;
+        color: #FFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #fff;
+        border-left: 1px solid #fff;
     }
 
     .categorias {
@@ -125,22 +135,31 @@ session_start();
         width: 200px;
         height: 150px;
     }
+
+    .social{
+            color:#FFF;
+            margin-right: 10px;
+        }
+
     @media (max-width : 780px) {
         .color img {
             width: 20px;
         }
-        .img-wrap{
+
+        .img-wrap {
             height: 350px;
         }
 
 
-    .accesorio {
-        border-right: 0px solid !important;
-    }
+        .accesorio {
+            border-right: 0px solid !important;
+        }
 
-    .app {
-        width: 100%;
-    }
+        .app {
+            width: 100%;
+        }
+
+        
     }
     </style>
     <style>
@@ -184,24 +203,23 @@ session_start();
                 </div>
                 <div id="autoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
                     <div id="carousel_autopartes" class="carousel_autopartes">
-
-
                         <div class="carousel-cell"><img src="assets/images/body_kits.jpeg" alt=""></div>
                         <div class="carousel-cell"><img src="assets/images/fr_bumper.jpeg" alt=""></div>
                         <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
-
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div id="carousel_accesorios" class="carousel_accesorios">
-
                     </div>
                 </div>
-                <div id='accesorio' class="col-md-6 accesorio">
+                <div id='accesorio' class="col-md-4 accesorio">
                     Seleccione un accesorio
                 </div>
-                <div class="col-md-6 stock">
-                    <span id='stock'>Seleccione un accesorio</span>
+                <div id='redes' class="col-md-4 redes">
+                    
+                </div>
+                <div class=" col-md-4 stock">
+                                    <span id='stock'>Seleccione un accesorio</span>
                 </div>
             </div>
         </div>

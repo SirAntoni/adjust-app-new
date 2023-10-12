@@ -25,6 +25,10 @@
                                 <th>RAZON SOCIAL</th>
                                 <th>RANGO</th>
                                 <th>ESTADO</th>
+                                <th>FACEBOOK</th>
+                                <th>INSTAGRAM</th>
+                                <th>TIKTOK</th>
+                                <th>YOUTUBE</th>
                                 <th width="10px">Acción</th>
                             </tr>
                         </thead>
@@ -62,6 +66,18 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="contrasena" class="form-control" placeholder="Contraseña">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="facebook" class="form-control" placeholder="Facebook">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="instagram" class="form-control" placeholder="Instagram">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="tiktok" class="form-control" placeholder="TikTok">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="youtube" class="form-control" placeholder="Youtube">
                             </div>
                             <div class="form-group">
                                 <select name="rango" class='form-control'>
@@ -108,6 +124,18 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="contrasena" class="form-control" placeholder="Contraseña">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id='facebook' name="facebook" class="form-control" placeholder="Facebook">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id='instagram' name="instagram" class="form-control" placeholder="Instagram">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id='tiktok' name="tiktok" class="form-control" placeholder="TikTok">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id='youtube' name="youtube" class="form-control" placeholder="Youtube">
                             </div>
                             <div class="form-group">
                                 <select id='rango' name="rango" class='form-control'>

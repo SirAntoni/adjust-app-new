@@ -162,5 +162,13 @@ class Frontend extends Conectar
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function obtener_negocio($id){
+        $sql = "SELECT * FROM negocios WHERE id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }
