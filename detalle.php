@@ -150,8 +150,9 @@ session_start();
             width: 20px;
         }
 
-        .img-wrap {
-            height: 350px;
+        #auto360 {
+            width:100%;
+            height: 250px;
         }
 
 
@@ -161,6 +162,10 @@ session_start();
 
         .app {
             width: 100%;
+        }
+        
+        .fullScreen{
+            display:none;
         }
 
         
