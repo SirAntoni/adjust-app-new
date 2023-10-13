@@ -132,7 +132,6 @@ session_start();
     }
 
     .carousel-cell img {
-        width: 200px;
         height: 150px;
     }
 
