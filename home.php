@@ -63,41 +63,42 @@ if(!isset($_SESSION['id'])){
         }
     }
 
-    div.codepen {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        display: block;
-        height: 300px;
-        width: 300px;
-        border-radius: 50%;
-        background-color: #121212;
+    .btnGaleria {
+        width: 350px;
+        height: 362px;
+        background: url('./assets/images/btnGaleriaNew.png');
+        background-repeat: no-repeat;
+        background-size: 350px 350px;
+        -webkit-transition: background-image 1s ease-out;
+        -moz-transition: background-image 1s ease-out;
+        -o-transition: background-image 1s ease-out;
+        transition: background-image 1s ease-out;
+    }
+
+    .btnGaleria:hover {
+        background: url('./assets/images/btnGaleriaNewHover.png');
+        background-repeat: no-repeat;
+        background-size: 350px 350px;
         cursor: pointer;
-        opacity: 0.8;
-        transition: color 0.8s linear,
-            background 0.8s linear,
-            box-shadow 0.1s linear,
-            transform 0.1s linear;
     }
 
-    div.codepen:hover {
-        background: #DCDCDC;
-        box-shadow: 0 0 1em 0.1em rgba(0, 0, 0, 0.75);
-        transform: scale(1.02);
-        color: #000;
+    .btnNosotros {
+        width: 350px;
+        height: 362px;
+        background: url('./assets/images/btnNosotrosNew.png');
+        background-repeat: no-repeat;
+        background-size: 350px 350px;
+        -webkit-transition: background-image 1s ease-out;
+        -moz-transition: background-image 1s ease-out;
+        -o-transition: background-image 1s ease-out;
+        transition: background-image 1s ease-out;
     }
 
-    div.codepen p {
-        color: #DCDCDC;
-        line-height: 300px;
-        text-align: center;
-        font-size: 45px;
-    }
-
-    div.codepen p:hover {
-        transition: color 0.8s linear;
-        color: #000;
-        text-decoration: none;
+    .btnNosotros:hover {
+        background: url('./assets/images/btnNosotrosNewHover.png');
+        background-repeat: no-repeat;
+        background-size: 350px 350px;
+        cursor: pointer;
     }
     </style>
 </head>
@@ -109,14 +110,13 @@ if(!isset($_SESSION['id'])){
     </div>
     <div class="container">
         <div class="row text-center content">
-            <div class="col-md-6">
-                <div id='galeria' class="codepen">
-                    <p class='nombre'>Galeria</p>
+            <div class="col-md-6 d-flex justify-content-center">
+                <div id='galeria' class="btnGaleria">
+                    
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="codepen">
-                    <p class='nombre'>Nosotros</p>
+            <div class="col-md-6 d-flex justify-content-center">
+                <div id='nosotros' class="btnNosotros">
                 </div>
             </div>
         </div>
@@ -127,10 +127,15 @@ if(!isset($_SESSION['id'])){
 </body>
 
 <script>
-    const btnGaleria = document.getElementById('galeria');
-    btnGaleria.addEventListener('click', function(e){
-        window.location = 'galeria'
-    })
+const btnGaleria = document.getElementById('galeria');
+const btnNosotros = document.getElementById('nosotros');
+btnGaleria.addEventListener('click', function(e) {
+    window.location = 'galeria'
+})
+
+btnNosotros.addEventListener('click', function(e) {
+    alert('en construccion')
+})
 </script>
 
 </html>
