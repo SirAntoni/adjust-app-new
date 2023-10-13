@@ -12,7 +12,7 @@ class Dashboard extends Conectar
 
     public function listar()
     {
-        $negocios = "SELECT count(*) negocios FROM negocios";
+        $negocios = "SELECT count(*) negocios FROM negocios where estado in (1,3)";
         $negocios = $this->db->prepare($negocios);
         $negocios->execute();
         
