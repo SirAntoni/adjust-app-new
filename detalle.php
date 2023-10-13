@@ -33,7 +33,7 @@ session_start();
         background: #FFF;
     }
 
-    .img-wrap {
+    #auto360 {
         width: 500px;
         margin: auto;
         background: #FFF;
@@ -140,7 +140,11 @@ session_start();
             color:#FFF;
             margin-right: 10px;
         }
-
+    .fullScreen {
+        margin: 8px 5px;
+        font-size: 25px;
+        cursor:pointer;
+    }
     @media (max-width : 780px) {
         .color img {
             width: 20px;
@@ -238,7 +242,7 @@ session_start();
 
 
     <script src="assets/js/circlr.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?code=<?php echo date('ymdsis') ?>"></script>
     <script src="assets/js/notiflix.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 

@@ -7,6 +7,7 @@ $(function() {
     buscar();
     obtener_auto();
     obtener_negocio();
+    localStorage.removeItem('fullscreen');
 
 })
 
@@ -271,6 +272,8 @@ function mostrarAutoparte(autoparte) {
                 src="assets/images/colores/${color.cover}" alt=""></div>`;
             })
 
+            html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
+
             $("#auto360").html('<div id="circlrDiv"></div>');
             $("#circlrDiv").html(html);
             $("#detalle_colores").html(html_colores);
@@ -310,6 +313,31 @@ function obtenerAutoparte(categoria) {
 
 }
 
+function fullScreen() {
+
+
+
+    if (!localStorage.getItem('fullscreen')) localStorage.setItem('fullscreen', 'false');
+    let fullscreen = localStorage.getItem('fullscreen');
+    let area = document.getElementById('auto360');
+
+    if (fullscreen == 'false') {
+        area.style.width = '100%';
+        area.style.height = '100%';
+        $(".fullScreen").html('<i class="fas fa-compress fa-lg"></i>');
+        localStorage.setItem('fullscreen', true);
+    } else {
+        area.style.width = '500px';
+        area.style.height = '300px';
+        $(".fullScreen").html('<i class="fas fa-expand fa-lg"></i>');
+        localStorage.setItem('fullscreen', false);
+    }
+
+    $('body [data-toggle="tooltip"]').tooltip('dispose');
+    $('body').tooltip({ selector: '[data-toggle=tooltip]' });
+
+}
+
 const obtener_auto = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const auto = urlParams.get('auto');
@@ -339,6 +367,8 @@ const obtener_auto = function() {
                 data.categorias.forEach(categoria => {
                     html_categorias = html_categorias + `<div class="carousel-cell"><img src="assets/images/categorias/${categoria.cover}" onclick="obtenerAutoparte('${categoria.uuid}')" alt="${categoria.categoria}"></div>`;
                 })
+
+                html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
 
                 // $("carousel_categorias").flickity('destroy');
                 $("#carousel_categorias").html(html_categorias);
