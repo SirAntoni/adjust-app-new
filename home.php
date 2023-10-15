@@ -134,7 +134,7 @@ btnGaleria.addEventListener('click', function(e) {
 })
 
 btnNosotros.addEventListener('click', function(e) {
-    alert('en construccion')
+    window.location = 'web?negocio=adjust'
 })
 </script>
 
