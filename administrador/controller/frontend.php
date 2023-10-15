@@ -70,11 +70,11 @@ switch ($opcion){
         echo $listar;
     break;
     case 'listar_anios':
-        $listar = json_encode($frontend->listar_anios($marca,$tipo,$modelo));
+        $listar = json_encode($frontend->listar_anios($marca,$modelo,$negocio));
         echo $listar;
     break;
     case 'buscar':
-        $listar = json_encode($frontend->buscar($marca,$tipo,$modelo,$anio,$negocio));
+        $listar = json_encode($frontend->buscar($anio));
         echo $listar;
     break;
     case 'obtener_auto':

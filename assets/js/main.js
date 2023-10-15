@@ -9,6 +9,7 @@ $(function() {
     obtener_negocio();
     localStorage.removeItem('fullscreen');
 
+
 })
 
 const login = () => {
@@ -106,7 +107,7 @@ const listar_modelos = () => {
 
     $("#marcas").change(function() {
 
-
+        $("#anios").html('<option value="">Selecciona una opcion</option>');
         const marca = $(this).val();
         const tipo = $('#tipos').val();
 
@@ -132,6 +133,7 @@ const listar_modelos = () => {
 
     $("#tipos").change(function() {
 
+        $("#anios").html('<option value="">Selecciona una opción</option>');
         const marca = $("#marcas").val();
         const tipo = $(this).val();
 
@@ -180,9 +182,15 @@ const listar_anios = () => {
             data: body,
             success: function(response) {
                 const data = JSON.parse(response);
+                let listar_anios = [];
+                for (let autos of data) {
+                    for (let anio of autos) {
+                        listar_anios.push(anio);
+                    }
+                }
                 let html = '<option value="">Seleccione una opción</option>';
-                data.forEach((element) => {
-                    html += `<option value="${element['id']}">${element['anio']}</option>`;
+                listar_anios.forEach((element) => {
+                    html += `<option value="${element['auto_uuid']}">${element['anio']}</option>`;
                 })
                 $("#anios").html(html);
             }

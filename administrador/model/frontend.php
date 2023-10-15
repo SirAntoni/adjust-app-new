@@ -46,29 +46,42 @@ class Frontend extends Conectar
         
     }
 
-    public function listar_anios($marca,$tipo,$modelo)
+    public function listar_anios($marca,$modelo,$negocio)
     {
 
-        $sql = "SELECT an.id id, an.anio FROM autos au INNER JOIN anios an ON au.anio_id = an.id WHERE au.marca_id = ? AND au.modelo_id = ? AND an.estado = 1 GROUP BY an.anio";
+        $sql = "SELECT * FROM autos WHERE marca_id = ? AND modelo_id = ? AND negocio_id = ? AND estado = 1";
 
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,$marca);
         $sql->bindValue(2,$modelo);
+        $sql->bindValue(3,$negocio);
         $sql->execute();
+        $autos = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+        $anios = [];
+
+        foreach ($autos as $auto) {
+            
+            $buscar_autos = 'SELECT auto_uuid,anio FROM autos_anios WHERE auto_uuid = ?';
+            $buscar_autos = $this->db->prepare($buscar_autos);
+            $buscar_autos->bindValue(1,$auto['uuid']);
+            $buscar_autos->execute();
+            $anios_nuevo = $buscar_autos->fetchAll(PDO::FETCH_ASSOC);
+            array_push($anios,$anios_nuevo);
+
+        }
+
+        return $anios;
+        
     }
 
-    public function buscar($marca,$tipo,$modelo,$anio,$negocio)
+    public function buscar($uuid)
     {
         
-        $sql = "SELECT * FROM autos WHERE marca_id = ? AND modelo_id = ? AND anio_id = ? AND negocio_id = ? AND estado = 1 AND color_uuid IS NOT NULL";
+        $sql = "SELECT * FROM autos WHERE uuid = ? AND color_uuid IS NOT NULL";
 
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $marca);
-        $sql->bindValue(2, $modelo);
-        $sql->bindValue(3, $anio);
-        $sql->bindValue(4, $negocio);
+        $sql->bindValue(1, $uuid);
         $sql->execute();
 
         return $sql->fetchAll(PDO::FETCH_ASSOC);

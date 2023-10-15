@@ -86,9 +86,6 @@ $(function() {
     //IMAGENES
     listar_imagenes();
 
-
-
-
 })
 
 //DASHBOARD
@@ -1386,7 +1383,7 @@ var listar_autos = function() {
             { data: "marca_id" },
             { data: "tipo_id" },
             { data: "modelo_id" },
-            { data: "anio_id" },
+            { data: "anio_uuid" },
             { data: "color_uuid" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
@@ -1424,7 +1421,8 @@ var data_editar_auto = function(tbody, table) {
         $("#nombre").val(data.nombre);
         $("#marca").val(data.marca_id);
         $("#tipo").val(data.tipo_id);
-
+        $("#uuid").val(data.uuid);
+        $('#anios').importTags('');
         $.ajax({
             url: 'controller/modelos.php',
             method: 'POST',
@@ -1460,7 +1458,19 @@ var data_editar_auto = function(tbody, table) {
             }
         });
 
-        $("#anio").val(data.anio_id);
+        $.ajax({
+            url: 'controller/autos.php',
+            method: 'POST',
+            data: { opcion: 'listar_anios', uuid: data.uuid },
+            success: function(response) {
+
+                const anios = JSON.parse(response);
+                anios.forEach(({ anio }) => {
+                    $('#anios').addTag(anio);
+                });
+            }
+        });
+
         $("#modalEditarAuto").modal("show");
     })
 }
@@ -1528,6 +1538,7 @@ var editar_auto = function() {
             data: data,
             success: function(response) {
                 var response = JSON.parse(response);
+
                 if (response.status == "success") {
                     Swal.fire({
                         title: 'Success!',

@@ -28,6 +28,7 @@ require "config/conexion.php";
     <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
     <!-- end plugin css for this page -->
     <!-- inject:css -->
+    <link rel="stylesheet" href="assets/vendors/jquery-tags-input/jquery.tagsinput.min.css">
     <link rel="stylesheet" href="assets/vendors/select2/select2.min.css">
     <link rel="stylesheet" href="assets/fonts/feather-font/css/iconfont.css">
     <link rel="stylesheet" href="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
@@ -134,6 +135,7 @@ require "config/conexion.php";
     <script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
     <script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="assets/vendors/jquery-tags-input/jquery.tagsinput.min.js"></script>
     <script src="assets/vendors/moment/moment.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/vendors/select2/select2.min.js"></script>
@@ -147,6 +149,7 @@ require "config/conexion.php";
     <script src="assets/js/datepicker.js"></script>
     <script src="assets/js/select2.js"></script>
     <script src="assets/js/file-upload.js"></script>
+    <script src="assets/js/tags-input.js"></script>
     <script src="app/app.js"></script>
 </body>
 

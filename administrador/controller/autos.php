@@ -10,6 +10,7 @@ $autos = new Autos();
 
 $id = '';
 $uuid = Uuid::uuid4()->toString();
+$uuid_anios = Uuid::uuid4()->toString();
 $nombre = '';
 $marca = '';
 $tipo = '';
@@ -65,16 +66,24 @@ if(isset($_POST['data'])){
     }
 }
 
+$array_anios = '';
+if(!empty($_POST['anios'])){
+    $array_anios = $_POST['anios'];
+    $array_anios = explode(" ",$array_anios);
+}
+
+
+
 switch ($opcion){
     case 'listar_autos':
         $listar = json_encode($autos->listar_autos($negocio));
         echo '{"data":'.$listar.'}';
         break;
     case 'crear':
-        $autos->crear_auto($uuid,$nombre,$marca,$tipo,$modelo,$anio,$negocio); 
+        $autos->crear_auto($uuid,$nombre,$marca,$tipo,$modelo,$uuid_anios,$array_anios,$negocio);
     break;
     case 'editar':
-        $autos->editar_auto($id,$nombre,$marca,$tipo,$modelo,$anio,$color); 
+        $autos->editar_auto($id,$uuid,$nombre,$marca,$tipo,$modelo,$uuid_anios,$array_anios,$color);
     break;
     case 'eliminar':
         $autos->eliminar_auto($id);
@@ -82,6 +91,10 @@ switch ($opcion){
     case 'obtener_nombre_auto':
         $nombre = $autos->obtener_nombre_auto($uuid);
         echo $nombre['nombre'];
+    break;
+    case 'listar_anios':
+        $anios = $autos->listar_anios($uuid);
+        echo json_encode($anios);
     break;
     default:
         echo "ERROR";

@@ -77,9 +77,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select name="anio" class='select_anios'>
-                                    <option value="">Seleccione un año</option>
-                                </select>
+                                <p class="mb-2">Agrega año</p>
+                                <div>
+                                    <input name="anios" class='tags form-control' value="" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -106,11 +107,13 @@
             <form id="formEditarAuto">
                 <div class="modal-body">
                     <input type="hidden" value="editar" name="opcion">
+                    <input type="hidden" id='uuid' name='uuid'>
                     <input type="hidden" class="id" name="id">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" id='nombre' name='nombre' placeholder='Nombre del auto' class='form-control'>
+                                <input type="text" id='nombre' name='nombre' placeholder='Nombre del auto'
+                                    class='form-control'>
                             </div>
                             <div class="form-group">
                                 <select id='marca' name="marca">
@@ -128,9 +131,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select id='anio' name="anio" class='select_anios'>
-                                    <option value="">Seleccione un año</option>
-                                </select>
+                                <p class="mb-2">Agrega año</p>
+                                <div>
+                                    <input name="anios" id='anios' class='tags form-control' value="" />
+                                </div>
                             </div>
                             <div class="form-group">
                                 <select id='color' name="color">

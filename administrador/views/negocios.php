@@ -126,16 +126,19 @@
                                 <input type="text" name="contrasena" class="form-control" placeholder="Contraseña">
                             </div>
                             <div class="form-group">
-                                <input type="text" id='facebook' name="facebook" class="form-control" placeholder="Facebook">
+                                <input type="text" id='facebook' name="facebook" class="form-control"
+                                    placeholder="Facebook">
                             </div>
                             <div class="form-group">
-                                <input type="text" id='instagram' name="instagram" class="form-control" placeholder="Instagram">
+                                <input type="text" id='instagram' name="instagram" class="form-control"
+                                    placeholder="Instagram">
                             </div>
                             <div class="form-group">
                                 <input type="text" id='tiktok' name="tiktok" class="form-control" placeholder="TikTok">
                             </div>
                             <div class="form-group">
-                                <input type="text" id='youtube' name="youtube" class="form-control" placeholder="Youtube">
+                                <input type="text" id='youtube' name="youtube" class="form-control"
+                                    placeholder="Youtube">
                             </div>
                             <div class="form-group">
                                 <select id='rango' name="rango" class='form-control'>
@@ -185,8 +188,7 @@
                                 <input type="text" name="ruc" class="form-control" placeholder="Ruc">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="razon_social" class="form-control"
-                                    placeholder="Razon social">
+                                <input type="text" name="razon_social" class="form-control" placeholder="Razon social">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="contrasena" class="form-control" placeholder="Contraseña">
