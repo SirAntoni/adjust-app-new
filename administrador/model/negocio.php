@@ -31,9 +31,9 @@ class Negocios extends Conectar
             ];
         }else{
             
-            $query = "SELECT * FROM negocios WHERE ruc = ?";
+            $query = "SELECT * FROM negocios WHERE razon_social = ?";
             $query = $this->db->prepare($query);
-            $query->bindValue(1,$ruc);
+            $query->bindValue(1,$razon_social);
             $query->execute();
             if($query->rowCount() > 0){
                 
@@ -82,7 +82,7 @@ class Negocios extends Conectar
             ];
             
         }else{
-
+    
                 if(empty($contrasena)){
                     $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?, fecha_modificacion = now() WHERE id = ?";
                     $query = $this->db->prepare($query);    

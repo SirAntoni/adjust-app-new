@@ -1155,7 +1155,7 @@ var listar_negocios = function() {
             { data: "tiktok" },
             { data: "youtube" },
             {
-                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Duplicar' class='duplicar mr-1 text-dark'><i class='fas fa-copy fa-lg'></i></a></div>",
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Duplicar' class='duplicar mr-1 text-warning'><i class='fas fa-copy fa-lg'></i></a><a title='Web' class='web mr-1 text-dark'><i class='fas fa-globe-americas fa-lg'></i></a></div>",
             },
         ],
 
@@ -1165,6 +1165,7 @@ var listar_negocios = function() {
     data_editar_negocio("#dataTableNegocios tbody", table_negocios);
     data_configurar_negocio("#dataTableNegocios tbody", table_negocios);
     data_duplicar_negocio("#dataTableNegocios tbody", table_negocios);
+    data_web_negocio("#dataTableNegocios tbody", table_negocios);
 
     $("#dataTableNegocios").each(function() {
         var datatable = $(this);
@@ -1215,6 +1216,22 @@ var data_configurar_negocio = function(tbody, table) {
     $(tbody).on("click", ".configurar", function() {
         var data = table.row($(this).parents("tr")).data();
         window.location = 'main?module=autos&negocio=' + data.id;
+    })
+}
+
+var data_web_negocio = function(tbody, table) {
+    $(tbody).on("click", ".web", function() {
+        var data = table.row($(this).parents("tr")).data();
+        if (data.rango === '3') {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Negocio no cuenta con el rango suficiente, subale el rango.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+        } else {
+            alert('ok');
+        }
     })
 }
 

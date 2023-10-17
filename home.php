@@ -110,12 +110,12 @@ if(!isset($_SESSION['id'])){
     </div>
     <div class="container">
         <div class="row text-center content">
-            <div class="col-md-6 d-flex justify-content-center">
+            <div class="<?php echo ($_SESSION['rango'] == 3) ? 'col-md-12':'col-md-6'; ?> d-flex justify-content-center">
                 <div id='galeria' class="btnGaleria">
                     
                 </div>
             </div>
-            <div class="col-md-6 d-flex justify-content-center">
+            <div class="<?php echo ($_SESSION['rango'] == 3) ? 'd-none':'col-md-6 d-flex justify-content-center'; ?> ">
                 <div id='nosotros' class="btnNosotros">
                 </div>
             </div>
@@ -134,8 +134,9 @@ btnGaleria.addEventListener('click', function(e) {
 })
 
 btnNosotros.addEventListener('click', function(e) {
-    window.location = 'web?negocio=adjust'
+    window.location = 'web?negocio=<?php echo $_SESSION['razon_social']; ?>'
 })
+
 </script>
 
 </html>
