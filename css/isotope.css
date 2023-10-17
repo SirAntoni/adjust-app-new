@@ -22,7 +22,7 @@
     line-height: 30px;
     -webkit-transition: all 0.6s;
     border-bottom: 1px solid transparent;
-    color: #807c7c !important;
+    color: #FFF !important;
 }
 
 .container-filter a:hover {
@@ -30,8 +30,8 @@
 }
 
 .container-filter a.active {
-    color: #222222 !important;
-    border-bottom: 1px solid #222222;
+    color: #FFF !important;
+    border-bottom: 1px solid #FFF;
 }
 
 .item-box {

@@ -26,11 +26,11 @@ session_start();
     <link rel="stylesheet" href="./css/isotope.css">
 </head>
 
-<body id="page-top">
+<body id="page-top" class='bg-black'>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top"><?php echo $_SESSION['razon_social']; ?></a>
+            <a class="navbar-brand" href="#page-top"><img src="./assets/img/Logo-ADJUSTAPP.png" alt=""></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -52,8 +52,8 @@ session_start();
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center">
-                    <img src="./assets/img/Logo-ADJUSTAPP.png" alt="">
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing
+                    
+                    <h2 class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing
                         elit. Reprehenderit.</h2>
                     <a class="btn btn-primary" href="#about">Conocenos</a>
                 </div>
@@ -62,7 +62,7 @@ session_start();
     </header>
     <!-- About-->
     <!-- Projects-->
-    <section class="projects-section bg-light" id="about">
+    <section class="projects-section bg-black" id="about">
         <div class="container px-4 px-lg-5">
             <!-- Featured Project Row-->
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
@@ -70,8 +70,8 @@ session_start();
                         alt="..." /></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
-                        <h4>Nosotros</h4>
-                        <p class="text-black-50 mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <h4 class='text-white' >Nosotros</h4>
+                        <p class="text-white mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Repellendus esse quaerat doloremque corrupti, aperiam, sunt tenetur iusto ut sed aliquid
                             nihil, quo similique quia labore. Dignissimos provident voluptates animi vel!</p>
                     </div>
@@ -111,23 +111,23 @@ session_start();
             </div>
         </div>
     </section>
-    <section class="galeria-section bg-light" id="galeria">
+    <section class="galeria-section bg-black" id="galeria">
         <div class="container px-4 px-lg-5">
             <!-- Featured Project Row-->
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center text-center">
-                <h1>Galeria</h1>
+                <h1 class='text-white'>Galeria</h1>
 
                 <section class="section">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="text-center">
-                                    <ul class="col container-filter portfolioFilte list-unstyled mb-0" id="filter">
-                                        <li><a class="categories active" data-filter="*">Todo</a></li>
-                                        <li><a class="categories" data-filter=".branding">Aros</a></li>
-                                        <li><a class="categories" data-filter=".design">Faros</a></li>
-                                        <li><a class="categories" data-filter=".photo">Neumaticos</a></li>
-                                        <li><a class="categories" data-filter=".coffee">Parachoques</a></li>
+                                    <ul class="col  container-filter portfolioFilte list-unstyled mb-0" id="filter">
+                                        <li><a class="categories text-white active" data-filter="*">Todo</a></li>
+                                        <li><a class="categories text-white" data-filter=".branding">Aros</a></li>
+                                        <li><a class="categories text-white" data-filter=".design">Faros</a></li>
+                                        <li><a class="categories text-white" data-filter=".photo">Neumaticos</a></li>
+                                        <li><a class="categories text-white" data-filter=".coffee">Parachoques</a></li>
                                     </ul>
                                 </div>
                             </div>
