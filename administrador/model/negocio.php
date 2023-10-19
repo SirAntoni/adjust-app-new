@@ -59,6 +59,20 @@ class Negocios extends Conectar
                     $query->bindValue(8,$youtube);
                     $query->execute();
 
+
+                    $crear_web = 'INSERT INTO web(negocio,nosotros,vision,mision) VALUES(?,?,?,?)';
+                    $crear_web = $this->db->prepare($crear_web);
+
+                    $nosotros = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus esse quaerat doloremque corrupti, aperiam, sunt tenetur iusto ut sed aliquid nihil, quo similique quia labore. Dignissimos provident voluptates animi vel!';
+                    $mision = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque molestiae ea eveniet natus esse ex ratione corrupti. Atque, incidunt dolorem. Cumque culpa pariatur dolores quia eius repellat enim doloremque dolorem!';
+                    $vision = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad cum suscipit expedita blanditiis autem itaque, optio architecto at quod. Quasi quia velit ullam natus, amet saepe! Accusamus facilis repellat quasi.';
+
+                    $crear_web->bindValue(1,$this->db->lastInsertId());
+                    $crear_web->bindValue(2,$nosotros);
+                    $crear_web->bindValue(3,$mision);
+                    $crear_web->bindValue(4,$vision);
+                    $crear_web->execute();
+
                     $response = [
                         "status" => "success",
                         "message" => "Usuario registrado con exito"
