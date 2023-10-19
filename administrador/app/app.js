@@ -1,7 +1,9 @@
 $(function() {
 
-    //Marcas
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
 
+    //Marcas
     listar_marcas();
     crear_marca();
     editar_marca();
@@ -78,7 +80,7 @@ $(function() {
     //Dropzone
     localStorage.removeItem("documentos");
     limpiar();
-    activarDropzone();
+    if (params.get("module") === 'configurar-color') activarDropzone();
     subir();
 
 
@@ -86,7 +88,421 @@ $(function() {
     //IMAGENES
     listar_imagenes();
 
+    //Web
+    if (params.get("module") === 'web') cargar_web();
+    guardar_datos_generales();
+    guardar_slogan();
+    guardar_nosotros();
+    guardar_mision();
+    guardar_vision();
+    guardar_logo();
+    guardar_nosotrosImg();
+    guardar_misionImg();
+    guardar_visionImg();
+
+
 })
+
+//WEB
+
+var guardar_logo = function() {
+
+    $("#formLogo").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formLogo')[0]);
+        console.log(formData)
+        $.ajax({
+            url: "controller/web.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+var guardar_nosotrosImg = function() {
+
+    $("#formNosotrosImg").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formNosotrosImg')[0]);
+        console.log(formData)
+        $.ajax({
+            url: "controller/web.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+var guardar_misionImg = function() {
+
+    $("#formMisionImg").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formMisionImg')[0]);
+        console.log(formData)
+        $.ajax({
+            url: "controller/web.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+var guardar_visionImg = function() {
+
+    $("#formVisionImg").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formVisionImg')[0]);
+        console.log(formData)
+        $.ajax({
+            url: "controller/web.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+const cargar_web = function() {
+
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
+    const negocio = params.get('negocio')
+
+    $.ajax({
+        url: 'controller/web.php',
+        method: 'POST',
+        data: { negocio },
+        success: function(response) {
+            const data = JSON.parse(response);
+            $("#direccion").val(data.direccion);
+            $("#telefono").val(data.telefono);
+            $("#email").val(data.email);
+            $("#slogan").val(data.slogan);
+            $("#nosotros").val(data.nosotros);
+            $("#mision").val(data.mision);
+            $("#vision").val(data.vision);
+            $("#archivoLogo").val(data.logo);
+            $("#archivoNosotros").val(data.nosotrosImg);
+            $("#archivoMision").val(data.misionImg);
+            $("#archivoVision").val(data.visionImg);
+            $("#divLogo").html(`<img src='../assets/img/${data.logo}'>`);
+            $("#divNosotros").html(`<img src='../assets/img/${data.nosotrosImg}' width='100px'>`);
+            $("#divMision").html(`<img src='../assets/img/${data.misionImg}' width='100px'>`);
+            $("#divVision").html(`<img src='../assets/img/${data.visionImg}' width='100px'>`);
+        }
+    })
+}
+
+const guardar_datos_generales = function() {
+    $("#formDatosGenerales").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        console.log(data);
+        $.ajax({
+            url: 'controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const guardar_slogan = function() {
+    $("#formSlogan").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: 'controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const guardar_nosotros = function() {
+    $("#formNosotros").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: 'controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const guardar_mision = function() {
+    $("#formMision").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: 'controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const guardar_vision = function() {
+    $("#formVision").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: 'controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
 
 //DASHBOARD
 
