@@ -1230,7 +1230,7 @@ var data_web_negocio = function(tbody, table) {
                 confirmButtonText: 'Ok'
             })
         } else {
-            alert('ok');
+            window.location = 'main?module=web&negocio=' + data.id;
         }
     })
 }

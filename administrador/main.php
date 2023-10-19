@@ -113,6 +113,10 @@ require "config/conexion.php";
                         require_once "views/autopartes.php";
                         break;
 
+                    case 'web':
+                        require_once "views/web.php";
+                        break;
+
                     default:
                         require_once "views/dashboard.php";
                         break;
@@ -151,6 +155,8 @@ require "config/conexion.php";
     <script src="assets/js/file-upload.js"></script>
     <script src="assets/js/tags-input.js"></script>
     <script src="app/app.js"></script>
+    <script>
+    </script>
 </body>
 
 </html>

@@ -30,7 +30,7 @@ session_start();
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top"><img src="./assets/img/Logo-ADJUSTAPP.png" alt=""></a>
+            <a class="navbar-brand" href="#page-top"><img width=200px' src="./assets/img/Logo-ADJUSTAPP.png" alt=""></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ session_start();
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-left">
                                 <h4 class="text-white">Mision</h4>
-                                <p class="mb-0 text-white-50">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                <p class="mb-0 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                     Itaque molestiae ea eveniet natus esse ex ratione corrupti. Atque, incidunt dolorem.
                                     Cumque culpa pariatur dolores quia eius repellat enim doloremque dolorem!</p>
                             </div>
@@ -101,7 +101,7 @@ session_start();
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
                                 <h4 class="text-white">Vision</h4>
-                                <p class="mb-0 text-white-50">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                <p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                                     Ad cum suscipit expedita blanditiis autem itaque, optio architecto at quod. Quasi
                                     quia velit ullam natus, amet saepe! Accusamus facilis repellat quasi.</p>
                             </div>
@@ -397,11 +397,6 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>

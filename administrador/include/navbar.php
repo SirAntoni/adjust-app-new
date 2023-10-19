@@ -8,7 +8,7 @@
                 </a>
             </li>
 
-            <li class="nav-item mr-4 <?php echo ($_GET['module'] == 'negocios' || $_GET['module'] == 'autos' || $_GET['module'] == 'crear-auto' || $_GET['module'] == 'configurar-auto' || $_GET['module'] == 'configurar-color' || $_GET['module'] == 'autopartes' || $_GET['module'] == 'configurar-color-autoparte') ? 'active' : ''; ?>">
+            <li class="nav-item mr-4 <?php echo ($_GET['module'] == 'negocios' || $_GET['module'] == 'autos' || $_GET['module'] == 'crear-auto' || $_GET['module'] == 'configurar-auto' || $_GET['module'] == 'configurar-color' || $_GET['module'] == 'autopartes' || $_GET['module'] == 'web' || $_GET['module'] == 'configurar-color-autoparte') ? 'active' : ''; ?>">
                 <a class="nav-link " href="main?module=negocios">
                     <i class="link-icon" data-feather="award"></i>
                     <span class="menu-title">Negocios</span>
@@ -30,8 +30,6 @@
                                 class="nav-link" href="main?module=tipos">Tipos</a></li>
                         <li class="nav-item <?php echo ($_GET['module'] == 'modelos') ? 'active' : ''; ?>"><a
                                 class="nav-link" href="main?module=modelos">Modelos</a></li>
-                        <li class="nav-item <?php echo ($_GET['module'] == 'anios') ? 'active' : ''; ?>"><a
-                                class="nav-link" href="main?module=anios">Años</a></li>
                     </ul>
                 </div>
             </li>
