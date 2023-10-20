@@ -1,7 +1,7 @@
 $(function() {
 
     cargar_web();
-
+    cargar_redes();
 })
 
 const cargar_web = function() {
@@ -36,4 +36,28 @@ const cargar_web = function() {
         }
     })
 
+}
+
+const cargar_redes = function() {
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
+    $.ajax({
+        url: 'administrador/controller/frontend.php',
+        method: 'POST',
+        data: { opcion: 'cargar_redes', negocio: params.get('negocio') },
+        success: function(response) {
+            const data = JSON.parse(response);
+            const facebook = (data.facebook === '') ? '#!' : data.facebook;
+            const instagram = (data.instagram === '') ? '#!' : data.instagram;
+            const tiktok = (data.tiktok === '') ? '#!' : data.tiktok;
+            const youtube = (data.youtube === '') ? '#!' : data.youtube;
+            const html = `<a class="mx-2" href="${facebook}" target='_blank'><i class="fab fa-facebook-f"></i></a>
+            <a class="mx-2" href="${instagram}" target='_blank'><i class="fab fa-instagram"></i></a>
+            <a class="mx-2" href="${tiktok}" target='_blank'><i class="fab fa-tiktok"></i></a>
+            <a class="mx-2" href="${youtube}" target='_blank'><i class="fab fa-youtube"></i></a>`;
+
+            $('#redes-sociales').html(html);
+        }
+
+    })
 }

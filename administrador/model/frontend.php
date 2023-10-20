@@ -115,6 +115,16 @@ class Frontend extends Conectar
         
     }
 
+    public function cargar_redes($negocio)
+    {
+        $buscar = "SELECT facebook,instagram,tiktok,youtube FROM negocios WHERE razon_social = ?";
+        $buscar = $this->db->prepare($buscar);
+        $buscar->bindValue(1, $negocio);
+        $buscar->execute();
+        return $buscar->fetch(PDO::FETCH_ASSOC);
+        
+    }
+
     public function obtener_auto($auto)
     {
         

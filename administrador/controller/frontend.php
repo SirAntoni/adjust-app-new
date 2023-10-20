@@ -71,6 +71,10 @@ switch ($opcion){
         $listar = json_encode($frontend->cargar_web($negocio));
         echo $listar;
      break;
+     case 'cargar_redes':
+        $listar = json_encode($frontend->cargar_redes($negocio));
+        echo $listar;
+     break;
     case 'listar_tipos':
         $listar = json_encode($frontend->listar_tipos());
         echo $listar;
