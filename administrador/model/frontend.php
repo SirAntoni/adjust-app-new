@@ -88,6 +88,33 @@ class Frontend extends Conectar
         
     }
 
+    public function cargar_web($negocio)
+    {
+        $buscar = "SELECT * FROM negocios WHERE razon_social = ?";
+        $buscar = $this->db->prepare($buscar);
+        $buscar->bindValue(1, $negocio);
+        $buscar->execute();
+        $negocio = $buscar->fetch(PDO::FETCH_ASSOC);
+
+        if($negocio){
+            $web = "SELECT * FROM web WHERE negocio = ?";
+            $web =  $this->db->prepare($web);
+            $web->bindValue(1,$negocio['id']);
+            $web->execute();
+            return $web->fetch(PDO::FETCH_ASSOC);
+        }else{
+            $response = [
+                "status" => "error",
+                "message" => "Campos vacios"
+            ];
+            
+            return $response;
+        }
+
+        
+        
+    }
+
     public function obtener_auto($auto)
     {
         

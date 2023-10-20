@@ -15,13 +15,19 @@ $color = '';
 $categoria = '';
 $autoparte = '';
 $opcion = '';
+$negocio = '';
 
 if(isset($_SESSION['id'])){
     $negocio = $_SESSION['id'];
 }
 
+
 if(isset($_POST['marca'])){
     $marca = $_POST['marca'];
+}
+
+if(isset($_POST['negocio'])){
+    $negocio = $_POST['negocio'];
 }
 
 if(isset($_POST['autoparte'])){
@@ -61,6 +67,10 @@ switch ($opcion){
        $listar = json_encode($frontend->listar_marcas());
        echo $listar;
     break;
+    case 'cargar_web':
+        $listar = json_encode($frontend->cargar_web($negocio));
+        echo $listar;
+     break;
     case 'listar_tipos':
         $listar = json_encode($frontend->listar_tipos());
         echo $listar;

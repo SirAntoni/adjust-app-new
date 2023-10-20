@@ -30,7 +30,7 @@ session_start();
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top"><img width=200px' src="./assets/img/Logo-ADJUSTAPP.png" alt=""></a>
+            <a class="navbar-brand" id='webLogo' href="#page-top"></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -53,7 +53,7 @@ session_start();
             <div class="d-flex justify-content-center">
                 <div class="text-center">
                     
-                    <h2 class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing
+                    <h2 id='webSlogan' class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing
                         elit. Reprehenderit.</h2>
                     <a class="btn btn-primary" href="#about">Conocenos</a>
                 </div>
@@ -66,12 +66,11 @@ session_start();
         <div class="container px-4 px-lg-5">
             <!-- Featured Project Row-->
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/nosotros.jpg"
-                        alt="..." /></div>
+                <div class="col-xl-8 col-lg-7" id='webNosotrosImg'></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
                         <h4 class='text-white' >Nosotros</h4>
-                        <p class="text-white mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <p class="text-white mb-0" id='webNosotros'>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Repellendus esse quaerat doloremque corrupti, aperiam, sunt tenetur iusto ut sed aliquid
                             nihil, quo similique quia labore. Dignissimos provident voluptates animi vel!</p>
                     </div>
@@ -79,13 +78,13 @@ session_start();
             </div>
             <!-- Project One Row-->
             <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/mision.jpg" alt="..." /></div>
+                <div class="col-lg-6" id='webMisionImg'></div>
                 <div class="col-lg-6">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-left">
                                 <h4 class="text-white">Mision</h4>
-                                <p class="mb-0 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                <p class="mb-0 text-white" id='webMision'>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                     Itaque molestiae ea eveniet natus esse ex ratione corrupti. Atque, incidunt dolorem.
                                     Cumque culpa pariatur dolores quia eius repellat enim doloremque dolorem!</p>
                             </div>
@@ -95,13 +94,13 @@ session_start();
             </div>
             <!-- Project Two Row-->
             <div class="row gx-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/vision.jpg" alt="..." /></div>
+                <div class="col-lg-6" id='webVisionImg'></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
                                 <h4 class="text-white">Vision</h4>
-                                <p class="mb-0 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                <p class="mb-0 text-white" id='webVision'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                                     Ad cum suscipit expedita blanditiis autem itaque, optio architecto at quod. Quasi
                                     quia velit ullam natus, amet saepe! Accusamus facilis repellat quasi.</p>
                             </div>
@@ -357,7 +356,7 @@ session_start();
                             <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Direccion</h4>
                             <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                            <div class="small text-black-50" id='webDireccion'>4923 Market Street, Orlando FL</div>
                         </div>
                     </div>
                 </div>
@@ -367,7 +366,7 @@ session_start();
                             <i class="fas fa-envelope text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Email</h4>
                             <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
+                            <div class="small text-black-50" id='webEmail'><a href="#!">hello@yourdomain.com</a></div>
                         </div>
                     </div>
                 </div>
@@ -377,7 +376,7 @@ session_start();
                             <i class="fas fa-mobile-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">telefono</h4>
                             <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">+1 (555) 902-8832</div>
+                            <div class="small text-black-50" id='webTelefono'>+1 (555) 902-8832</div>
                         </div>
                     </div>
                 </div>
@@ -401,6 +400,7 @@ session_start();
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>
     <script src="./js/isotope.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 
