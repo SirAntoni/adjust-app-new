@@ -300,6 +300,31 @@
     <div class="col-12 col-md-12 grid-margin stretch-card">
         <div class="card overflow-hidden">
             <div class="card-header">
+                Mapa
+            </div>
+            <div class="card-body">
+                <form id="formMapa">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="hidden" name='opcion' value='guardar_mapa'>
+                                <input type="hidden" name='negocio' value='<?php echo $_GET['negocio'] ?>'>
+                                <textarea name="mapa" id="mapa" placeholder='Ingresa iframe de tu mapa' cols="30"
+                                    rows="5" class='form-control'></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class='btn btn-primary' value='Guardar'>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 grid-margin stretch-card">
+        <div class="card overflow-hidden">
+            <div class="card-header">
                 Galeria
             </div>
             <div class="card-body">

@@ -16,9 +16,14 @@ $mision = '';
 $vision = '';
 $filtro = '';
 $id = '';
+$mapa = '';
 
 if(isset($_POST['opcion'])){
     $opcion = $_POST['opcion'];
+}
+
+if(isset($_POST['mapa'])){
+    $mapa = $_POST['mapa'];
 }
 
 if(isset($_POST['id'])){
@@ -103,6 +108,9 @@ switch ($opcion){
     break;
     case 'guardar_nosotros':
         $web->guardar_nosotros($negocio,$nosotros);
+    break;
+    case 'guardar_mapa':
+        $web->guardar_mapa($negocio,$mapa);
     break;
     case 'guardar_mision':
         $web->guardar_mision($negocio,$mision);

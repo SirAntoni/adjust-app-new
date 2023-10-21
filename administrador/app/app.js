@@ -105,6 +105,7 @@ $(function() {
     guardar_nosotrosImg();
     guardar_misionImg();
     guardar_visionImg();
+    guardar_mapa();
 
     listar_galeria();
     crear_galeria();
@@ -508,6 +509,7 @@ const cargar_web = function() {
             $("#archivoNosotros").val(data.nosotrosImg);
             $("#archivoMision").val(data.misionImg);
             $("#archivoVision").val(data.visionImg);
+            $("#mapa").val(data.mapa);
             $("#divLogo").html(`<img src='../assets/img/${data.logo}'>`);
             $("#divNosotros").html(`<img src='../assets/img/${data.nosotrosImg}' width='100px'>`);
             $("#divMision").html(`<img src='../assets/img/${data.misionImg}' width='100px'>`);
@@ -589,6 +591,42 @@ const guardar_slogan = function() {
 
 const guardar_nosotros = function() {
     $("#formNosotros").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: 'controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_web();
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+
+const guardar_mapa = function() {
+    $("#formMapa").submit(function(e) {
         e.preventDefault();
         const data = $(this).serialize();
         $.ajax({

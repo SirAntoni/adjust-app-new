@@ -334,6 +334,31 @@ class Web extends Conectar
 
     }
 
+    public function guardar_mapa($negocio,$mapa){
+
+        if(empty($negocio) || empty($mapa)){
+            $response = [
+                "status" => "error",
+                "message" => "Campos vacios"
+            ];
+            echo json_encode($response);
+        }else{
+            $sql = "UPDATE web SET mapa = ?  WHERE negocio =?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$mapa);
+            $sql->bindValue(2,$negocio);
+            $sql->execute();
+
+            $response = [
+                "status" => "success",
+                "message" => "La informacion fue guardada con existo",
+            ];
+
+            echo json_encode($response);
+        }
+
+    }
+
     public function guardar_mision($negocio,$mision){
 
         if(empty($negocio) || empty($mision)){

@@ -52,8 +52,9 @@ session_start();
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center">
-                    
-                    <h2 id='webSlogan' class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing
+
+                    <h2 id='webSlogan' class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur
+                        adipisicing
                         elit. Reprehenderit.</h2>
                     <a class="btn btn-primary" href="#about">Conocenos</a>
                 </div>
@@ -69,8 +70,9 @@ session_start();
                 <div class="col-xl-8 col-lg-7" id='webNosotrosImg'></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
-                        <h4 class='text-white' >Nosotros</h4>
-                        <p class="text-white mb-0" id='webNosotros'>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <h4 class='text-white'>Nosotros</h4>
+                        <p class="text-white mb-0" id='webNosotros'>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
                             Repellendus esse quaerat doloremque corrupti, aperiam, sunt tenetur iusto ut sed aliquid
                             nihil, quo similique quia labore. Dignissimos provident voluptates animi vel!</p>
                     </div>
@@ -84,7 +86,8 @@ session_start();
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-left">
                                 <h4 class="text-white">Mision</h4>
-                                <p class="mb-0 text-white" id='webMision'>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                <p class="mb-0 text-white" id='webMision'>Lorem ipsum, dolor sit amet consectetur
+                                    adipisicing elit.
                                     Itaque molestiae ea eveniet natus esse ex ratione corrupti. Atque, incidunt dolorem.
                                     Cumque culpa pariatur dolores quia eius repellat enim doloremque dolorem!</p>
                             </div>
@@ -100,7 +103,8 @@ session_start();
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
                                 <h4 class="text-white">Vision</h4>
-                                <p class="mb-0 text-white" id='webVision'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                <p class="mb-0 text-white" id='webVision'>Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit.
                                     Ad cum suscipit expedita blanditiis autem itaque, optio architecto at quod. Quasi
                                     quia velit ullam natus, amet saepe! Accusamus facilis repellat quasi.</p>
                             </div>
@@ -135,15 +139,20 @@ session_start();
                         <div class="port portfolio-masonry mt-4">
                             <div id='imagenes' class="portfolioContainer row photo">
 
-                                
 
-                                
+
+
                             </div>
                         </div>
                     </div>
                 </section>
 
             </div>
+        </div>
+    </section>
+    <section class="contact-section bg-black">
+        <div id='mapa'>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8071829125565!2d-77.03999758860083!3d-12.056783842039627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c6c76e03e5%3A0x3e12ff686b901453!2sReal%20Plaza%20Centro%20C%C3%ADvico!5e0!3m2!1ses-419!2spe!4v1697848059247!5m2!1ses-419!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
     <!-- Signup-->
@@ -198,6 +207,7 @@ session_start();
             </div>
         </div>
     </section>
+
     <!-- Contact-->
     <section class="contact-section bg-black">
         <div class="container px-4 px-lg-5">
@@ -234,7 +244,7 @@ session_start();
                 </div>
             </div>
             <div id='redes-sociales' class="social d-flex justify-content-center">
-                
+
             </div>
         </div>
     </section>
@@ -250,9 +260,9 @@ session_start();
     <script src="js/app.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>
-   
+
     <script src="./js/isotope.js"></script>
-   
+
 </body>
 
 

@@ -60,17 +60,19 @@ class Negocios extends Conectar
                     $query->execute();
 
 
-                    $crear_web = 'INSERT INTO web(negocio,nosotros,vision,mision) VALUES(?,?,?,?)';
+                    $crear_web = 'INSERT INTO web(negocio,nosotros,vision,mision,mapa) VALUES(?,?,?,?,?)';
                     $crear_web = $this->db->prepare($crear_web);
 
                     $nosotros = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus esse quaerat doloremque corrupti, aperiam, sunt tenetur iusto ut sed aliquid nihil, quo similique quia labore. Dignissimos provident voluptates animi vel!';
                     $mision = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque molestiae ea eveniet natus esse ex ratione corrupti. Atque, incidunt dolorem. Cumque culpa pariatur dolores quia eius repellat enim doloremque dolorem!';
                     $vision = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad cum suscipit expedita blanditiis autem itaque, optio architecto at quod. Quasi quia velit ullam natus, amet saepe! Accusamus facilis repellat quasi.';
+                    $mapa ='<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8071064327523!2d-77.0374173!3d-12.0567891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c6c76e03e5%3A0x3e12ff686b901453!2sReal%20Plaza%20Centro%20C%C3%ADvico!5e0!3m2!1ses-419!2spe!4v1697848360001!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 
                     $crear_web->bindValue(1,$this->db->lastInsertId());
                     $crear_web->bindValue(2,$nosotros);
                     $crear_web->bindValue(3,$mision);
                     $crear_web->bindValue(4,$vision);
+                    $crear_web->bindValue(5,$mapa);
                     $crear_web->execute();
 
                     $response = [
