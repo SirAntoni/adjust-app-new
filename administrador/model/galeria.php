@@ -41,7 +41,7 @@ class Galeria extends Conectar
             $sql->bindValue(1, $filtro);
             $sql->bindValue(2, $titulo);
             $sql->bindValue(3, $descripcion);
-            $sql->bindValue(4, $imagen);
+            $sql->bindValue(4, $nombre_img);
             $sql->bindValue(5, $negocio);
             $sql->execute();
 
