@@ -19,6 +19,109 @@ class Web extends Conectar
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function cargar_filtros($negocio)
+    {
+        $sql = "SELECT * FROM filtros WHERE negocio = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1,$negocio);
+        $sql->execute();
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            $response = [
+                "status" => "error"
+            ];
+
+            return $response;
+        }
+    }
+
+    public function obtener_filtro($id)
+    {
+        $sql = "SELECT * FROM filtros WHERE id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1,$id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function crear_filtro($negocio,$filtro){
+
+
+        if(empty($filtro)){
+            $response = [
+                "status" => "error",
+                "message" => "Campos vacios"
+            ];
+        }else{
+            $sql = "INSERT INTO filtros(negocio,filtro) VALUES(?,?)";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$negocio);
+            $sql->bindValue(2,$filtro);
+            $sql->execute();
+
+            $response = [
+                "status" => "success",
+                "message" => "Filtro agregado con exito",
+            ];
+
+        }
+
+        echo json_encode($response);
+
+    }
+
+    public function editar_filtro($id,$filtro){
+
+        
+        if(empty($filtro)){
+            $response = [
+                "status" => "error",
+                "message" => "Campos vacios"
+            ];
+        }else{
+            $sql = "UPDATE filtros SET filtro = ? WHERE id =?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$filtro);
+            $sql->bindValue(2,$id);
+            $sql->execute();
+
+            $response = [
+                "status" => "success",
+                "message" => "Filtro editado con exito",
+            ];
+
+        }
+
+        echo json_encode($response);
+
+    }
+
+    public function eliminar_filtro($id){
+
+        
+        if(empty($id)){
+            $response = [
+                "status" => "error",
+                "message" => "Campos vacios"
+            ];
+        }else{
+            $sql = "DELETE FROM filtros WHERE id =?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$id);
+            $sql->execute();
+
+            $response = [
+                "status" => "success",
+                "message" => "Filtro eliminado con exito",
+            ];
+
+        }
+
+        echo json_encode($response);
+
+    }
+
     public function guardar_datos_generales($negocio,$direccion,$telefono,$email){
 
         if(empty($negocio) || empty($direccion) || empty($telefono) || empty($email)){

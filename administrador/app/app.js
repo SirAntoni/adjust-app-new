@@ -89,7 +89,13 @@ $(function() {
     listar_imagenes();
 
     //Web
-    if (params.get("module") === 'web') cargar_web();
+    if (params.get("module") === 'web') {
+        cargar_web();
+        cargar_filtros();
+        crear_filtro();
+        editar_filtro();
+        eliminar_filtro();
+    }
     guardar_datos_generales();
     guardar_slogan();
     guardar_nosotros();
@@ -100,10 +106,192 @@ $(function() {
     guardar_misionImg();
     guardar_visionImg();
 
+    listar_galeria();
+    crear_galeria();
+    eliminar_galeria();
+
 
 })
 
 //WEB
+
+const crear_filtro = function() {
+    $("#formCrearFiltro").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: './controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_filtros();
+                    $("#formCrearFiltro").trigger('reset');
+                    $("#modalCrearFiltros").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const editar_filtro = function() {
+    $("#formEditarFiltro").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: './controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_filtros();
+                    $("#formEditarFiltro").trigger('reset');
+                    $("#modalEditarFiltro").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const eliminar_filtro = function() {
+    $("#formEliminarFiltro").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: './controller/web.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    cargar_filtros();
+                    $("#formEliminarFiltro").trigger('reset');
+                    $("#modalEliminarFiltro").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const cargar_filtros = function() {
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
+    $.ajax({
+        url: './controller/web.php',
+        method: 'POST',
+        data: { opcion: 'cargar_filtros', negocio: params.get('negocio') },
+        success: function(response) {
+            const data = JSON.parse(response);
+            let html = ``
+
+            if (data.status === 'error') {
+                html = html + `<tr>
+                <td colspan='2' class='text-center' >No existen filtros asignados a esta web.</td>
+                </tr>`;
+            } else {
+                data.forEach((filtro) => {
+
+                    html = html + `<tr>
+                    <td>${filtro.filtro}</td>
+                    <td><a href="#!" class='text-success mr-2' onclick='obtenerEditarFiltro(${filtro.id})'><i class='fas fa-edit fa-lg'></i></a><a href="#!" class='text-primary mr-2' onclick='irGaleria(${filtro.id})' ><i class='fas fa-cog fa-lg'></i></a><a href="#!" class='text-danger' onclick='obtenerEliminarFiltro(${filtro.id})'><i class='fas fa-trash fa-lg'></i></a></td>
+                </tr>`;
+                })
+
+            }
+
+
+
+            $("#filtros").html(html)
+        }
+
+    })
+}
+
+function obtenerEditarFiltro(id) {
+    $.ajax({
+        url: './controller/web.php',
+        method: 'POST',
+        data: { id, opcion: 'obtener_filtro' },
+        success: function(response) {
+            const data = JSON.parse(response);
+            $("#filtro").val(data.filtro);
+            $(".id").val(data.id);
+            $("#modalEditarFiltro").modal('show');
+        }
+    })
+}
+
+function irGaleria(id) {
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
+    window.location = `main?module=galeria&filtro=${id}&negocio=${params.get('negocio')}`;
+}
+
+function obtenerEliminarFiltro(id) {
+    $.ajax({
+        url: './controller/web.php',
+        method: 'POST',
+        data: { id, opcion: 'obtener_filtro' },
+        success: function(response) {
+            const data = JSON.parse(response);
+            $(".id").val(data.id);
+            $("#modalEliminarFiltro").modal('show');
+        }
+    })
+}
 
 var guardar_logo = function() {
 
@@ -2025,6 +2213,179 @@ var eliminar_auto = function() {
                     $("#dataTableAutos").DataTable().ajax.reload();
                     $("#formEliminarAuto").trigger('reset');
                     $("#modalEliminarAuto").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+var listar_galeria = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filtro = urlParams.get('filtro');
+    var table_galeria = $("#dataTableGaleria").DataTable({
+        aLengthMenu: [
+            [10, 30, 50, -1],
+            [10, 30, 50, "Todo"],
+        ],
+        destroy: true,
+        iDisplayLength: 10,
+        ajax: {
+            url: "controller/galeria.php",
+            method: "POST",
+            data: function(d) {
+                // Crea el objeto con los datos a enviar en el cuerpo
+                var bodyData = {
+                    opcion: 'cargar_galeria',
+                    filtro
+                    // Agrega otros parámetros según sea necesario
+                };
+
+                // Convierte el objeto en una cadena JSON
+                var jsonData = JSON.stringify(bodyData);
+
+                // Agrega la cadena JSON al cuerpo de la solicitud
+                d.data = jsonData;
+
+                // Retornar el objeto modificado
+                return d;
+            }
+        },
+        aoColumnDefs: [
+            { bSearchable: false, bVisible: false, aTargets: [0] }
+        ],
+        columns: [
+            { data: "id" },
+            { data: "filtro" },
+            { data: "titulo" },
+            { data: "descripcion" },
+            {
+                data: "imagen",
+                render: function(data, type, row) {
+                    return `<center><img src='../assets/img/${data}'></center>`;
+                }
+            },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+            },
+        ],
+
+        language: esp,
+    });
+
+    data_eliminar_galeria("#dataTableGaleria tbody", table_galeria);
+
+
+    $("#dataTableGaleria").each(function() {
+        var datatable = $(this);
+        // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+        var search_input = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_filter] input");
+        search_input.attr("placeholder", "Buscar");
+        search_input.removeClass("form-control-sm");
+        // LENGTH - Inline-Form control
+        var length_sel = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_length] select");
+        length_sel.removeClass("form-control-sm");
+    });
+
+};
+
+var data_eliminar_galeria = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#modalEliminarGaleria").modal("show");
+    })
+}
+
+var crear_galeria = function() {
+
+    $("#formCrearGaleria").submit(function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#formCrearGaleria')[0]);
+        $.ajax({
+            url: "controller/galeria.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableGaleria").DataTable().ajax.reload();
+                    $("#formCreargaleria").trigger('reset');
+                    $("#modalCrearGaleria").modal("hide");
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
+var eliminar_galeria = function() {
+
+    $("#formEliminarGaleria").submit(function(e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            url: "controller/galeria.php",
+            method: "POST",
+            data: data,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableGaleria").DataTable().ajax.reload();
+                    $("#formEliminarGaleria").trigger('reset');
+                    $("#modalEliminarGaleria").modal("hide");
 
 
                 } else {

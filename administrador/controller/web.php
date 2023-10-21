@@ -14,8 +14,19 @@ $slogan = '';
 $nosotros = '';
 $mision = '';
 $vision = '';
+$filtro = '';
+$id = '';
+
 if(isset($_POST['opcion'])){
     $opcion = $_POST['opcion'];
+}
+
+if(isset($_POST['id'])){
+    $id = $_POST['id'];
+}
+
+if(isset($_POST['filtro'])){
+    $filtro = $_POST['filtro'];
 }
 
 if(isset($_POST['direccion'])){
@@ -98,6 +109,21 @@ switch ($opcion){
     break;
     case 'guardar_vision':
         $web->guardar_vision($negocio,$vision);
+    break;
+    case 'cargar_filtros':
+        echo json_encode($web->cargar_filtros($negocio));
+    break;
+    case 'crear_filtro':
+        $web->crear_filtro($negocio,$filtro);
+    break;
+    case 'editar_filtro':
+        $web->editar_filtro($id,$filtro);
+    break;
+    case 'eliminar_filtro':
+        $web->eliminar_filtro($id);
+    break;
+    case 'obtener_filtro':
+        echo json_encode($web->obtener_filtro($id));
     break;
     default:
         $cargar = json_encode($web->cargar_web($negocio));

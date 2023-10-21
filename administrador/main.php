@@ -117,6 +117,10 @@ require "config/conexion.php";
                         require_once "views/web.php";
                         break;
 
+                    case 'galeria':
+                        require_once "views/galeria.php";
+                        break;
+
                     default:
                         require_once "views/dashboard.php";
                         break;

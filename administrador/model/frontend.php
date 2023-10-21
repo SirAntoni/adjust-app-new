@@ -115,6 +115,54 @@ class Frontend extends Conectar
         
     }
 
+    public function cargar_filtros($negocio)
+    {
+        $buscar = "SELECT * FROM negocios WHERE razon_social = ?";
+        $buscar = $this->db->prepare($buscar);
+        $buscar->bindValue(1, $negocio);
+        $buscar->execute();
+        $negocio = $buscar->fetch(PDO::FETCH_ASSOC);
+
+        if($negocio){
+            $web = "SELECT * FROM filtros WHERE negocio = ?";
+            $web =  $this->db->prepare($web);
+            $web->bindValue(1,$negocio['id']);
+            $web->execute();
+            return $web->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            $response = [
+                "status" => "error"
+            ];
+            
+            return $response;
+        }
+    }
+
+    public function cargar_imagenes($negocio)
+    {
+        $buscar = "SELECT * FROM negocios WHERE razon_social = ?";
+        $buscar = $this->db->prepare($buscar);
+        $buscar->bindValue(1, $negocio);
+        $buscar->execute();
+        $negocio = $buscar->fetch(PDO::FETCH_ASSOC);
+
+        if($negocio){
+            $web = "SELECT * FROM galeria g INNER JOIN filtros f ON f.id = g.filtro WHERE g.negocio = ?";
+            $web =  $this->db->prepare($web);
+            $web->bindValue(1,$negocio['id']);
+            $web->execute();
+            return $web->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            $response = [
+                "status" => "error"
+            ];
+            
+            return $response;
+        }
+        
+        
+    }
+
     public function cargar_redes($negocio)
     {
         $buscar = "SELECT facebook,instagram,tiktok,youtube FROM negocios WHERE razon_social = ?";

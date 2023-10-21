@@ -133,159 +133,11 @@ session_start();
                         </div>
 
                         <div class="port portfolio-masonry mt-4">
-                            <div class="portfolioContainer row photo">
-                                <div class="col-lg-4 p-4 ">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Branding</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Nonsensical content</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                            <div id='imagenes' class="portfolioContainer row photo">
 
-                                <div class="col-lg-4 p-4 branding coffee">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Coffee</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">PageMaker including</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                
 
-                                <div class="col-lg-4 p-4 branding photo">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Lebles</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Sometime Active</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 p-4 branding design photo">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Card</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Therefore Always</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 p-4 design photo">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Pepers</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Therefore Always</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 p-4 branding design coffee">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Bottle</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Therefore Always</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 p-4 branding design">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Watch</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Sometime Active</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 p-4 branding design photo coffee">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Milk</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Sometime Active</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 p-4 branding design photo coffee">
-                                    <div class="item-box">
-                                        <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                            title="Project Name">
-                                            <img class="item-container img-fluid"
-                                                src="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                                                alt="work-img">
-                                            <div class="item-mask">
-                                                <div class="item-caption">
-                                                    <p class="text-dark mb-0">Milk</p>
-                                                    <h6 class="text-dark mt-1 text-uppercase">Sometime Active</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -395,10 +247,12 @@ session_start();
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+    <script src="js/app.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>
+   
     <script src="./js/isotope.js"></script>
-    <script src="js/app.js"></script>
+   
 </body>
 
 
