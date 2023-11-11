@@ -144,6 +144,30 @@ session_start();
         font-size: 25px;
         cursor:pointer;
     }
+
+    .cont-multichat {
+            width: 70px;
+            bottom: 10px;
+            right: 16px;
+            position: fixed;
+            z-index: 1000
+        }
+
+        .cont-multichat a {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+            display: block;
+            box-shadow: 0 0 1px #999;
+            border-radius: 50%;
+            background: #fff;
+            color: #fff
+        }
+
+        .cont-multichat img {
+            width: 70px;
+        }
+    
     @media (max-width : 780px) {
         .color img {
             width: 20px;
@@ -233,7 +257,9 @@ session_start();
         </div>
     </div>
 
-
+    <div class="cont-multichat">
+        
+    </div>
 
 
 

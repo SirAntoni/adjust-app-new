@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
     <div>
-        <h4 class="mb-3 mb-md-0">Negocios</h4>
+        <h4 class="mb-3 mb-md-0">Usuarios</h4>
     </div>
     <div class="d-flex align-items-center flex-wrap text-nowrap">
         <button type="button" data-toggle="modal" data-target="#modalCrearNegocio"
             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
             <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
-            Crear negocio
+            Crear usuario
         </button>
     </div>
 </div>
@@ -17,7 +17,7 @@
         <div class="card overflow-hidden">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataTableNegocios" class="table table-stripe table-hover table-bordered">
+                    <table id="dataTableUsuarios" class="table table-stripe table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -29,7 +29,6 @@
                                 <th>INSTAGRAM</th>
                                 <th>TIKTOK</th>
                                 <th>YOUTUBE</th>
-                                <th>TELEFONO</th>
                                 <th width="10px">Acción</th>
                             </tr>
                         </thead>
@@ -79,9 +78,6 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="youtube" class="form-control" placeholder="Youtube">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="telefono" class="form-control" placeholder="Telefono">
                             </div>
                             <div class="form-group">
                                 <select name="rango" class='form-control'>
@@ -143,10 +139,6 @@
                             <div class="form-group">
                                 <input type="text" id='youtube' name="youtube" class="form-control"
                                     placeholder="Youtube">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id='telefono' name="telefono" class="form-control"
-                                    placeholder="Telefono">
                             </div>
                             <div class="form-group">
                                 <select id='rango' name="rango" class='form-control'>

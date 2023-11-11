@@ -15,16 +15,16 @@ class Negocios extends Conectar
     }
 
     public function listar_negocios(){
-        $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube FROM negocios WHERE estado in (1,3)";
+        $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono FROM negocios WHERE estado in (1,3)";
         $sql = $this->db->prepare($sql);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function crear_negocio($ruc,$razon_social,$contrasena,$rango,$facebook,$instagram,$tiktok,$youtube)
+    public function crear_negocio($ruc,$razon_social,$contrasena,$rango,$facebook,$instagram,$tiktok,$youtube, $telefono)
     {
 
-        if (empty($ruc)  || empty($razon_social) || empty($rango) || empty($contrasena)) {
+        if (empty($ruc)  || empty($razon_social) || empty($rango) || empty($contrasena) || empty($telefono)) {
             $response = [
                 "status" => "error",
                 "message" => "Campos vacios"
@@ -44,7 +44,7 @@ class Negocios extends Conectar
 
             }else{
 
-                    $query = "INSERT INTO negocios(ruc,razon_social,contrasena,rango,estado,facebook,instagram,tiktok,youtube,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,1,?,?,?,?,now(),now())";
+                    $query = "INSERT INTO negocios(ruc,razon_social,contrasena,rango,estado,facebook,instagram,tiktok,youtube,telefono,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,1,?,?,?,?,?,now(),now())";
                     $query = $this->db->prepare($query);
 
                     $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
@@ -57,6 +57,7 @@ class Negocios extends Conectar
                     $query->bindValue(6,$instagram);
                     $query->bindValue(7,$tiktok);
                     $query->bindValue(8,$youtube);
+                    $query->bindValue(9,$telefono);
                     $query->execute();
 
 
@@ -88,9 +89,9 @@ class Negocios extends Conectar
     }
 
 
-    public function editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube){
+    public function editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube,$telefono){
 
-        if(empty($ruc) || empty($razon_social) || empty($rango) || empty($estado)){
+        if(empty($ruc) || empty($razon_social) || empty($rango) || empty($estado) || empty($telefono)){
             
             $response = [
                 "status" => "error",
@@ -100,7 +101,7 @@ class Negocios extends Conectar
         }else{
     
                 if(empty($contrasena)){
-                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?, fecha_modificacion = now() WHERE id = ?";
+                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fecha_modificacion = now() WHERE id = ?";
                     $query = $this->db->prepare($query);    
                     $query->bindValue(1,$ruc);
                     $query->bindValue(2,$razon_social);
@@ -110,20 +111,25 @@ class Negocios extends Conectar
                     $query->bindValue(6,$instagram);
                     $query->bindValue(7,$tiktok);
                     $query->bindValue(8,$youtube);
-                    $query->bindValue(9,$id);
+                    $query->bindValue(9,$telefono);
+                    $query->bindValue(10,$id);
                    
 
                 }else{
-                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?,contrasena = ?, rango = ?, estado = ?, fecha_modificacion = now() WHERE id = ?";
 
-                    $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
+                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?,contrasena = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fecha_modificacion = now() WHERE id = ?";
                     $query = $this->db->prepare($query);    
                     $query->bindValue(1,$ruc);
                     $query->bindValue(2,$razon_social);
                     $query->bindValue(3,$contrasenaEncriptada);
                     $query->bindValue(4,$rango);
                     $query->bindValue(5,$estado);
-                    $query->bindValue(6,$id);
+                    $query->bindValue(6,$facebook);
+                    $query->bindValue(7,$instagram);
+                    $query->bindValue(8,$tiktok);
+                    $query->bindValue(9,$youtube);
+                    $query->bindValue(10,$telefono);
+                    $query->bindValue(11,$id);
 
                 }
                 

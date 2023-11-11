@@ -1,3 +1,4 @@
+
 <nav class="bottom-navbar">
     <div class="container">
         <ul class="nav page-navigation">
@@ -8,7 +9,8 @@
                 </a>
             </li>
 
-            <li class="nav-item mr-4 <?php echo ($_GET['module'] == 'negocios' || $_GET['module'] == 'autos' || $_GET['module'] == 'crear-auto' || $_GET['module'] == 'configurar-auto' || $_GET['module'] == 'configurar-color' || $_GET['module'] == 'autopartes' || $_GET['module'] == 'web' || $_GET['module'] == 'configurar-color-autoparte') ? 'active' : ''; ?>">
+            <li
+                class="nav-item mr-4 <?php echo ($_GET['module'] == 'negocios' || $_GET['module'] == 'autos' || $_GET['module'] == 'crear-auto' || $_GET['module'] == 'configurar-auto' || $_GET['module'] == 'configurar-color' || $_GET['module'] == 'autopartes' || $_GET['module'] == 'web' || $_GET['module'] == 'configurar-color-autoparte') ? 'active' : ''; ?>">
                 <a class="nav-link " href="main?module=negocios">
                     <i class="link-icon" data-feather="award"></i>
                     <span class="menu-title">Negocios</span>
@@ -33,6 +35,16 @@
                     </ul>
                 </div>
             </li>
+
+            <?php if($_SESSION['id'] === "1") { ?>
+            <li
+                class="nav-item mr-4 <?php echo ($_GET['module'] == 'usuarios') ? 'active' : ''; ?>">
+                <a class="nav-link " href="main?module=usuarios">
+                    <i class="link-icon" data-feather="user-plus"></i>
+                    <span class="menu-title">Usuarios</span>
+                </a>
+            </li>
+            <?php } ?>
 
         </ul>
     </div>

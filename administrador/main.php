@@ -121,6 +121,10 @@ require "config/conexion.php";
                         require_once "views/galeria.php";
                         break;
 
+                    case 'usuarios':
+                        require_once "views/usuarios.php";
+                        break;
+
                     default:
                         require_once "views/dashboard.php";
                         break;

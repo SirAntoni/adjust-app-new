@@ -1768,7 +1768,8 @@ var listar_negocios = function() {
             { bSearchable: false, bVisible: false, aTargets: [5] },
             { bSearchable: false, bVisible: false, aTargets: [6] },
             { bSearchable: false, bVisible: false, aTargets: [7] },
-            { bSearchable: false, bVisible: false, aTargets: [8] }
+            { bSearchable: false, bVisible: false, aTargets: [8] },
+            { bSearchable: false, bVisible: false, aTargets: [9] }
         ],
         columns: [
             { data: "id" },
@@ -1796,6 +1797,7 @@ var listar_negocios = function() {
             { data: "instagram" },
             { data: "tiktok" },
             { data: "youtube" },
+            { data: "telefono" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Duplicar' class='duplicar mr-1 text-warning'><i class='fas fa-copy fa-lg'></i></a><a title='Web' class='web mr-1 text-dark'><i class='fas fa-globe-americas fa-lg'></i></a></div>",
             },
@@ -1837,6 +1839,7 @@ var data_editar_negocio = function(tbody, table) {
         $("#instagram").val(data.instagram);
         $("#tiktok").val(data.tiktok);
         $("#youtube").val(data.youtube);
+        $("#telefono").val(data.telefono);
         $("#estado").val(data.estado);
         $("#modalEditarNegocio").modal("show");
     })
