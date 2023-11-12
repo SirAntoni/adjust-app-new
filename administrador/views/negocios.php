@@ -2,6 +2,7 @@
     <div>
         <h4 class="mb-3 mb-md-0">Negocios</h4>
     </div>
+    <?php if($_SESSION['id'] === "1") { ?>
     <div class="d-flex align-items-center flex-wrap text-nowrap">
         <button type="button" data-toggle="modal" data-target="#modalCrearNegocio"
             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
@@ -9,6 +10,7 @@
             Crear negocio
         </button>
     </div>
+    <?php } ?>
 </div>
 <!-- row -->
 

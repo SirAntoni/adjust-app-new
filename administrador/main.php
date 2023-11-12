@@ -10,6 +10,10 @@ if (!isset($_GET['module'])) {
     header('Location:main?module=dashboard');
 }
 
+if($_GET['module'] == 'dashboard' && $_SESSION['id'] !== "1") {
+    header('Location:main?module=negocios');
+}
+
 require "config/conexion.php";
 
 ?>

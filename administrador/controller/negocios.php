@@ -16,6 +16,8 @@ $tiktok = '';
 $youtube = '';
 $opcion = '';
 $telefono = '';
+$negocio = $_SESSION['negocio'];
+$usuario = $_SESSION['id'];
 
 if(isset($_POST['id'])){
     $id = $_POST['id'];
@@ -73,13 +75,13 @@ switch($opcion){
         $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube, $telefono);
     break;
     case 'duplicar':
-        $negocios->duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango);
+        echo json_encode($negocios->duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$usuario));
     break;
     case "login":
         $negocios->login($ruc,$contrasena);
         break;
     default:
-        $listAll = json_encode($negocios->listar_negocios());
+        $listAll = json_encode($negocios->listar_negocios($negocio));
         echo '{"data":'.$listAll.'}';
     break;
 }

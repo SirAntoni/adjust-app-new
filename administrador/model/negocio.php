@@ -14,11 +14,22 @@ class Negocios extends Conectar
         $this->db = Conectar::conexion();
     }
 
-    public function listar_negocios(){
-        $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono FROM negocios WHERE estado in (1,3)";
-        $sql = $this->db->prepare($sql);
-        $sql->execute();
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    public function listar_negocios($negocio){
+
+        if($negocio === "0"){
+            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono FROM negocios WHERE estado in (1,3)";
+            $sql = $this->db->prepare($sql);
+            $sql->execute();
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono FROM negocios WHERE estado in (1,3) AND id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$negocio);
+            $sql->execute();
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        
     }
 
     public function crear_negocio($ruc,$razon_social,$contrasena,$rango,$facebook,$instagram,$tiktok,$youtube, $telefono)
@@ -146,125 +157,114 @@ class Negocios extends Conectar
         echo json_encode($response);
     }
 
-    public function duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango){
+    public function duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$usuario){
 
-        if(empty($ruc) || empty($razon_social) || empty($contrasena) || empty($rango)){
+        if($usuario !== "1") return [ "status" => "error", "message" => "Usted no tiene autorización."];
+
+        if(empty($ruc) || empty($razon_social) || empty($contrasena) || empty($rango)) return [ "status" => "error", "message" => "Campos vacios"];
             
-            $response = [
-                "status" => "error",
-                "message" => "Campos vacios"
-            ];
-            
-        }else{
-
-                $insertar_negocio = "INSERT INTO negocios(ruc,razon_social,contrasena,rango,estado,fecha_creacion, fecha_modificacion) VALUES (?,?,?,?,1,now(),now())";
-                $insertar_negocio = $this->db->prepare($insertar_negocio);
-                $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
-                $insertar_negocio->bindValue(1,$ruc);
-                $insertar_negocio->bindValue(2,$razon_social);
-                $insertar_negocio->bindValue(3,$contrasenaEncriptada);
-                $insertar_negocio->bindValue(4,$rango);
-                $insertar_negocio->execute();
+        $insertar_negocio = "INSERT INTO negocios(ruc,razon_social,contrasena,rango,estado,fecha_creacion, fecha_modificacion) VALUES (?,?,?,?,1,now(),now())";
+        $insertar_negocio = $this->db->prepare($insertar_negocio);
+        $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
+        $insertar_negocio->bindValue(1,$ruc);
+        $insertar_negocio->bindValue(2,$razon_social);
+        $insertar_negocio->bindValue(3,$contrasenaEncriptada);
+        $insertar_negocio->bindValue(4,$rango);
+        $insertar_negocio->execute();
 
 
-                $lastId = $this->db->lastInsertId();
+        $lastId = $this->db->lastInsertId();
 
-                $obtener_autos = "SELECT * FROM autos WHERE negocio_id = ?";
-                $obtener_autos = $this->db->prepare($obtener_autos);
-                $obtener_autos->bindValue(1,$id);
-                $obtener_autos->execute();
-                $autos = $obtener_autos->fetchAll(PDO::FETCH_ASSOC);
+        $obtener_autos = "SELECT * FROM autos WHERE negocio_id = ?";
+        $obtener_autos = $this->db->prepare($obtener_autos);
+        $obtener_autos->bindValue(1,$id);
+        $obtener_autos->execute();
+        $autos = $obtener_autos->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($autos as $auto){
+
+            $insertar_auto = "INSERT INTO autos (uuid,nombre,marca_id,tipo_id,modelo_id,anio_id,negocio_id,color_uuid,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,?,?,?,?,?,now(),now())";
+
+            $insertar_auto = $this->db->prepare($insertar_auto);
+
+            $auto_uuid = Uuid::uuid4()->toString();
+
+            $insertar_auto->bindValue(1,$auto_uuid);
+            $insertar_auto->bindValue(2,$auto['nombre']);
+            $insertar_auto->bindValue(3,$auto['marca_id']);
+            $insertar_auto->bindValue(4,$auto['tipo_id']);
+            $insertar_auto->bindValue(5,$auto['modelo_id']);
+            $insertar_auto->bindValue(6,$auto['anio_id']);
+            $insertar_auto->bindValue(7,$lastId);
+            $insertar_auto->bindValue(8,$auto['color_uuid']);
+            $insertar_auto->bindValue(9,$auto['estado']);
+            $insertar_auto->execute();
+
+            $buscar_categorias = "SELECT * FROM categorias WHERE auto_uuid =?";
+            $buscar_categorias = $this->db->prepare($buscar_categorias);
+            $buscar_categorias->bindValue(1,$auto['uuid']);
+            $buscar_categorias->execute();
+            $categorias = $buscar_categorias->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($categorias as $categoria){
                 
-                foreach($autos as $auto){
+                $insertar_categoria = "INSERT INTO categorias(uuid,categoria,cover,auto_uuid,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,?,now(),now())";
+                $insertar_categoria = $this->db->prepare($insertar_categoria);
+                $categoria_uuid = Uuid::uuid4()->toString();
 
-                    $insertar_auto = "INSERT INTO autos (uuid,nombre,marca_id,tipo_id,modelo_id,anio_id,negocio_id,color_uuid,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,?,?,?,?,?,now(),now())";
+                $insertar_categoria->bindValue(1,$categoria_uuid);
+                $insertar_categoria->bindValue(2,$categoria['categoria']);
+                $insertar_categoria->bindValue(3,$categoria['cover']);
+                $insertar_categoria->bindValue(4,$auto_uuid);
+                $insertar_categoria->bindValue(5,$categoria['estado']);
+                $insertar_categoria->execute();
 
-                    $insertar_auto = $this->db->prepare($insertar_auto);
+            }
 
-                    $auto_uuid = Uuid::uuid4()->toString();
+            $buscar_colores_autos = "SELECT * FROM colores WHERE auto_uuid = ?";
+            $buscar_colores_autos = $this->db->prepare($buscar_colores_autos);
+            $buscar_colores_autos->bindValue(1,$auto['uuid']);
+            $buscar_colores_autos->execute();
+            $colores_auto = $buscar_colores_autos->fetchAll(PDO::FETCH_ASSOC);
 
-                    $insertar_auto->bindValue(1,$auto_uuid);
-                    $insertar_auto->bindValue(2,$auto['nombre']);
-                    $insertar_auto->bindValue(3,$auto['marca_id']);
-                    $insertar_auto->bindValue(4,$auto['tipo_id']);
-                    $insertar_auto->bindValue(5,$auto['modelo_id']);
-                    $insertar_auto->bindValue(6,$auto['anio_id']);
-                    $insertar_auto->bindValue(7,$lastId);
-                    $insertar_auto->bindValue(8,$auto['color_uuid']);
-                    $insertar_auto->bindValue(9,$auto['estado']);
-                    $insertar_auto->execute();
+            foreach($colores_auto as $color){
 
-                    $buscar_categorias = "SELECT * FROM categorias WHERE auto_uuid =?";
-                    $buscar_categorias = $this->db->prepare($buscar_categorias);
-                    $buscar_categorias->bindValue(1,$auto['uuid']);
-                    $buscar_categorias->execute();
-                    $categorias = $buscar_categorias->fetchAll(PDO::FETCH_ASSOC);
+                $insertar_colores_auto = "INSERT INTO colores(uuid, color, cover, auto_uuid, estado, fecha_creacion, fecha_modificacion) VALUES(?,?,?,?,?,now(),now())";
+                $color_auto_uuid = Uuid::uuid4()->toString();
+                $insertar_colores_auto = $this->db->prepare($insertar_colores_auto);
+                $insertar_colores_auto->bindValue(1, $color_auto_uuid);
+                $insertar_colores_auto->bindValue(2, $color['color']);
+                $insertar_colores_auto->bindValue(3, $color['cover']);
+                $insertar_colores_auto->bindValue(4, $auto_uuid);
+                $insertar_colores_auto->bindValue(5, $color['estado']);
+                $insertar_colores_auto->execute();
 
-                    foreach ($categorias as $categoria){
-                        
-                        $insertar_categoria = "INSERT INTO categorias(uuid,categoria,cover,auto_uuid,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,?,?,?,now(),now())";
-                        $insertar_categoria = $this->db->prepare($insertar_categoria);
-                        $categoria_uuid = Uuid::uuid4()->toString();
+                $buscar_imagenes_auto = "SELECT * FROM imagenes WHERE color_uuid = ?";
+                $buscar_imagenes_auto = $this->db->prepare($buscar_imagenes_auto);
+                $buscar_imagenes_auto->bindValue(1, $color['uuid']);
+                $buscar_imagenes_auto->execute();
+                $imagenes_auto = $buscar_imagenes_auto->fetchAll(PDO::FETCH_ASSOC);
 
-                        $insertar_categoria->bindValue(1,$categoria_uuid);
-                        $insertar_categoria->bindValue(2,$categoria['categoria']);
-                        $insertar_categoria->bindValue(3,$categoria['cover']);
-                        $insertar_categoria->bindValue(4,$auto_uuid);
-                        $insertar_categoria->bindValue(5,$categoria['estado']);
-                        $insertar_categoria->execute();
+                foreach ($imagenes_auto as $imagen){
 
-                    }
-
-                    $buscar_colores_autos = "SELECT * FROM colores WHERE auto_uuid = ?";
-                    $buscar_colores_autos = $this->db->prepare($buscar_colores_autos);
-                    $buscar_colores_autos->bindValue(1,$auto['uuid']);
-                    $buscar_colores_autos->execute();
-                    $colores_auto = $buscar_colores_autos->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach($colores_auto as $color){
-
-                        $insertar_colores_auto = "INSERT INTO colores(uuid, color, cover, auto_uuid, estado, fecha_creacion, fecha_modificacion) VALUES(?,?,?,?,?,now(),now())";
-                        $color_auto_uuid = Uuid::uuid4()->toString();
-                        $insertar_colores_auto = $this->db->prepare($insertar_colores_auto);
-                        $insertar_colores_auto->bindValue(1, $color_auto_uuid);
-                        $insertar_colores_auto->bindValue(2, $color['color']);
-                        $insertar_colores_auto->bindValue(3, $color['cover']);
-                        $insertar_colores_auto->bindValue(4, $auto_uuid);
-                        $insertar_colores_auto->bindValue(5, $color['estado']);
-                        $insertar_colores_auto->execute();
-
-                        $buscar_imagenes_auto = "SELECT * FROM imagenes WHERE color_uuid = ?";
-                        $buscar_imagenes_auto = $this->db->prepare($buscar_imagenes_auto);
-                        $buscar_imagenes_auto->bindValue(1, $color['uuid']);
-                        $buscar_imagenes_auto->execute();
-                        $imagenes_auto = $buscar_imagenes_auto->fetchAll(PDO::FETCH_ASSOC);
-
-                        foreach ($imagenes_auto as $imagen){
-
-                            $insertar_imagen_auto = "INSERT INTO imagenes(uuid, color_uuid, imagen) VALUES(?,?,?)";
-                            $insertar_imagen_auto = $this->db->prepare($insertar_imagen_auto);
-                            $imagen_auto_uuid = Uuid::uuid4()->toString();
-                            $insertar_imagen_auto->bindValue(1,$imagen_auto_uuid);
-                            $insertar_imagen_auto->bindvalue(2,$color_auto_uuid);
-                            $insertar_imagen_auto->bindValue(3,$imagen['imagen']);
-                            $insertar_imagen_auto->execute();
-
-                        }
-
-
-                    }
-
+                    $insertar_imagen_auto = "INSERT INTO imagenes(uuid, color_uuid, imagen) VALUES(?,?,?)";
+                    $insertar_imagen_auto = $this->db->prepare($insertar_imagen_auto);
+                    $imagen_auto_uuid = Uuid::uuid4()->toString();
+                    $insertar_imagen_auto->bindValue(1,$imagen_auto_uuid);
+                    $insertar_imagen_auto->bindvalue(2,$color_auto_uuid);
+                    $insertar_imagen_auto->bindValue(3,$imagen['imagen']);
+                    $insertar_imagen_auto->execute();
 
                 }
 
-                $response = [
-                    "status" => "success",
-                    "message" => "El usuario ha sido duplicado con exito."
-                ];
+
+            }
+
 
         }
 
-        echo json_encode($response);
+        return [ "status" => "success", "message" => "El usuario ha sido duplicado con exito." ];
+
     }
 
 

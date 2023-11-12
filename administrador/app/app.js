@@ -111,8 +111,29 @@ $(function() {
     crear_galeria();
     eliminar_galeria();
 
+    listar_usuarios();
+    select_negocio();
+    crear_usuario();
+    editar_usuario();
+    eliminar_usuario();
+
 
 })
+
+
+const select_negocio = function() {
+    $.ajax({
+        url: 'controller/negocios.php',
+        success: function(response) {
+            const { data } = JSON.parse(response);
+            let html = ``;
+            data.map((negocio) => {
+                html = html + `<option value='${negocio.id}'>${negocio.razon_social}</option>`;
+            })
+            $(".negocio").html(html);
+        }
+    })
+}
 
 //WEB
 
@@ -137,6 +158,79 @@ const crear_filtro = function() {
                     cargar_filtros();
                     $("#formCrearFiltro").trigger('reset');
                     $("#modalCrearFiltros").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+
+const crear_usuario = function() {
+    $("#formCrearUsuario").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: './controller/usuarios.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableUsuarios").DataTable().ajax.reload();
+                    $("#formCrearUsuario").trigger('reset');
+                    $("#modalCrearUsuario").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+
+        })
+    })
+}
+const editar_usuario = function() {
+    $("#formEditarUsuario").submit(function(e) {
+        e.preventDefault();
+        const data = $(this).serialize();
+        $.ajax({
+            url: './controller/usuarios.php',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableUsuarios").DataTable().ajax.reload();
+                    $("#formEditarUsuarios").trigger('reset');
+                    $("#modalEditarUsuarios").modal("hide");
 
 
                 } else {
@@ -1116,6 +1210,117 @@ var eliminar_marca = function() {
     })
 
 }
+
+var listar_usuarios = function() {
+    var table_usuarios = $("#dataTableUsuarios").DataTable({
+        buttons: ["pdf"],
+        aLengthMenu: [
+            [10, 30, 50, -1],
+            [10, 30, 50, "Todo"],
+        ],
+        destroy: true,
+        iDisplayLength: 10,
+        ajax: {
+            url: "controller/usuarios.php",
+            method: "POST",
+        },
+        aoColumnDefs: [
+            { bSearchable: false, bVisible: false, aTargets: [0] },
+            { bSearchable: false, bVisible: false, aTargets: [2] }
+        ],
+        columns: [
+            { data: "id" },
+            { data: "usuario" },
+            { data: "negocio" },
+            {
+                defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
+            },
+        ],
+
+        language: esp,
+    });
+
+    data_editar_usuario("#dataTableUsuarios tbody", table_usuarios);
+    data_eliminar_usuario("#dataTableUsuarios tbody", table_usuarios);
+
+    $("#dataTableUsuarios").each(function() {
+        var datatable = $(this);
+        // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+        var search_input = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_filter] input");
+        search_input.attr("placeholder", "Buscar");
+        search_input.removeClass("form-control-sm");
+        // LENGTH - Inline-Form control
+        var length_sel = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_length] select");
+        length_sel.removeClass("form-control-sm");
+    });
+
+};
+
+var data_editar_usuario = function(tbody, table) {
+    $(tbody).on("click", ".editar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#negocio").val(data.negocio);
+        $("#modalEditarUsuarios").modal("show");
+    })
+}
+
+var data_eliminar_usuario = function(tbody, table) {
+    $(tbody).on("click", ".eliminar", function() {
+        var data = table.row($(this).parents("tr")).data();
+        $(".id").val(data.id);
+        $("#modalEliminarUsuarios").modal("show");
+    })
+}
+
+
+var eliminar_usuario = function() {
+
+    $("#formEliminarUsuarios").submit(function(e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            url: "controller/usuarios.php",
+            method: "POST",
+            data: data,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableUsuarios").DataTable().ajax.reload();
+                    $("#formEliminarUsuarios").trigger('reset');
+                    $("#modalEliminarUsuarios").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+
+            }
+        })
+    })
+
+}
+
 
 var listar_tipos = function() {
     var table_tipos = $("#dataTableTipos").DataTable({
