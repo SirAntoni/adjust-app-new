@@ -16,9 +16,10 @@ $tiktok = '';
 $youtube = '';
 $opcion = '';
 $telefono = '';
-$negocio = $_SESSION['negocio'];
-$usuario = $_SESSION['id'];
-
+$negocio = '';
+$usuario = '';
+if(isset($_SESSION['negocio'])) $negocio = $_SESSION['negocio'];
+if(isset($_SESSION['id'])) $usuario = $_SESSION['id'];
 if(isset($_POST['id'])){
     $id = $_POST['id'];
 }

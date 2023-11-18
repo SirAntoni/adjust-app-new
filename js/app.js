@@ -18,9 +18,13 @@ const cargar_filtros = function() {
         data: { opcion: 'cargar_filtros', negocio: params.get('negocio') },
         success: function(response) {
             const data = JSON.parse(response);
+
             let htmlHead = `<li><a class="categories text-white active" data-filter="*">Todo</a></li>`;
             data.forEach((filtro) => {
-                htmlHead = htmlHead + `<li><a class="categories text-white" data-filter=".${filtro.filtro}">${filtro.filtro}</a></li>`;
+                let data_filter = filtro.filtro
+                data_filter = data_filter.replace(/\s+/g, '-')
+                console.log(data_filter)
+                htmlHead = htmlHead + `<li><a class="categories text-white" data-filter=".${data_filter}">${filtro.filtro}</a></li>`;
             })
             $('#filter').html(htmlHead);
         }
@@ -41,7 +45,9 @@ const cargar_imagenes = function() {
             const data = JSON.parse(response);
             let html = ``;
             data.forEach((imagen) => {
-                html = html + `<div class="col-lg-4 p-4 ${imagen.filtro}">
+                let filtro = imagen.filtro
+                filtro = filtro.replace(/\s+/g, '-')
+                html = html + `<div class="col-lg-4 p-4 ${filtro}">
                 <div class="item-box">
                     <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
                         title="${imagen.titulo}">
