@@ -80,6 +80,10 @@ switch ($opcion){
         $listar = json_encode($frontend->cargar_filtros($negocio));
         echo $listar;
      break;
+     case 'cargar_ultimo_registro':
+        $listar = json_encode($frontend->cargar_ultimo_registro($negocio));
+        echo $listar;
+     break;
      case 'cargar_imagenes':
         $listar = json_encode($frontend->cargar_imagenes($negocio));
         echo $listar;

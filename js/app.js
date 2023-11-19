@@ -4,6 +4,7 @@ $(function() {
     cargar_redes();
     cargar_filtros();
     cargar_imagenes();
+    cargar_ultimo_registro();
 
 })
 
@@ -75,7 +76,7 @@ const cargar_web = function() {
 
     var url = new URL(window.location.href);
     var params = new URLSearchParams(url.search);
-
+    document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
@@ -108,6 +109,32 @@ const cargar_web = function() {
     })
 
 }
+
+const cargar_ultimo_registro = function() {
+
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
+
+    $.ajax({
+        url: 'administrador/controller/frontend.php',
+        method: 'POST',
+        data: { opcion: 'cargar_ultimo_registro', negocio: params.get('negocio') },
+        success: function(response) {
+            const data = JSON.parse(response);
+
+            if (data.status === 'error') {
+                window.location = './';
+            } else {
+
+                console.log(data);
+                document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid);
+            }
+
+        }
+    })
+
+}
+
 
 const cargar_redes = function() {
     var url = new URL(window.location.href);

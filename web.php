@@ -43,6 +43,7 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="#about">Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
                     <li class="nav-item"><a class="nav-link" href="#signup">Contacto</a></li>
+                    <li class="nav-item"><a id='organizador' class="nav-link" href="organizador">Organizador</a></li>
                 </ul>
             </div>
         </div>
