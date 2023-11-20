@@ -10,15 +10,24 @@ class Marcas extends Conectar
         $this->db = Conectar::conexion();
     }
 
-    public function listar_marcas()
+    public function listar_marcas($usuario,$negocio)
     {
-        $sql = "SELECT * FROM marcas";
-        $sql = $this->db->prepare($sql);
+
+        if($usuario === '1'){
+            $sql = "SELECT * FROM marcas";
+            $sql = $this->db->prepare($sql);
+        }else{
+            $sql = "SELECT * FROM marcas WHERE negocio_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$negocio);
+        }
+
+        
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function crear_marca($marca,$tipo)
+    public function crear_marca($marca,$tipo,$usuario,$negocio)
     {
         if (empty($marca) || empty($tipo)) {
             $response = [
@@ -26,11 +35,25 @@ class Marcas extends Conectar
                 "message" => "Campos vacios"
             ];
         } else {
-            $sql = "INSERT INTO marcas(marca,tipo_usuario,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,1,now(),now())";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $marca);
-            $sql->bindValue(2, $tipo);
-            $sql->execute();
+
+            if($usuario === '1'){
+                $sql = "INSERT INTO marcas(marca,tipo_usuario,estado,negocio_id,fecha_creacion,fecha_modificacion) VALUES(?,?,1,0,now(),now())";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(1, $marca);
+                $sql->bindValue(2, $tipo);
+                $sql->execute();
+                
+            }else{
+                $sql = "INSERT INTO marcas(marca,tipo_usuario,estado,negocio_id,fecha_creacion,fecha_modificacion) VALUES(?,?,1,?,now(),now())";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(1, $marca);
+                $sql->bindValue(2, $tipo);
+                $sql->bindValue(3, $negocio);
+                $sql->execute();
+            }
+
+            
+          
 
             $response = [
                 "status" => "success",

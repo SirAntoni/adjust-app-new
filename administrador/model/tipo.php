@@ -10,23 +10,37 @@ class Tipos extends Conectar
         $this->db = Conectar::conexion();
     }
 
-    public function listar_tipos()
+    public function listar_tipos($usuario,$negocio)
     {
-        $sql = "SELECT * FROM tipos";
-        $sql = $this->db->prepare($sql);
+        if($usuario === '1'){
+            $sql = "SELECT * FROM tipos";
+            $sql = $this->db->prepare($sql);
+        }else{
+            $sql = "SELECT * FROM tipos WHERE negocio_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$negocio);
+        }
+       
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function listar_tipos_por_marca($marca)
+    public function listar_tipos_por_marca($marca,$usuario,$negocio)
     {
-        $sql = "SELECT * FROM tipos";
-        $sql = $this->db->prepare($sql);
+        if($usuario === '1'){
+            $sql = "SELECT * FROM tipos";
+            $sql = $this->db->prepare($sql);
+        }else{
+            $sql = "SELECT * FROM tipos WHERE negocio_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1,$negocio);
+        }
+       
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function crear_tipo($tipo,$tipo_usuario)
+    public function crear_tipo($tipo,$tipo_usuario,$usuario,$negocio)
     {
 
         if (empty($tipo) || empty($tipo_usuario)) {
@@ -35,10 +49,18 @@ class Tipos extends Conectar
                 "message" => "Campos vacios"
             ];
         } else {
-            $sql = "INSERT INTO tipos(tipo,tipo_usuario,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,1,now(),now())";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $tipo);
-            $sql->bindValue(2, $tipo_usuario);
+            if($usuario === '1'){
+                $sql = "INSERT INTO tipos(tipo,tipo_usuario,estado,fecha_creacion,fecha_modificacion) VALUES(?,?,1,now(),now())";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(1, $tipo);
+                $sql->bindValue(2, $tipo_usuario);
+            }else{
+                $sql = "INSERT INTO tipos(tipo,tipo_usuario,estado,negocio_id,fecha_creacion,fecha_modificacion) VALUES(?,?,1,?,now(),now())";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(1, $tipo);
+                $sql->bindValue(2, $tipo_usuario);
+                $sql->bindValue(3, $negocio);
+            }
             $sql->execute();
 
             $response = [

@@ -24,6 +24,7 @@
                                 <th>Tipo</th>
                                 <th>Usuario</th>
                                 <th>Estado</th>
+                                <th>Negocio</th>
                                 <th>created_at</th>
                                 <th>updated_at</th>
                                 <th width="10px">Acción</th>
@@ -58,6 +59,7 @@
                             <div class="form-group">
                                 <input type="text" name="tipo" class="form-control" placeholder="Tipo">
                             </div>
+                            <?php if($_SESSION['id'] === '1'){ ?>
                             <div class="form-group">
                                 <select name="tipo_usuario" class='form-control'>
                                     <option value="">Seleccione una opción</option>
@@ -65,6 +67,7 @@
                                     <option value="2">Regular</option>
                                 </select>
                             </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -96,13 +99,15 @@
                             <div class="form-group">
                                 <input type="text" id="tipo" name="tipo" class="form-control" placeholder="Tipo">
                             </div>
-                            <div class="form-group">
+                            <?php if($_SESSION['id'] === '1'){ ?>
+                                <div class="form-group">
                                 <select id='tipo_usuario' name="tipo_usuario" class='form-control'>
                                     <option value="">Seleccione una opción</option>
                                     <option value="1">Premium</option>
                                     <option value="2">Regular</option>
                                 </select>
                             </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

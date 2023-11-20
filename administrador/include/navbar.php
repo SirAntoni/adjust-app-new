@@ -16,7 +16,7 @@
                     <span class="menu-title">Negocios</span>
                 </a>
             </li>
-            <?php if($_SESSION['id'] === "1") { ?>
+            
             <li
                 class="nav-item mr-4 <?php echo ($_GET['module'] == 'marcas' || $_GET['module'] == 'tipos' || $_GET['module'] == 'modelos' || $_GET['module'] == 'anios' || $_GET['module'] == 'categorias') ? 'active' : ''; ?>">
                 <a href="#" class="nav-link">
@@ -37,7 +37,7 @@
                 </div>
             </li>
 
-           
+            <?php if($_SESSION['id'] === "1") { ?>
             <li class="nav-item mr-4 <?php echo ($_GET['module'] == 'usuarios') ? 'active' : ''; ?>">
                 <a class="nav-link " href="main?module=usuarios">
                     <i class="link-icon" data-feather="user-plus"></i>

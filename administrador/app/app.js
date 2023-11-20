@@ -1019,9 +1019,11 @@ var listar_marcas = function() {
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
+            { bSearchable: false, bVisible: false, aTargets: [2] },
             { bSearchable: false, bVisible: false, aTargets: [3] },
             { bSearchable: false, bVisible: false, aTargets: [4] },
-            { bSearchable: false, bVisible: false, aTargets: [5] }
+            { bSearchable: false, bVisible: false, aTargets: [5] },
+            { bSearchable: false, bVisible: false, aTargets: [6] }
         ],
         columns: [
             { data: "id" },
@@ -1033,6 +1035,7 @@ var listar_marcas = function() {
                 }
             },
             { data: "estado" },
+            { data: "negocio_id" },
             { data: "fecha_creacion" },
             { data: "fecha_modificacion" },
             {
@@ -1337,9 +1340,11 @@ var listar_tipos = function() {
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
+            { bSearchable: false, bVisible: false, aTargets: [2] },
             { bSearchable: false, bVisible: false, aTargets: [3] },
             { bSearchable: false, bVisible: false, aTargets: [4] },
-            { bSearchable: false, bVisible: false, aTargets: [5] }
+            { bSearchable: false, bVisible: false, aTargets: [5] },
+            { bSearchable: false, bVisible: false, aTargets: [6] }
         ],
         columns: [
             { data: "id" },
@@ -1351,6 +1356,7 @@ var listar_tipos = function() {
                 }
             },
             { data: "estado" },
+            { data: "negocio_id" },
             { data: "fecha_creacion" },
             { data: "fecha_modificacion" },
             {
@@ -1548,7 +1554,9 @@ var listar_modelos = function() {
             { bSearchable: false, bVisible: false, aTargets: [3] },
             { bSearchable: false, bVisible: false, aTargets: [6] },
             { bSearchable: false, bVisible: false, aTargets: [7] },
-            { bSearchable: false, bVisible: false, aTargets: [8] }
+            { bSearchable: false, bVisible: false, aTargets: [8] },
+            { bSearchable: false, bVisible: false, aTargets: [9] },
+            { bSearchable: false, bVisible: false, aTargets: [10] }
         ],
         columns: [
             { data: "id" },
@@ -1564,6 +1572,7 @@ var listar_modelos = function() {
                 }
             },
             { data: "estado" },
+            { data: "negocio_id" },
             { data: "fecha_creacion" },
             { data: "fecha_modificacion" },
             {

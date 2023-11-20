@@ -10,11 +10,19 @@ class Frontend extends Conectar
         $this->db = Conectar::conexion();
     }
 
-    public function listar_marcas()
+    public function listar_marcas($negocio)
     {
-        $sql = "SELECT * FROM marcas WHERE estado = 1";
-        $sql = $this->db->prepare($sql);
-    
+        
+        if($negocio === '2' || $negocio === '3' || $negocio === '4'){
+            $sql = "SELECT * FROM marcas WHERE estado = 1 AND negocio_id = 2";
+            $sql = $this->db->prepare($sql);
+        }else{
+            $sql = "SELECT * FROM marcas WHERE estado = 1 AND negocio_id = ?";
+            $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $negocio);
+        }
+       
+        
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
