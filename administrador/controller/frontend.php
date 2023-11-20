@@ -67,8 +67,6 @@ if(isset($_POST['opcion'])){
     $opcion = $_POST['opcion'];
 }
 
-
-
 switch ($opcion){
     case 'listar_marcas':
        $listar = json_encode($frontend->listar_marcas($negocio));
@@ -95,7 +93,7 @@ switch ($opcion){
         echo $listar;
      break;
     case 'listar_tipos':
-        $listar = json_encode($frontend->listar_tipos());
+        $listar = json_encode($frontend->listar_tipos($negocio));
         echo $listar;
     break;
     case 'listar_modelos':
