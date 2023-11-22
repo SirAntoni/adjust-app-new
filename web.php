@@ -24,6 +24,30 @@ session_start();
     <link href="css/styles.css" rel="stylesheet" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css'>
     <link rel="stylesheet" href="./css/isotope.css">
+    <style>
+        .cont-multichat {
+            width: 70px;
+            bottom: 10px;
+            right: 16px;
+            position: fixed;
+            z-index: 1000
+        }
+
+        .cont-multichat a {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+            display: block;
+            box-shadow: 0 0 1px #999;
+            border-radius: 50%;
+            background: #fff;
+            color: #fff
+        }
+
+        .cont-multichat img {
+            width: 70px;
+        }
+    </style>
 </head>
 
 <body id="page-top" class='bg-black'>
@@ -253,6 +277,9 @@ session_start();
     <footer class="footer bg-black small text-center text-white-50">
         <div class="container px-4 px-lg-5">Copyright &copy; Realizado con la tecnologia de AdjustApp</div>
     </footer>
+    <div class="cont-multichat">
+
+    </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
@@ -263,6 +290,7 @@ session_start();
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>
 
     <script src="./js/isotope.js"></script>
+    
 
 </body>
 

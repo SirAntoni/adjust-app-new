@@ -157,7 +157,7 @@ require "config/conexion.php";
     <script src="assets/vendors/select2/select2.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets/vendors/feather-icons/feather.min.js"></script>
+
     <script src="assets/js/template.js"></script>
     <!-- endinject -->
     <!-- custom js for this page -->
@@ -169,6 +169,7 @@ require "config/conexion.php";
     <script src="app/app.js"></script>
     <script>
     </script>
+        <script src="assets/vendors/feather-icons/feather.min.js"></script>
 </body>
 
 </html>

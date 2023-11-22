@@ -24,7 +24,7 @@
                         <button type="button" data-toggle="modal" data-target="#modalCrearColor"
                             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
                             <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
-                            Crear Color
+                            Crear
                         </button>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Crear color</h5>
+                <h5 class="modal-title">Crear</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" name='color' placeholder='Escriba un color' class='form-control'>
+                                <input type="text" name='color' placeholder='Escriba un nombre' class='form-control'>
                             </div>
                             <div class="form-group">
                                 <label>Preview Color (Recomendado 300px x 300px)</label>

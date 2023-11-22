@@ -2,12 +2,8 @@
     <div>
         <h4 class="mb-3 mb-md-0">Autos</h4>
     </div>
-    <div class="d-flex align-items-center flex-wrap text-nowrap">
-        <button type="button" data-toggle="modal" data-target="#modalCrearAuto"
-            class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
-            <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
-            Crear auto
-        </button>
+    <div id="btn-crear" class="d-flex align-items-center flex-wrap text-nowrap">
+       
     </div>
 </div>
 <!-- row -->
@@ -47,7 +43,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Crear auto</h5>
+                <h5 class="modal-title">Crear</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -59,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" name='nombre' placeholder='Nombre del auto' class='form-control'>
+                                <input type="text" name='nombre' placeholder='Nombre' class='form-control'>
                             </div>
                             <div class="form-group">
                                 <select name="marca" class='select_marcas'>

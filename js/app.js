@@ -5,8 +5,29 @@ $(function() {
     cargar_filtros();
     cargar_imagenes();
     cargar_ultimo_registro();
+    obtener_wsp();
 
 })
+
+const obtener_wsp = function() {
+
+    $.ajax({
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'obtener_negocio' },
+        success: function(response) {
+
+            const data = JSON.parse(response);
+            const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=Hola,%20necesito%20sus%20informacion' title="Whatsapp" target="_blank" style="cursor:pointer;">
+            <img src="assets/images/wp.png" alt="Whatsapp">
+        </a>`;
+            $(".cont-multichat").html(wsp)
+
+
+        }
+    })
+
+}
 
 const cargar_filtros = function() {
 

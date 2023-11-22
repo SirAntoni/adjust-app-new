@@ -23,7 +23,7 @@
                         <button type="button" data-toggle="modal" data-target="#modalCrearColor"
                             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
                             <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
-                            Crear Color
+                            Crear
                         </button>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Crear color</h5>
+                <h5 class="modal-title">Crear</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -116,9 +116,35 @@ $(function() {
     crear_usuario();
     editar_usuario();
     eliminar_usuario();
-
+    btn_crear();
 
 })
+
+const btn_crear = function() {
+    const data = {
+        opcion: 'listar_autos',
+        negocio: $("#negocio").val()
+    }
+    $.ajax({
+        url: 'controller/autos.php',
+        method: 'POST',
+        data: data,
+        success: function(data) {
+            const autosList = JSON.parse(data);
+            let html = ''
+            if (autosList.data.length === 0) {
+                html = html + `<button type="button" data-toggle="modal" data-target="#modalCrearAuto"
+                class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
+                <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
+                Crear
+            </button>`;
+            }
+
+            $("#btn-crear").html(html);
+            feather.replace();
+        }
+    })
+}
 
 
 const select_negocio = function() {
@@ -2211,6 +2237,15 @@ var duplicar_negocio = function() {
     })
 }
 
+const crear = function() {
+    $.ajax({
+        url: 'controller/autos.php',
+        success: function(data) {
+            console.log(data);
+        }
+    })
+}
+
 var listar_autos = function() {
 
     const negocio = $("#negocio").val()
@@ -2384,6 +2419,8 @@ var crear_auto = function() {
                         confirmButtonText: 'Ok'
                     })
 
+                    btn_crear();
+
                     $("#dataTableAutos").DataTable().ajax.reload();
                     $("#formCrearAutos").trigger('reset');
                     $("#modalCrearAuto").modal("hide");
@@ -2465,6 +2502,7 @@ var eliminar_auto = function() {
                         confirmButtonText: 'Ok'
                     })
 
+                    btn_crear();
                     $("#dataTableAutos").DataTable().ajax.reload();
                     $("#formEliminarAuto").trigger('reset');
                     $("#modalEliminarAuto").modal("hide");

@@ -24,7 +24,7 @@
                         <button type="button" data-toggle="modal" data-target="#modalCrearAutoparte"
                             class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
                             <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
-                            Agregar autoparte
+                            Agregar
                         </button>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Crear autoparte</h5>
+                <h5 class="modal-title">Crear</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" name='autoparte' placeholder='Escriba una autoparte'
+                                <input type="text" name='autoparte' placeholder='Escriba un nombre'
                                     class='form-control'>
                             </div>
                             <div class="form-group">
