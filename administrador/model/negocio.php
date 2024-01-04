@@ -130,6 +130,7 @@ class Negocios extends Conectar
 
                     $query = "UPDATE negocios SET  ruc= ?, razon_social = ?,contrasena = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fecha_modificacion = now() WHERE id = ?";
                     $query = $this->db->prepare($query);    
+                    $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
                     $query->bindValue(1,$ruc);
                     $query->bindValue(2,$razon_social);
                     $query->bindValue(3,$contrasenaEncriptada);
