@@ -3328,7 +3328,13 @@ var listar_autopartes = function() {
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
             { bSearchable: false, bVisible: false, aTargets: [5] },
-            { bSearchable: false, bVisible: false, aTargets: [6] }
+            { bSearchable: false, bVisible: false, aTargets: [6] },
+            { bSearchable: false, bVisible: false, aTargets: [8] },
+            { bSearchable: false, bVisible: false, aTargets: [8] },
+            { bSearchable: false, bVisible: false, aTargets: [10] },
+            { bSearchable: false, bVisible: false, aTargets: [11] },
+            { bSearchable: false, bVisible: false, aTargets: [12] },
+            { bSearchable: false, bVisible: false, aTargets: [13] }
 
         ],
         columns: [
@@ -3354,6 +3360,12 @@ var listar_autopartes = function() {
             { data: "color_uuid" },
             { data: "categoria_uuid" },
             { data: "tipo" },
+            { data: "t1" },
+            { data: "t2" },
+            { data: "t3" },
+            { data: "d1" },
+            { data: "d2" },
+            { data: "d3" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
@@ -3386,11 +3398,18 @@ var listar_autopartes = function() {
 var data_editar_autoparte = function(tbody, table) {
     $(tbody).on("click", ".editar", function() {
         var data = table.row($(this).parents("tr")).data();
+        console.log(data)
         $(".id").val(data.id);
         $("#autoparte").val(data.autoparte);
         $("#stock").val(data.stock);
         $("#archivo_autoparte").val(data.cover);
         $("#tipo").val(data.tipo);
+        $("#t1").val(data.t1);
+        $("#t2").val(data.t2);
+        $("#t3").val(data.t3);
+        $("#d1").val(data.d1);
+        $("#d2").val(data.d2);
+        $("#d3").val(data.d3);
         $.ajax({
             url: 'controller/colores.php',
             method: 'POST',

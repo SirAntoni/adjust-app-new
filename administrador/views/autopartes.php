@@ -43,6 +43,12 @@
                                     <th>COLOR</th>
                                     <th>CATEGORIA</th>
                                     <th>TIPO</th>
+                                    <th>t1</th>
+                                    <th>t2</th>
+                                    <th>t3</th>
+                                    <th>d1</th>
+                                    <th>d2</th>
+                                    <th>d3</th>
                                     <th width="10px">Acción</th>
                                 </tr>
                             </thead>
@@ -156,6 +162,30 @@
                                     <option value="producto">Producto</option>
                                     <option value="subcategoria">Subcategoria</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="t1" name='titulo1' placeholder='Escriba 1 titulo'
+                                    class='form-control'>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="d1" name='desc1' placeholder='Escriba 1 descripcion'
+                                    class='form-control'>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="t2"  name='titulo2' placeholder='Escriba 1 titulo'
+                                    class='form-control'>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="d2" name='desc2' placeholder='Escriba 1 descripcion'
+                                    class='form-control'>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="t3" name='titulo3' placeholder='Escriba 1 titulo'
+                                    class='form-control'>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="d3" name='desc3' placeholder='Escriba 1 descripcion'
+                                    class='form-control'>
                             </div>
                         </div>
                     </div>

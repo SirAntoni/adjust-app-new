@@ -301,6 +301,26 @@ function mostrarAutoparte(autoparte) {
                 titulo.className = "col-md-12 titulo_categoria select_accesorios d-none"
                 contenido.className = "col-md-12 select_accesorios d-none"
 
+                let detalle_html = "";
+
+                if (data.autoparte.t1 !== "") {
+                    detalle_html = `<div class="info-detalle py-3">
+                    <h4>${data.autoparte.t1}</h4>
+                    <p>${data.autoparte.d1}</p>
+                </div>
+                <div class="info-detalle py-3">
+                <h4>${data.autoparte.t2}</h4>
+                <p>${data.autoparte.d2}</p>
+                </div>
+                <div class="info-detalle py-3">
+                <h4>${data.autoparte.t3}</h4>
+                <p>${data.autoparte.d3}</p>
+                </div>`;
+                }
+
+
+
+                $("#detalles-producto").html(detalle_html)
                 $("#accesorio").html(data.autoparte.autoparte)
                 $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
                 let html = ``;

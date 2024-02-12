@@ -220,19 +220,8 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
-                <div class="col-md-4 info text-center py-4">
-                    <div class="info-detalle py-3">
-                        <h4>Tallas disponibles</h4>
-                        <p>x,s,l,m,n</p>
-                    </div>
-                    <div class="info-detalle py-3">
-                        <h4>Quedan en stock</h4>
-                        <p>05</p>
-                    </div>
-                    <div class="info-detalle py-3">
-                        <h4>Precio</h4>
-                        <p>2500</p>
-                    </div>
+                <div id="detalles-producto" class="col-md-4 info text-center py-4">
+                   
                 </div>
                 <div class="col-md-8 auto">
                     <div id='auto360' class="img-wrap">
