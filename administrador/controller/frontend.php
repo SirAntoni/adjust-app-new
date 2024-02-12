@@ -17,6 +17,7 @@ $autoparte = '';
 $opcion = '';
 $negocio = '';
 $filtro = '';
+$padre_id = '';
 
 if(isset($_SESSION['id'])){
     $negocio = $_SESSION['id'];
@@ -26,6 +27,12 @@ if(isset($_SESSION['id'])){
 if(isset($_POST['marca'])){
     $marca = $_POST['marca'];
 }
+
+if(isset($_POST['padre_id'])){
+    $padre_id = $_POST['padre_id'];
+}
+
+
 
 if(isset($_POST['filtro'])){
     $filtro = $_POST['filtro'];
@@ -123,6 +130,10 @@ switch ($opcion){
     case 'obtener_autopartes':
         $listar = json_encode($frontend->obtener_autopartes($categoria));
         echo $listar;
+break;
+        case 'obtener_subautopartes':
+            $listar = json_encode($frontend->obtener_subautopartes($padre_id));
+            echo $listar;
     break;
     case 'obtener_negocio':
         $obtener = json_encode($frontend->obtener_negocio($negocio));

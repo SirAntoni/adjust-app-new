@@ -268,27 +268,64 @@ function mostrarAutoparte(autoparte) {
         success: function(response) {
 
             const data = JSON.parse(response);
-            $("#accesorio").html(data.autoparte.autoparte)
-            $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
-            let html = ``;
-            data.imagenes.forEach(imagen => {
-                html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}">`;
-            });
-            let html_colores = ``;
-            data.colores.forEach(color => {
-                html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
+            if (data.autoparte.tipo === "subcategoria") {
+                var titulo = document.getElementById("subautoparte_seccion_titulo");
+                var cotenido = document.getElementById("subautoparte_seccion_contenido");
+                cotenido.classList.remove("d-none");
+                titulo.classList.remove("d-none");
+
+                $.ajax({
+                    url: 'administrador/controller/frontend',
+                    method: 'POST',
+                    data: { opcion: 'obtener_subautopartes', padre_id: data.autoparte.uuid },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        console.log(data);
+                        let html = ``;
+                        data.forEach(autoparte => {
+                            html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"></div>`;
+                        })
+
+                        $("#subcarousel_autopartes").flickity('destroy');
+                        $("#subcarousel_autopartes").html(html);
+                        $("#subcarousel_autopartes").flickity({
+                            contain: true
+                        });
+                    }
+                })
+
+            } else {
+
+                var titulo = document.getElementById("subautoparte_seccion_titulo");
+                var contenido = document.getElementById("subautoparte_seccion_contenido");
+                titulo.className = "col-md-12 titulo_categoria select_accesorios d-none"
+                contenido.className = "col-md-12 select_accesorios d-none"
+
+                $("#accesorio").html(data.autoparte.autoparte)
+                $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
+                let html = ``;
+                data.imagenes.forEach(imagen => {
+                    html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}">`;
+                });
+                let html_colores = ``;
+                data.colores.forEach(color => {
+                    html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
                 src="assets/images/colores/${color.cover}" alt=""></div>`;
-            })
+                })
 
-            html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
+                html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
 
-            $("#auto360").html('<div id="circlrDiv"></div>');
-            $("#circlrDiv").html(html);
-            $("#detalle_colores").html(html_colores);
-            $('[data-toggle="tooltip"]').tooltip()
-            var crl = circlr('circlrDiv', {
-                loader: 'loader'
-            });
+
+
+                $("#auto360").html('<div id="circlrDiv"></div>');
+                $("#circlrDiv").html(html);
+                $("#detalle_colores").html(html_colores);
+                $('[data-toggle="tooltip"]').tooltip()
+                var crl = circlr('circlrDiv', {
+                    loader: 'loader'
+                });
+            }
+
 
         }
     })
@@ -306,6 +343,7 @@ function obtenerAutoparte(categoria) {
         data: { opcion: 'obtener_autopartes', categoria },
         success: function(response) {
             const data = JSON.parse(response);
+            console.log(data);
             let html = ``;
             data.forEach(autoparte => {
                 html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"></div>`;

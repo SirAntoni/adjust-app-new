@@ -41,6 +41,8 @@
                                     <th>STOCK</th>
                                     <th>COVER</th>
                                     <th>COLOR</th>
+                                    <th>CATEGORIA</th>
+                                    <th>TIPO</th>
                                     <th width="10px">Acción</th>
                                 </tr>
                             </thead>
@@ -146,6 +148,13 @@
                             <div class="form-group">
                                 <select id='color' name="color">
                                     <option value="">Seleccione un color</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id='tipo' name="tipo">
+                                    <option value="">Seleccione un tipo</option>
+                                    <option value="producto">Producto</option>
+                                    <option value="subcategoria">Subcategoria</option>
                                 </select>
                             </div>
                         </div>

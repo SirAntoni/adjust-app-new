@@ -135,46 +135,55 @@ session_start();
         height: 150px;
     }
 
-    .social{
-            color:#FFF;
-            margin-right: 10px;
-        }
+    .social {
+        color: #FFF;
+        margin-right: 10px;
+    }
+
     .fullScreen {
         margin: 8px 5px;
         font-size: 25px;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .cont-multichat {
-            width: 70px;
-            bottom: 10px;
-            right: 16px;
-            position: fixed;
-            z-index: 1000
-        }
+        width: 70px;
+        bottom: 10px;
+        right: 16px;
+        position: fixed;
+        z-index: 1000
+    }
 
-        .cont-multichat a {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 10px;
-            display: block;
-            box-shadow: 0 0 1px #999;
-            border-radius: 50%;
-            background: #fff;
-            color: #fff
-        }
+    .cont-multichat a {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 10px;
+        display: block;
+        box-shadow: 0 0 1px #999;
+        border-radius: 50%;
+        background: #fff;
+        color: #fff
+    }
 
-        .cont-multichat img {
-            width: 70px;
-        }
-    
+    .cont-multichat img {
+        width: 70px;
+    }
+
+    .info {
+        background: #fff;
+    }
+
+    .info-detalle{
+        border-bottom: 2px solid #000;
+    }
+
     @media (max-width : 780px) {
         .color img {
             width: 20px;
         }
 
         #auto360 {
-            width:100%;
+            width: 100%;
             height: 250px;
         }
 
@@ -186,12 +195,12 @@ session_start();
         .app {
             width: 100%;
         }
-        
-        .fullScreen{
-            display:none;
+
+        .fullScreen {
+            display: none;
         }
 
-        
+
     }
     </style>
     <style>
@@ -211,7 +220,21 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
-                <div class="col-md-12 auto">
+                <div class="col-md-4 info text-center py-4">
+                    <div class="info-detalle py-3">
+                        <h4>Tallas disponibles</h4>
+                        <p>x,s,l,m,n</p>
+                    </div>
+                    <div class="info-detalle py-3">
+                        <h4>Quedan en stock</h4>
+                        <p>05</p>
+                    </div>
+                    <div class="info-detalle py-3">
+                        <h4>Precio</h4>
+                        <p>2500</p>
+                    </div>
+                </div>
+                <div class="col-md-8 auto">
                     <div id='auto360' class="img-wrap">
                         <div id="circlrDiv">
 
@@ -240,6 +263,16 @@ session_start();
                         <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
                     </div>
                 </div>
+                <div id="subautoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
+                    Seleccione un accesorio
+                </div>
+                <div id="subautoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
+                    <div id="subcarousel_autopartes" class="subcarousel_autopartes">
+                        <div class="carousel-cell"><img src="assets/images/body_kits.jpeg" alt=""></div>
+                        <div class="carousel-cell"><img src="assets/images/fr_bumper.jpeg" alt=""></div>
+                        <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div id="carousel_accesorios" class="carousel_accesorios">
                     </div>
@@ -248,17 +281,17 @@ session_start();
                     Seleccione un accesorio
                 </div>
                 <div id='redes' class="col-md-4 redes">
-                    
+
                 </div>
                 <div class=" col-md-4 stock">
-                                    <span id='stock'>Seleccione un accesorio</span>
+                    <span id='stock'>Seleccione un accesorio</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="cont-multichat">
-        
+
     </div>
 
 
@@ -279,7 +312,6 @@ session_start();
     <script>
     $(function() {
         $('[data-toggle="tooltip"]').tooltip();
-    })
     </script>
 </body>
 

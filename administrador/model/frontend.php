@@ -251,7 +251,7 @@ class Frontend extends Conectar
     public function mostrar_autoparte($autoparte)
     {
         
-        $sql = "SELECT uuid,autoparte,stock,color_uuid FROM autopartes WHERE uuid = ? and estado = 1";
+        $sql = "SELECT uuid,autoparte,stock,color_uuid, tipo FROM autopartes WHERE uuid = ? and estado = 1";
 
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $autoparte);
@@ -289,9 +289,17 @@ class Frontend extends Conectar
     }
 
     public function obtener_autopartes($categoria){
-        $sql = "SELECT uuid,autoparte, cover FROM autopartes WHERE categoria_uuid = ?";
+        $sql = "SELECT uuid,autoparte, cover FROM autopartes WHERE categoria_uuid = ? AND padre_id IS NULL AND estado = 1";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $categoria);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function obtener_subautopartes($padre_id){
+        $sql = "SELECT uuid,autoparte, cover FROM autopartes WHERE padre_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $padre_id);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }

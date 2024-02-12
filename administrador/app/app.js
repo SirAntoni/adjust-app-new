@@ -3294,6 +3294,7 @@ const limpiar = function() {
 var listar_autopartes = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const categoria = urlParams.get('categoria');
+    const padre_id = (urlParams.get('padre_id')) ? urlParams.get('padre_id') : "";
     var table_autopartes = $("#dataTableAutopartes").DataTable({
         buttons: ["pdf"],
         aLengthMenu: [
@@ -3309,7 +3310,8 @@ var listar_autopartes = function() {
                 // Crea el objeto con los datos a enviar en el cuerpo
                 var bodyData = {
                     opcion: 'listar_autopartes',
-                    categoria
+                    categoria,
+                    padre_id
                     // Agrega otros parámetros según sea necesario
                 };
 
@@ -3325,7 +3327,8 @@ var listar_autopartes = function() {
         },
         aoColumnDefs: [
             { bSearchable: false, bVisible: false, aTargets: [0] },
-            { bSearchable: false, bVisible: false, aTargets: [5] }
+            { bSearchable: false, bVisible: false, aTargets: [5] },
+            { bSearchable: false, bVisible: false, aTargets: [6] }
 
         ],
         columns: [
@@ -3349,6 +3352,8 @@ var listar_autopartes = function() {
                 }
             },
             { data: "color_uuid" },
+            { data: "categoria_uuid" },
+            { data: "tipo" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
@@ -3385,6 +3390,7 @@ var data_editar_autoparte = function(tbody, table) {
         $("#autoparte").val(data.autoparte);
         $("#stock").val(data.stock);
         $("#archivo_autoparte").val(data.cover);
+        $("#tipo").val(data.tipo);
         $.ajax({
             url: 'controller/colores.php',
             method: 'POST',
@@ -3410,7 +3416,13 @@ var data_editar_autoparte = function(tbody, table) {
 var data_configurar_autoparte = function(tbody, table) {
     $(tbody).on("click", ".configurar", function() {
         var data = table.row($(this).parents("tr")).data();
-        window.location = 'main?module=configurar-color-autoparte&autoparte=' + data.uuid;
+        console.log(data);
+        if (data.tipo === "producto") {
+            window.location = 'main?module=configurar-color-autoparte&autoparte=' + data.uuid;
+        } else {
+            window.location = 'main?module=autopartes&categoria=' + data.categoria_uuid + '&padre_id=' + data.uuid;
+        }
+
     })
 }
 
@@ -3426,44 +3438,11 @@ var crear_autoparte = function() {
 
     $("#formCrearAutoparte").submit(function(e) {
         e.preventDefault();
+        const urlParams = new URLSearchParams(window.location.search);
+        const padre_id = (urlParams.get('padre_id')) ? urlParams.get('padre_id') : "";
         const formData = new FormData($('#formCrearAutoparte')[0]);
-        $.ajax({
-            url: "controller/autopartes.php",
-            method: "POST",
-            data: formData,
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
-            },
-            complete: function() {
-                Notiflix.Block.Remove('.modal-content');
-            },
-            success: function(response) {
-                var response = JSON.parse(response);
-                if (response.status == "success") {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: response.message,
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                    })
+        formData.append("padre_id", padre_id)
 
-                    $("#dataTableAutopartes").DataTable().ajax.reload();
-                    $("#formCrearAutoparte").trigger('reset');
-                    $("#modalCrearAutoparte").modal("hide");
-
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: response.message,
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    })
-                }
-            }
-        })
     })
 
 }
