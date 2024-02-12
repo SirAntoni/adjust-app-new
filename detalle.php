@@ -177,6 +177,14 @@ session_start();
         border-bottom: 2px solid #000;
     }
 
+    #detalles-producto{
+        position:absolute;
+        top:0;
+        left: 50px;
+        width:300px;
+        height: 300px;
+    }
+
     @media (max-width : 780px) {
         .color img {
             width: 20px;
@@ -220,10 +228,11 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
-                <div id="detalles-producto" class="col-md-4 info text-center py-4">
+                
+                <div class="col-md-12 auto">
+                <div id="detalles-producto" class="info text-center">
                    
-                </div>
-                <div class="col-md-8 auto">
+                   </div>
                     <div id='auto360' class="img-wrap">
                         <div id="circlrDiv">
 
