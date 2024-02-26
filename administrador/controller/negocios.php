@@ -73,7 +73,19 @@ switch($opcion){
         $negocios->crear_negocio($ruc,$razon_social,$contrasena,$rango,$facebook,$instagram,$tiktok,$youtube, $telefono);
     break;
     case 'editar':
-        $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube, $telefono);
+        if (empty($_FILES['cover']['name'])) {
+            $nombre_img = $_POST['archivo'];
+        } else {
+            $nombre_img = $_FILES['cover']['name'];
+        }
+
+        if (empty($_FILES['cover1']['name'])) {
+            $nombre_img1 = $_POST['archivo1'];
+        } else {
+            $nombre_img1 = $_FILES['cover1']['name'];
+        }
+
+        $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube, $telefono,$nombre_img,$nombre_img1);
     break;
     case 'duplicar':
         echo json_encode($negocios->duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$usuario));

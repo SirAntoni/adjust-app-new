@@ -23,12 +23,13 @@ if(!isset($_SESSION['id'])){
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <style>
     body {
-        background: url(assets/images/bg/bg-home.jpg);
+        background: url(assets/images/bg/<?php echo $_SESSION['fondo_home'] ?>);
         background-size: cover;
         background-repeat: no-repeat;
         margin: 0;
         height: 100vh;
     }
+
 
     #home {
         width: 55px;

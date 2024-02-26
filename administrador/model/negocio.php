@@ -100,7 +100,7 @@ class Negocios extends Conectar
     }
 
 
-    public function editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube,$telefono){
+    public function editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube,$telefono,$cover,$cover1){
 
         if(empty($ruc) || empty($razon_social) || empty($rango) || empty($estado) || empty($telefono)){
             
@@ -112,7 +112,24 @@ class Negocios extends Conectar
         }else{
     
                 if(empty($contrasena)){
-                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fecha_modificacion = now() WHERE id = ?";
+                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fondo_home = ?, fondo_galeria = ?, fecha_modificacion = now() WHERE id = ?";
+
+                    if(empty($_FILES["cover"]['name'])){
+                        $nombre_img = $cover;
+                    }else{
+                        $nombre_img = uniqid() . "-" . $_FILES["cover"]['name'];
+                        $ruta = "../../assets/images/bg/" . $nombre_img;
+                        move_uploaded_file($_FILES["cover"]['tmp_name'], $ruta);
+                    }
+
+                    if(empty($_FILES["cover1"]['name'])){
+                        $nombre_img1 = $cover1;
+                    }else{
+                        $nombre_img1 = uniqid() . "-" . $_FILES["cover1"]['name'];
+                        $ruta = "../../assets/images/bg/" . $nombre_img1;
+                        move_uploaded_file($_FILES["cover1"]['tmp_name'], $ruta);
+                    }
+
                     $query = $this->db->prepare($query);    
                     $query->bindValue(1,$ruc);
                     $query->bindValue(2,$razon_social);
@@ -123,13 +140,33 @@ class Negocios extends Conectar
                     $query->bindValue(7,$tiktok);
                     $query->bindValue(8,$youtube);
                     $query->bindValue(9,$telefono);
-                    $query->bindValue(10,$id);
+                    $query->bindValue(10,$nombre_img);
+                    $query->bindValue(11,$nombre_img1);
+                    $query->bindValue(12,$id);
                    
 
                 }else{
 
-                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?,contrasena = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fecha_modificacion = now() WHERE id = ?";
+                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?,contrasena = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?,fondo_home = ?, fondo_galeria = ?, fecha_modificacion = now() WHERE id = ?";
                     $query = $this->db->prepare($query);    
+
+                    if(empty($_FILES["cover"]['name'])){
+                        $nombre_img = $cover;
+                    }else{
+                        $nombre_img = uniqid() . "-" . $_FILES["cover"]['name'];
+                        $ruta = "../../assets/images/bg/" . $nombre_img;
+                        move_uploaded_file($_FILES["cover"]['tmp_name'], $ruta);
+                    }
+
+                    if(empty($_FILES["cover1"]['name'])){
+                        $nombre_img1 = $cover1;
+                    }else{
+                        $nombre_img1 = uniqid() . "-" . $_FILES["cover1"]['name'];
+                        $ruta = "../../assets/images/bg/" . $nombre_img1;
+                        move_uploaded_file($_FILES["cover1"]['tmp_name'], $ruta);
+                    }
+
+
                     $contrasenaEncriptada = password_hash($contrasena,PASSWORD_DEFAULT);
                     $query->bindValue(1,$ruc);
                     $query->bindValue(2,$razon_social);
@@ -141,7 +178,9 @@ class Negocios extends Conectar
                     $query->bindValue(8,$tiktok);
                     $query->bindValue(9,$youtube);
                     $query->bindValue(10,$telefono);
-                    $query->bindValue(11,$id);
+                    $query->bindValue(11,$nombre_img);
+                    $query->bindValue(12,$nombre_img1);
+                    $query->bindValue(13,$id);
 
                 }
                 
@@ -298,6 +337,8 @@ class Negocios extends Conectar
                         $_SESSION['razon_social']              = $data['razon_social'];
                         $_SESSION['rango']     = $data['rango'];
                         $_SESSION['estado']     = $data['estado'];
+                        $_SESSION['fondo_home']     = $data['fondo_home'];
+                        $_SESSION['fondo_galeria']     = $data['fondo_galeria'];
                         
                         $response = [
                             "status" => "success",

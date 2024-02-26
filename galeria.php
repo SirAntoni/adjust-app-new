@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +22,7 @@
 
     <style>
     body {
-        background: url(assets/images/bg/bg-video.jpg);
+        background: url(assets/images/bg/<?php echo $_SESSION['fondo_galeria'] ?>);
         background-size: cover;
         background-repeat: no-repeat;
         margin: 0;

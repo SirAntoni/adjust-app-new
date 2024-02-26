@@ -147,6 +147,30 @@
                                     placeholder="Youtube">
                             </div>
                             <div class="form-group">
+                                <label>Fondo Home/Web (Recomendado 5472px x 3648px)</label>
+                                <input type="hidden" id='archivo' name='archivo'>
+                                <input type="file" name="cover" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled=""
+                                        placeholder="Subir Imagen">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Fondo Galeria (Recomendado 5472px x 3648px)</label>
+                                <input type="hidden" id='archivo1' name='archivo1'>
+                                <input type="file" name="cover1" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled=""
+                                        placeholder="Subir Imagen">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <input type="text" id='telefono' name="telefono" class="form-control"
                                     placeholder="Telefono">
                             </div>

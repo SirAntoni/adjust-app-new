@@ -2160,15 +2160,27 @@ var crear_negocio = function() {
 }
 
 var editar_negocio = function() {
+
     $("#formEditarNegocio").submit(function(e) {
         e.preventDefault();
-        const data = $(this).serialize();
+        const formData = new FormData($('#formEditarNegocio')[0]);
         $.ajax({
             url: "controller/negocios.php",
             method: "POST",
-            data: data,
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
             success: function(response) {
+                Notiflix.Block.Remove('.modal-content');
                 var response = JSON.parse(response);
+
                 if (response.status == "success") {
 
                     Swal.fire({
@@ -2191,9 +2203,11 @@ var editar_negocio = function() {
                         confirmButtonText: 'Ok'
                     })
                 }
+
             }
         })
     })
+
 }
 
 var duplicar_negocio = function() {

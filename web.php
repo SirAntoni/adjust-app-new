@@ -25,6 +25,19 @@ session_start();
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css'>
     <link rel="stylesheet" href="./css/isotope.css">
     <style>
+
+    .masthead {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 35rem;
+    padding: 15rem 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/images/bg/<?php echo $_SESSION['fondo_home'] ?>");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
         .cont-multichat {
             width: 70px;
             bottom: 10px;
