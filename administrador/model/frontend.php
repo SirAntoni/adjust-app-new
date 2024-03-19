@@ -251,7 +251,7 @@ class Frontend extends Conectar
     public function mostrar_autoparte($autoparte)
     {
         
-        $sql = "SELECT uuid,autoparte,stock,color_uuid, tipo,t1,t2,t3,d1,d2,d3 FROM autopartes WHERE uuid = ? and estado = 1";
+        $sql = "SELECT uuid,autoparte,stock,color_uuid, tipo,t1,t2,t3,d1,d2,d3,descgeneral FROM autopartes WHERE uuid = ? and estado = 1";
 
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $autoparte);

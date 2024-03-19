@@ -17,7 +17,7 @@ class Negocios extends Conectar
     public function listar_negocios($negocio){
 
         if($negocio === "0"){
-            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono FROM negocios WHERE estado in (1,3)";
+            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono, fondo_home, fondo_galeria FROM negocios WHERE estado in (1,3)";
             $sql = $this->db->prepare($sql);
             $sql->execute();
             return $sql->fetchAll(PDO::FETCH_ASSOC);

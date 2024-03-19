@@ -13,13 +13,13 @@ class Autopartes extends Conectar
     public function listar_autopartes($categoria,$padre_id)
     {
         if($padre_id === ''){
-            $sql = "SELECT id,uuid,autoparte,stock,cover,color_uuid,categoria_uuid,tipo,t1,t2,t3,d1,d2,d3  FROM autopartes WHERE categoria_uuid = ? AND padre_id IS NULL AND estado = 1";
+            $sql = "SELECT id,uuid,autoparte,stock,cover,color_uuid,categoria_uuid,tipo,t1,t2,t3,d1,d2,d3,descgeneral FROM autopartes WHERE categoria_uuid = ? AND padre_id IS NULL AND estado = 1";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1,$categoria);
             $sql->execute();
             return $sql->fetchAll(PDO::FETCH_ASSOC);
         }else{
-            $sql = "SELECT id,uuid,autoparte,stock,cover,color_uuid,categoria_uuid,tipo,t1,t2,t3,d1,d2,d3   FROM autopartes WHERE padre_id = ? AND estado = 1";
+            $sql = "SELECT id,uuid,autoparte,stock,cover,color_uuid,categoria_uuid,tipo,t1,t2,t3,d1,d2,d3,descgeneral   FROM autopartes WHERE padre_id = ? AND estado = 1";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1,$padre_id);
             $sql->execute();
@@ -101,7 +101,7 @@ class Autopartes extends Conectar
 
     }
 
-    public function editar_autoparte($id,$autoparte,$stock,$cover,$color,$tipo,$t1,$t2,$t3,$d1,$d2,$d3)
+    public function editar_autoparte($id,$autoparte,$stock,$cover,$color,$tipo,$t1,$t2,$t3,$d1,$d2,$d3,$descgeneral)
     {
         if (empty($autoparte) || empty($stock) || empty($cover) || empty($tipo)) {
             $response = [
@@ -110,7 +110,7 @@ class Autopartes extends Conectar
             ];
         } else {
 
-            $sql = "UPDATE autopartes SET autoparte = ?, stock = ?, cover = ?, color_uuid = ?, tipo = ?, t1 = ?, t2 = ?, t3 = ?, d1 = ?, d2 = ?, d3 = ? WHERE id = ?";
+            $sql = "UPDATE autopartes SET autoparte = ?, stock = ?, cover = ?, color_uuid = ?, tipo = ?, t1 = ?, t2 = ?, t3 = ?, d1 = ?, d2 = ?, d3 = ?, descgeneral = ? WHERE id = ?";
             $sql = $this->db->prepare($sql);
 
             if(empty($_FILES["cover"]['name'])){
@@ -132,7 +132,8 @@ class Autopartes extends Conectar
             $sql->bindValue(9, $d1);
             $sql->bindValue(10, $d2);
             $sql->bindValue(11, $d3);
-            $sql->bindValue(12, $id);
+            $sql->bindValue(12, $descgeneral);
+            $sql->bindValue(13, $id);
             $sql->execute();
 
             $response = [

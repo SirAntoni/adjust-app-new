@@ -2009,7 +2009,9 @@ var listar_negocios = function() {
             { bSearchable: false, bVisible: false, aTargets: [6] },
             { bSearchable: false, bVisible: false, aTargets: [7] },
             { bSearchable: false, bVisible: false, aTargets: [8] },
-            { bSearchable: false, bVisible: false, aTargets: [9] }
+            { bSearchable: false, bVisible: false, aTargets: [9] },
+            { bSearchable: false, bVisible: false, aTargets: [10] },
+            { bSearchable: false, bVisible: false, aTargets: [11] }
         ],
         columns: [
             { data: "id" },
@@ -2038,6 +2040,8 @@ var listar_negocios = function() {
             { data: "tiktok" },
             { data: "youtube" },
             { data: "telefono" },
+            { data: "fondo_home" },
+            { data: "fondo_galeria" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Duplicar' class='duplicar mr-1 text-warning'><i class='fas fa-copy fa-lg'></i></a><a title='Web' class='web mr-1 text-dark'><i class='fas fa-globe-americas fa-lg'></i></a></div>",
             },
@@ -2080,6 +2084,8 @@ var data_editar_negocio = function(tbody, table) {
         $("#tiktok").val(data.tiktok);
         $("#youtube").val(data.youtube);
         $("#telefono").val(data.telefono);
+        $("#archivo").val(data.fondo_home);
+        $("#archivo1").val(data.fondo_galeria);
         $("#estado").val(data.estado);
         $("#modalEditarNegocio").modal("show");
     })
@@ -3343,12 +3349,14 @@ var listar_autopartes = function() {
             { bSearchable: false, bVisible: false, aTargets: [0] },
             { bSearchable: false, bVisible: false, aTargets: [5] },
             { bSearchable: false, bVisible: false, aTargets: [6] },
+            { bSearchable: false, bVisible: false, aTargets: [7] },
             { bSearchable: false, bVisible: false, aTargets: [8] },
-            { bSearchable: false, bVisible: false, aTargets: [8] },
+            { bSearchable: false, bVisible: false, aTargets: [9] },
             { bSearchable: false, bVisible: false, aTargets: [10] },
             { bSearchable: false, bVisible: false, aTargets: [11] },
             { bSearchable: false, bVisible: false, aTargets: [12] },
-            { bSearchable: false, bVisible: false, aTargets: [13] }
+            { bSearchable: false, bVisible: false, aTargets: [13] },
+            { bSearchable: false, bVisible: false, aTargets: [14] }
 
         ],
         columns: [
@@ -3380,6 +3388,7 @@ var listar_autopartes = function() {
             { data: "d1" },
             { data: "d2" },
             { data: "d3" },
+            { data: "descgeneral" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
             },
@@ -3424,6 +3433,7 @@ var data_editar_autoparte = function(tbody, table) {
         $("#d1").val(data.d1);
         $("#d2").val(data.d2);
         $("#d3").val(data.d3);
+        $("#descgeneral").val(data.descgeneral);
         $.ajax({
             url: 'controller/colores.php',
             method: 'POST',

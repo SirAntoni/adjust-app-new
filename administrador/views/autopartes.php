@@ -49,6 +49,7 @@
                                     <th>d1</th>
                                     <th>d2</th>
                                     <th>d3</th>
+                                    <th>descgeneral</th>
                                     <th width="10px">Acción</th>
                                 </tr>
                             </thead>
@@ -186,6 +187,9 @@
                             <div class="form-group">
                                 <input type="text" id="d3" name='desc3' placeholder='Escriba 1 descripcion'
                                     class='form-control'>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="descgeneral" class='form-control' id="descgeneral" cols="30" rows="6" placeholder='Escriba una descripcion general'></textarea>
                             </div>
                         </div>
                     </div>

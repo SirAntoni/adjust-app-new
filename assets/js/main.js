@@ -302,6 +302,12 @@ function mostrarAutoparte(autoparte) {
                 contenido.className = "col-md-12 select_accesorios d-none"
 
                 let detalle_html = "";
+                let descgeneral = "";
+                console.log(data.autoparte.descgeneral)
+                if(data.autoparte.descgeneral != ""){
+                    descgeneral = `<h1>Descripción</h1><p>${data.autoparte.descgeneral}</p>` 
+                }
+
 
                 if (data.autoparte.t1 !== "") {
                     detalle_html = `<div class="info-detalle py-3">
@@ -321,6 +327,7 @@ function mostrarAutoparte(autoparte) {
 
 
                 $("#detalles-producto").html(detalle_html)
+                $("#descgeneral").html(descgeneral)
                 $("#accesorio").html(data.autoparte.autoparte)
                 $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
                 let html = ``;

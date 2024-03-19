@@ -24,6 +24,7 @@ $titulo3= '';
 $desc1 = '';
 $desc2 = '';
 $desc3='';
+$descgeneral = '';
 
 
 if(isset($_POST['id'])){
@@ -54,6 +55,10 @@ if(isset($_POST['desc2'])){
 }
 if(isset($_POST['desc3'])){
     $desc3 = $_POST['desc3'];
+}
+
+if(isset($_POST['descgeneral'])){
+    $descgeneral = $_POST['descgeneral'];
 }
 
 if(isset($_POST['uuid'])){
@@ -116,7 +121,7 @@ switch ($opcion){
             $nombre_img = $_FILES['cover']['name'];
         }
 
-        $autopartes->editar_autoparte($id,$autoparte,$stock,$nombre_img,$color,$tipo,$titulo1,$titulo2,$titulo3,$desc1,$desc2,$desc3);
+        $autopartes->editar_autoparte($id,$autoparte,$stock,$nombre_img,$color,$tipo,$titulo1,$titulo2,$titulo3,$desc1,$desc2,$desc3,$descgeneral);
 
     break;
     case 'eliminar':

@@ -21,195 +21,193 @@ session_start();
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
-    <style>
-    body {
-        background: url(assets/images/bg/<?php echo $_SESSION['fondo_galeria'] ?>);
-        background-size: cover;
-        background-repeat: no-repeat;
-        margin: 0;
-    }
+    <style type="text/css">
+        body {
+            background: url(assets/images/bg/<?php echo $_SESSION['fondo_galeria'] ?>);
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
 
-    .auto {
-        background: #FFF;
-    }
-
-    #auto360 {
-        width: 500px;
-        margin: auto;
-        background: #FFF;
-        height: 300px;
-    }
-
-    .color img {
-        width: 30px;
-        border-radius: 50%;
-        margin: 10px 5px;
-        cursor: pointer;
-    }
-
-    .colores {
-        display: flex;
-        justify-content: center;
-        background: #ccc;
-    }
-
-    .accesorio {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0px 0px 0px 10px;
-
-    }
-
-    .redes {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-right: 1px solid #fff;
-        border-left: 1px solid #fff;
-    }
-
-    .categorias {
-        padding: 0;
-        background: #ccc;
-    }
-
-    .select_accesorios {
-        padding: 0;
-        background: #ccc;
-
-    }
-
-    .titulo_categoria {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .stock {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0px 0px 10px 0px;
-    }
-
-    .autopartes {
-        padding: 0;
-    }
-
-    .nombre_auto {
-        background: #1c1c1c;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60px;
-        color: #ffffff;
-        border-radius: 10px 10px 0px 0px;
-    }
-
-    .app {
-        margin: 40px auto;
-        width: 100%;
-    }
-
-    .carousel-cell {
-        width: 200px;
-        /* half-width */
-        height: 150px;
-        margin-right: 10px;
-    }
-
-    .carousel-cell img {
-        height: 150px;
-    }
-
-    .social {
-        color: #FFF;
-        margin-right: 10px;
-    }
-
-    .fullScreen {
-        margin: 8px 5px;
-        font-size: 25px;
-        cursor: pointer;
-    }
-
-    .cont-multichat {
-        width: 70px;
-        bottom: 10px;
-        right: 16px;
-        position: fixed;
-        z-index: 1000
-    }
-
-    .cont-multichat a {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 10px;
-        display: block;
-        box-shadow: 0 0 1px #999;
-        border-radius: 50%;
-        background: #fff;
-        color: #fff
-    }
-
-    .cont-multichat img {
-        width: 70px;
-    }
-
-    .info {
-        background: #fff;
-    }
-
-    .info-detalle{
-        border-bottom: 2px solid #000;
-    }
-
-    #detalles-producto{
-        position:absolute;
-        top:0;
-        left: 50px;
-        width:300px;
-        height: 300px;
-    }
-
-    @media (max-width : 780px) {
-        .color img {
-            width: 20px;
+        .auto {
+            background: #FFF;
         }
 
         #auto360 {
-            width: 100%;
-            height: 250px;
+            width: 500px;
+            margin: auto;
+            background: #FFF;
+            height: 300px;
         }
 
+        .color img {
+            width: 30px;
+            border-radius: 50%;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+
+        .colores {
+            display: flex;
+            justify-content: center;
+            background: #ccc;
+        }
 
         .accesorio {
-            border-right: 0px solid !important;
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px 0px 0px 10px;
+
+        }
+
+        .redes {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+        }
+
+        .categorias {
+            padding: 0;
+            background: #ccc;
+        }
+
+        .select_accesorios {
+            padding: 0;
+            background: #ccc;
+
+        }
+
+        .titulo_categoria {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stock {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px 0px 10px 0px;
+        }
+
+        .autopartes {
+            padding: 0;
+        }
+
+        .nombre_auto {
+            background: #1c1c1c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            color: #ffffff;
+            border-radius: 10px 10px 0px 0px;
         }
 
         .app {
+            margin: 40px auto;
             width: 100%;
         }
 
-        .fullScreen {
-            display: none;
+        .carousel-cell {
+            width: 200px;
+            /* half-width */
+            height: 150px;
+            margin-right: 10px;
         }
 
+        .carousel-cell img {
+            height: 150px;
+        }
 
-    }
+        .social {
+            color: #FFF;
+            margin-right: 10px;
+        }
+
+        .fullScreen {
+            margin: 8px 5px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .cont-multichat {
+            width: 70px;
+            bottom: 10px;
+            right: 16px;
+            position: fixed;
+            z-index: 1000
+        }
+
+        .cont-multichat a {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+            display: block;
+            box-shadow: 0 0 1px #999;
+            border-radius: 50%;
+            background: #fff;
+            color: #fff
+        }
+
+        .cont-multichat img {
+            width: 70px;
+        }
+
+        #detalles-producto {
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 300px;
+            height: 300px;
+        }
+
+        .descgeneral{
+            position:absolute;
+            top:50px;
+            right: 70px !important;
+            width: 300px !important;
+        }
+        @media (max-width : 780px) {
+            .color img {
+                width: 20px;
+            }
+
+            #auto360 {
+                width: 100%;
+                height: 250px;
+            }
+
+
+            .accesorio {
+                border-right: 0px solid !important;
+            }
+
+            .app {
+                width: 100%;
+            }
+
+            .fullScreen {
+                display: none;
+            }
+
+
+        }
     </style>
     <style>
 
@@ -228,16 +226,18 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
-                
+
                 <div class="col-md-12 auto">
-                <div id="detalles-producto" class="info text-center">
-                   
-                   </div>
+                    <div id="detalles-producto" class="info text-center">
+
+                    </div>
                     <div id='auto360' class="img-wrap">
                         <div id="circlrDiv">
 
 
                         </div>
+                    </div>
+                    <div id="descgeneral" class="descgeneral text-center">
                     </div>
                 </div>
                 <div id='detalle_colores' class="col-md-12 colores">
@@ -296,10 +296,10 @@ session_start();
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
-    </script>
+        </script>
 
 
     <script src="assets/js/circlr.min.js"></script>
@@ -308,8 +308,8 @@ session_start();
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script>
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
     </script>
 </body>
 

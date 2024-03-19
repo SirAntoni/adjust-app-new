@@ -32,6 +32,8 @@
                                 <th>TIKTOK</th>
                                 <th>YOUTUBE</th>
                                 <th>TELEFONO</th>
+                                <th>HOME</th>
+                                <th>GALERIA</th>
                                 <th width="10px">Acción</th>
                             </tr>
                         </thead>
