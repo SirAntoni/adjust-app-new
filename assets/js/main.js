@@ -303,7 +303,7 @@ function mostrarAutoparte(autoparte) {
 
                 let detalle_html = "";
                 let descgeneral = "";
-                console.log(data.autoparte.descgeneral)
+                
                 if(data.autoparte.descgeneral != ""){
                     descgeneral = `<h1>Descripción</h1><p>${data.autoparte.descgeneral}</p>` 
                 }
@@ -401,7 +401,7 @@ function fullScreen() {
         localStorage.setItem('fullscreen', true);
     } else {
         area.style.width = '500px';
-        area.style.height = '300px';
+        area.style.height = '400px';
         $(".fullScreen").html('<i class="fas fa-expand fa-lg"></i>');
         localStorage.setItem('fullscreen', false);
     }

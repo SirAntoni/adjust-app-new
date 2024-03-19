@@ -34,10 +34,11 @@ session_start();
         }
 
         #auto360 {
+
             width: 500px;
-            margin: auto;
+            margin: 100px auto auto auto;
             background: #FFF;
-            height: 300px;
+            height: 400px;
         }
 
         .color img {
@@ -171,10 +172,17 @@ session_start();
 
         #detalles-producto {
             position: absolute;
-            top: 0;
+            top: 50px;
             left: 50px;
             width: 300px;
             height: 300px;
+            text-align: left;
+        }
+
+        #detalles-producto h4{
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 28px;
         }
 
         .descgeneral{
@@ -182,6 +190,7 @@ session_start();
             top:50px;
             right: 70px !important;
             width: 300px !important;
+            text-align: right;
         }
         @media (max-width : 780px) {
             .color img {
@@ -228,7 +237,7 @@ session_start();
                 </div>
 
                 <div class="col-md-12 auto">
-                    <div id="detalles-producto" class="info text-center">
+                    <div id="detalles-producto" class="info">
 
                     </div>
                     <div id='auto360' class="img-wrap">
@@ -237,7 +246,7 @@ session_start();
 
                         </div>
                     </div>
-                    <div id="descgeneral" class="descgeneral text-center">
+                    <div id="descgeneral" class="descgeneral">
                     </div>
                 </div>
                 <div id='detalle_colores' class="col-md-12 colores">
