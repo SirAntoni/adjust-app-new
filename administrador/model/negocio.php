@@ -22,7 +22,7 @@ class Negocios extends Conectar
             $sql->execute();
             return $sql->fetchAll(PDO::FETCH_ASSOC);
         }else{
-            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono FROM negocios WHERE estado in (1,3) AND id = ?";
+            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono, fondo_home, fondo_galeria FROM negocios WHERE estado in (1,3) AND id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1,$negocio);
             $sql->execute();
