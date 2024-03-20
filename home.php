@@ -4,6 +4,8 @@ session_start();
 if(!isset($_SESSION['id'])){
     header('Location: ./');
 }
+echo "VARIABLES DE SESSION: " . $_SESSION['fondo_home'] . " " . $_SESSION["fondo_galeria"];
+print_r($_SESSION)
 
 ?>
 <!DOCTYPE html>
