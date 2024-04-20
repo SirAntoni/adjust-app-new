@@ -23,7 +23,7 @@ session_start();
 
     <style>
     body {
-        background: url(assets/images/bg/<?php echo $_SESSION['fondo_galeria'] ?>);
+        /* background: url(assets/images/bg/ ?>); */
         background-size: cover;
         background-repeat: no-repeat;
         margin: 0;
@@ -202,7 +202,7 @@ session_start();
 
 </head>
 
-<body>
+<body class='masthead-galeria'>
 
 
     <div class="container">

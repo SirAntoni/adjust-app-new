@@ -11872,11 +11872,28 @@ body {
     text-align: center;
     height: 3rem;
     width: 3rem;
-    background: rgba(255, 255, 255, 0.1);
     border-radius: 100%;
     line-height: 3rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: white;
 }
+
+
+.contact-section .facebook {
+    background: #3b5998;
+}
+
+.contact-section .instagram {
+    background: #FCAF45;
+}
+
+.contact-section .tiktok {
+    background: #ff0050;
+}
+
+.contact-section .youtube {
+    background: #c4302b;
+}
+
 
 .contact-section .social a:hover {
     color: rgba(255, 255, 255, 0.5);

@@ -11,7 +11,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title><?php echo $_SESSION['razon_social'] ?> <?php echo date('Y') ?></title>
+    <title>HOME</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@ session_start();
     height: auto;
     min-height: 35rem;
     padding: 15rem 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/<?php echo $_SESSION['fondo_home'] ?>");
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/"); */
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -194,21 +194,13 @@ session_start();
         </div>
     </section>
     <!-- Signup-->
-    <section class="signup-section" id="signup">
+    <!--section class="signup-section" id="signup">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                     <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
                     <h2 class="text-white mb-5">Envianos tu email para contactarte!</h2>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
                     <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
                         <div class="row input-group-newsletter">
                             <div class="col"><input class="form-control" id="emailAddress" type="email"
                                     placeholder="Ingresa tu email..." aria-label="Ingresa tu email..."
@@ -220,10 +212,6 @@ session_start();
                             required.</div>
                         <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.
                         </div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3 mt-2 text-white">
                                 <div class="fw-bolder">Form submission successful!</div>
@@ -233,10 +221,6 @@ session_start();
                                     href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                             </div>
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
                         <div class="d-none" id="submitErrorMessage">
                             <div class="text-center text-danger mb-3 mt-2">Error sending message!</div>
                         </div>
@@ -244,7 +228,7 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section-->
 
     <!-- Contact-->
     <section class="contact-section bg-black">

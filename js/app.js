@@ -5,16 +5,44 @@ $(function() {
     cargar_filtros();
     cargar_imagenes();
     cargar_ultimo_registro();
-    obtener_wsp();
+    obtener_negocio();
+    obtener_fondos();
 
 })
 
-const obtener_wsp = function() {
+var url = new URL(window.location.href);
+var params = new URLSearchParams(url.search);
+
+const obtener_fondos = async () => {
 
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
-        data: { opcion: 'obtener_negocio' },
+        data: { opcion: 'obtener_fondo', negocio: params.get('negocio')  },
+        success: function(response) {
+            const data = JSON.parse(response);
+            const mastheadElement = document.querySelector(".masthead");
+            const mastheadElementGaleria = document.querySelector(".masthead-galeria");
+
+            if(mastheadElement){
+                mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_home}")`;
+            }
+
+            if(mastheadElementGaleria){
+                mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_galeria}")`;
+            }
+
+           // mastheadElementGaleria.style.background = `url("./assets/images/bg/${data.fondo_home}")`
+        }
+    })
+}
+
+const obtener_negocio = function() {
+
+    $.ajax({
+        url: 'administrador/controller/frontend',
+        method: 'POST',
+        data: { opcion: 'obtener_negocio' , negocio: params.get('negocio')},
         success: function(response) {
 
             const data = JSON.parse(response);
@@ -23,6 +51,7 @@ const obtener_wsp = function() {
         </a>`;
             $(".cont-multichat").html(wsp)
 
+            document.title = `${data.razon_social} - ${new Date().getFullYear()}`
 
         }
     })
@@ -30,9 +59,6 @@ const obtener_wsp = function() {
 }
 
 const cargar_filtros = function() {
-
-    var url = new URL(window.location.href);
-    var params = new URLSearchParams(url.search);
 
     $.ajax({
         url: 'administrador/controller/frontend.php',
@@ -54,10 +80,7 @@ const cargar_filtros = function() {
 
 }
 
-const cargar_imagenes = function() {
-
-    var url = new URL(window.location.href);
-    var params = new URLSearchParams(url.search);
+const cargar_imagenes = function() { 
 
     $.ajax({
         url: 'administrador/controller/frontend.php',
@@ -95,8 +118,6 @@ const cargar_imagenes = function() {
 
 const cargar_web = function() {
 
-    var url = new URL(window.location.href);
-    var params = new URLSearchParams(url.search);
     document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
     $.ajax({
         url: 'administrador/controller/frontend.php',
@@ -146,7 +167,6 @@ const cargar_ultimo_registro = function() {
             if (data.status === 'error') {
                 window.location = './';
             } else {
-
                 console.log(data);
                 document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid);
             }
@@ -170,10 +190,10 @@ const cargar_redes = function() {
             const instagram = (data.instagram === '') ? '#!' : data.instagram;
             const tiktok = (data.tiktok === '') ? '#!' : data.tiktok;
             const youtube = (data.youtube === '') ? '#!' : data.youtube;
-            const html = `<a class="mx-2" href="${facebook}" target='_blank'><i class="fab fa-facebook-f"></i></a>
-            <a class="mx-2" href="${instagram}" target='_blank'><i class="fab fa-instagram"></i></a>
-            <a class="mx-2" href="${tiktok}" target='_blank'><i class="fab fa-tiktok"></i></a>
-            <a class="mx-2" href="${youtube}" target='_blank'><i class="fab fa-youtube"></i></a>`;
+            const html = `<a class="mx-2 facebook" href="${facebook}" target='_blank'><i class="fab fa-facebook-f"></i></a>
+            <a class="mx-2 instagram" href="${instagram}" target='_blank'><i class="fab fa-instagram"></i></a>
+            <a class="mx-2 tiktok" href="${tiktok}" target='_blank'><i class="fab fa-tiktok"></i></a>
+            <a class="mx-2 youtube" href="${youtube}" target='_blank'><i class="fab fa-youtube"></i></a>`;
 
             $('#redes-sociales').html(html);
         }

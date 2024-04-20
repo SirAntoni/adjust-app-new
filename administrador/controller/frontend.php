@@ -139,6 +139,10 @@ break;
         $obtener = json_encode($frontend->obtener_negocio($negocio));
         echo $obtener;
     break;
+    case 'obtener_fondo':
+        $obtener = json_encode($frontend->obtener_fondo($negocio));
+        echo $obtener;
+    break;
     default:
         echo 'ERROR';
     break;
