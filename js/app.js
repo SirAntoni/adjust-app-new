@@ -7,6 +7,7 @@ $(function() {
     cargar_ultimo_registro();
     obtener_negocio();
     obtener_fondos();
+    filtrar();
 
 })
 
@@ -69,10 +70,7 @@ const cargar_filtros = function() {
 
             let htmlHead = `<li><a class="categories text-white active" data-filter="*">Todo</a></li>`;
             data.forEach((filtro) => {
-                let data_filter = filtro.filtro
-                data_filter = data_filter.replace(/\s+/g, '-')
-                console.log(data_filter)
-                htmlHead = htmlHead + `<li><a class="categories text-white" data-filter=".${data_filter}">${filtro.filtro}</a></li>`;
+                htmlHead = htmlHead + `<li><a class="categories text-white" data-filter="${filtro.filtro}">${filtro.filtro}</a></li>`;
             })
             $('#filter').html(htmlHead);
         }
@@ -80,41 +78,57 @@ const cargar_filtros = function() {
 
 }
 
-const cargar_imagenes = function() { 
+const filtrar = () => {
+    $(document).on('click','.categories',function(){
+        cargar_imagenes(this.getAttribute('data-filter'))
+    })
+}
 
+const cargar_imagenes = function(filtro = '*') {
+    console.log(filtro)
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
         data: { opcion: 'cargar_imagenes', negocio: params.get('negocio') },
         success: function(response) {
             const data = JSON.parse(response);
-            let html = ``;
-            data.forEach((imagen) => {
-                let filtro = imagen.filtro
-                filtro = filtro.replace(/\s+/g, '-')
-                html = html + `<div class="col-lg-4 p-4 ${filtro}">
-                <div class="item-box">
-                    <a class="mfp-image" href="https://www.bootdey.com/image/800x540/D3D3D3/000000"
-                        title="${imagen.titulo}">
-                        <img class="item-container img-fluid"
-                            src="./assets/img/${imagen.imagen}"
-                            alt="work-img">
-                        <div class="item-mask">
-                            <div class="item-caption">
-                                <p class="text-dark mb-0">${imagen.titulo}</p>
-                                <h6 class="text-dark mt-1 text-uppercase">${imagen.descripcion}</h6>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>`;
-            })
+            let html = `<div class="swiper">
+            <div class="swiper-wrapper">`
+            console.log(data)
+            if(filtro === '*'){
+                data.map(x=>{
+                    html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
+                })
+            }else{
+                data.map(x=>{
+                    if(x.filtro === filtro){
+                        html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
+                    }
+                })
+            }
 
-            $('#imagenes').html(html);
+            html = html + `</div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-scrollbar"></div>
+            </div>`
+
+            $("#imagenes").html(html)
+
+            const swiper = new Swiper('.swiper', {
+                // Navigation arrows
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+              });
+
         }
     })
 
 }
+
 
 const cargar_web = function() {
 

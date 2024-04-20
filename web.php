@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -23,21 +23,22 @@ session_start();
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css'>
-    <link rel="stylesheet" href="./css/isotope.css">
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    .masthead {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 35rem;
-    padding: 15rem 0;
-    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/"); */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
-}
+    <style>
+        .masthead {
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 35rem;
+            padding: 15rem 0;
+            /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/"); */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+        }
+
         .cont-multichat {
             width: 70px;
             bottom: 10px;
@@ -60,6 +61,46 @@ session_start();
         .cont-multichat img {
             width: 70px;
         }
+
+        #filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        #filter li {
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    .swiper-slide img{
+        max-width: 300px;
+        max-height: 300x;
+    }
     </style>
 </head>
 
@@ -162,9 +203,9 @@ session_start();
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="text-center">
-                                    <ul class="col  container-filter portfolioFilte list-unstyled mb-0" id="filter">
-                                        <li><a class="categories text-white active" data-filter="*">Todo</a></li>
+                                <div>
+                                    <ul class="list-unstyled mb-0" id="filter">
+                                        <li><a class="categories text-white" data-filter="*">Todo</a></li>
                                         <li><a class="categories text-white" data-filter=".branding">Aros</a></li>
                                         <li><a class="categories text-white" data-filter=".design">Faros</a></li>
                                         <li><a class="categories text-white" data-filter=".photo">Neumaticos</a></li>
@@ -190,7 +231,10 @@ session_start();
     </section>
     <section class="contact-section bg-black">
         <div id='mapa'>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8071829125565!2d-77.03999758860083!3d-12.056783842039627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c6c76e03e5%3A0x3e12ff686b901453!2sReal%20Plaza%20Centro%20C%C3%ADvico!5e0!3m2!1ses-419!2spe!4v1697848059247!5m2!1ses-419!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.8071829125565!2d-77.03999758860083!3d-12.056783842039627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c6c76e03e5%3A0x3e12ff686b901453!2sReal%20Plaza%20Centro%20C%C3%ADvico!5e0!3m2!1ses-419!2spe!4v1697848059247!5m2!1ses-419!2spe"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
     <!-- Signup-->
@@ -285,9 +329,9 @@ session_start();
     <script src="js/app.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <script src="./js/isotope.js"></script>
-    
+
 
 </body>
 

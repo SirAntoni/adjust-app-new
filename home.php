@@ -9,8 +9,6 @@ if($_SESSION['tipo'] === 2){
     header('Location: web?negocio='.$_SESSION["razon_social"]);
 }
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
