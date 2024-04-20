@@ -326,10 +326,23 @@ class Negocios extends Conectar
                     "message" => "Error del sistema, comunicate con al Admnistrador de Sistemas."
                 ];
             } else {
-                if ($sql->rowCount() > 0) {
-                    $data                = $sql->fetch(PDO::FETCH_ASSOC);
-                    $contrasenaEncriptada = $data['contrasena'];
 
+
+
+                if ($sql->rowCount() > 0) {
+
+                   
+
+                    $data                = $sql->fetch(PDO::FETCH_ASSOC);
+
+                    $obtener_usuarios = 'SELECT * FROM usuarios WHERE negocio = ?';
+                    $obtener_usuarios = $this->db->prepare($obtener_usuarios);
+                    $obtener_usuarios->bindValue(1,$data['id']);
+                    
+                    $obtener_usuarios->execute();
+                    $tipo = 1;
+                    if($obtener_usuarios->rowCount() > 0) $tipo = 2;
+                    $contrasenaEncriptada = $data['contrasena'];
                     if (password_verify($contrasena, $contrasenaEncriptada) == true) {
 
                         $_SESSION['id']              = $data['id'];
@@ -339,6 +352,7 @@ class Negocios extends Conectar
                         $_SESSION['estado']     = $data['estado'];
                         $_SESSION['fondo_home']     = $data['fondo_home'];
                         $_SESSION['fondo_galeria']     = $data['fondo_galeria'];
+                        $_SESSION['tipo'] = $tipo;
                         
                         $response = [
                             "status" => "success",

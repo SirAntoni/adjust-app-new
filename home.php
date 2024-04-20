@@ -5,6 +5,12 @@ if(!isset($_SESSION['id'])){
     header('Location: ./');
 }
 
+if($_SESSION['tipo'] === 2){
+    header('Location: web?negocio='.$_SESSION["razon_social"]);
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -128,6 +134,7 @@ if(!isset($_SESSION['id'])){
 </body>
 
 <script>
+
 const btnGaleria = document.getElementById('galeria');
 const btnNosotros = document.getElementById('nosotros');
 btnGaleria.addEventListener('click', function(e) {
