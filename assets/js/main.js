@@ -6,7 +6,6 @@ $(function() {
     listar_anios();
     buscar();
     obtener_auto();
-    obtener_negocio();
     localStorage.removeItem('fullscreen');
 })
 
@@ -461,32 +460,5 @@ const obtener_auto = function() {
 
 
 
-
-}
-
-
-const obtener_negocio = function() {
-
-    $.ajax({
-        url: 'administrador/controller/frontend',
-        method: 'POST',
-        data: { opcion: 'obtener_negocio' },
-        success: function(response) {
-
-            const data = JSON.parse(response);
-            const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=Hola,%20necesito%20sus%20informacion' title="Whatsapp" target="_blank" style="cursor:pointer;">
-            <img src="assets/images/wp.png" alt="Whatsapp">
-        </a>`;
-            let html = `<a href="${data.facebook}" target='_blank' class='social'><i class="fab fa-facebook fa-lg"></i></a><a href="${data.instagram}" target='_blank' class='social'><i
-            class="fab fa-instagram-square fa-lg""></i></a><a href="${data.tiktok}" target='_blank' class='social'><i
-                class="fab fa-tiktok fa-lg""></i></a><a href="${data.youtube}"  target='_blank' class='social'><i
-                    class="fab fa-youtube fa-lg""></i></a>`;
-
-            $("#redes").html(html)
-            $(".cont-multichat").html(wsp)
-
-
-        }
-    })
 
 }
