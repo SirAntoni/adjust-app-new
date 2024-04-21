@@ -330,29 +330,7 @@ session_start();
 
     }
 
-    public function cargar_ultimo_registro($negocio)
-    {
-        $buscar = "SELECT * FROM negocios WHERE razon_social = ?";
-        $buscar = $this->db->prepare($buscar);
-        $buscar->bindValue(1, $negocio);
-        $buscar->execute();
-        $negocio = $buscar->fetch(PDO::FETCH_ASSOC);
-
-        if($negocio){
-            
-            $registro = "SELECT * FROM autos WHERE negocio_id = ? ORDER BY id DESC LIMIT 1";
-            $registro =  $this->db->prepare($registro);
-            $registro->bindValue(1,$negocio['id']);
-            $registro->execute();
-            return $registro->fetch(PDO::FETCH_ASSOC);
-        }else{
-            $response = [
-                "status" => "error"
-            ];
-            
-            return $response;
-        }
-    }
+   
     </script>
 </body>
 

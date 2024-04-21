@@ -8,8 +8,6 @@ $(function() {
     obtener_auto();
     obtener_negocio();
     localStorage.removeItem('fullscreen');
-
-
 })
 
 const login = () => {
