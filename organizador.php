@@ -290,9 +290,10 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
-    <!--script src="js/app.js"></script-->
+    
     <script src="assets/js/circlr.min.js"></script>
     <script src="assets/js/main.js?code=<?php echo date('ymdsis') ?>"></script>
+    <script src="js/app.js"></script>
     <script src="assets/js/notiflix.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
@@ -300,7 +301,6 @@ session_start();
     $(function() {
         $('[data-toggle="tooltip"]').tooltip();
         cargar_logo();
-        cargar_ultimo_registro();
     })
 
     const cargar_logo = function() {
