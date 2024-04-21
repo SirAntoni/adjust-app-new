@@ -290,7 +290,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
-    <script src="js/app.js"></script>
+    <!--script src="js/app.js"></script-->
     <script src="assets/js/circlr.min.js"></script>
     <script src="assets/js/main.js?code=<?php echo date('ymdsis') ?>"></script>
     <script src="assets/js/notiflix.js"></script>
