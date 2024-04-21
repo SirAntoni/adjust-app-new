@@ -3,7 +3,7 @@ $(function() {
     cargar_web();
     cargar_redes();
     cargar_filtros();
-    // cargar_imagenes();
+    cargar_imagenes();
     cargar_ultimo_registro();
     obtener_negocio();
     obtener_fondos();
@@ -84,50 +84,59 @@ const filtrar = () => {
     })
 }
 
-// const cargar_imagenes = function(filtro = '*') {
-//     console.log(filtro)
-//     $.ajax({
-//         url: 'administrador/controller/frontend.php',
-//         method: 'POST',
-//         data: { opcion: 'cargar_imagenes', negocio: params.get('negocio') },
-//         success: function(response) {
-//             const data = JSON.parse(response);
-//             let html = `<div class="swiper">
-//             <div class="swiper-wrapper">`
-//             console.log(data)
-//             if(filtro === '*'){
-//                 data.map(x=>{
-//                     html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
-//                 })
-//             }else{
-//                 data.map(x=>{
-//                     if(x.filtro === filtro){
-//                         html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
-//                     }
-//                 })
-//             }
+const cargar_imagenes = function(filtro = '*') {
+    console.log(filtro)
+    $.ajax({
+        url: 'administrador/controller/frontend.php',
+        method: 'POST',
+        data: { opcion: 'cargar_imagenes', negocio: params.get('negocio') },
+        success: function(response) {
+            const data = JSON.parse(response);
+            let html = `<div class="swiper">
+            <div class="swiper-wrapper">`
+            console.log(data)
+            if(filtro === '*'){
+                data.map(x=>{
+                    html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
+                })
+            }else{
+                data.map(x=>{
+                    if(x.filtro === filtro){
+                        html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
+                    }
+                })
+            }
 
-//             html = html + `</div>
-//             <div class="swiper-pagination"></div>
-//             <div class="swiper-button-prev"></div>
-//             <div class="swiper-button-next"></div>
-//             <div class="swiper-scrollbar"></div>
-//             </div>`
+            html = html + `</div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-scrollbar"></div>
+            </div>`
 
-//             $("#imagenes").html(html)
+            $("#imagenes").html(html)
 
-//             const swiper = new Swiper('.swiper', {
-//                 // Navigation arrows
-//                 navigation: {
-//                   nextEl: '.swiper-button-next',
-//                   prevEl: '.swiper-button-prev',
-//                 },
-//               });
+            var swiper = new Swiper(".swiper", {
+                slidesPerView: 3,
+                spaceBetween: 10,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                  },
+                pagination: {
+                  el: ".swiper-pagination",
+                  clickable: true,
+                },
+              });
 
-//         }
-//     })
+        }
+    })
 
-// }
+}
 
 
 const cargar_web = function() {
