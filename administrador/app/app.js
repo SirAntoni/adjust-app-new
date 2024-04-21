@@ -3478,13 +3478,51 @@ var data_eliminar_autoparte = function(tbody, table) {
 }
 
 var crear_autoparte = function() {
-
+    
     $("#formCrearAutoparte").submit(function(e) {
         e.preventDefault();
         const urlParams = new URLSearchParams(window.location.search);
         const padre_id = (urlParams.get('padre_id')) ? urlParams.get('padre_id') : "";
         const formData = new FormData($('#formCrearAutoparte')[0]);
         formData.append("padre_id", padre_id)
+        $.ajax({
+            url: "controller/autopartes.php",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                Notiflix.Block.Pulse('.modal-content');
+            },
+            complete: function() {
+                Notiflix.Block.Remove('.modal-content');
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                if (response.status == "success") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+
+                    $("#dataTableAutopartes").DataTable().ajax.reload();
+                    $("#formCrearAutoparte").trigger('reset');
+                    $("#modalCrearAutoparte").modal("hide");
+
+
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            }
+        })
 
     })
 
