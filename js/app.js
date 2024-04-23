@@ -7,13 +7,15 @@ $(function() {
     cargar_web();
     cargar_redes();
     cargar_filtros();
-    cargar_imagenes();
     cargar_ultimo_registro();
     obtener_negocio();
     obtener_fondos();
     filtrar();
-
-    console.log(params.get('negocio'))
+    
+    if(params.get('type') !== 'organizador'){
+        cargar_imagenes();
+    }
+    
 
 })
 

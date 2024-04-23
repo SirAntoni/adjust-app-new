@@ -10,6 +10,7 @@ $(function() {
     filtrar_categorias()
     filtrar_subcategorias()
     reset_categorias()
+    reset_subcategorias()
 })
 
 const filtrar_categorias = () => {
@@ -22,7 +23,8 @@ const filtrar_categorias = () => {
 const filtrar_subcategorias = () => {
     $('#btnSubcategorias').on('click',function(){
         const data = $('#textSubcategorias').val();
-        //obtener_auto(data)
+        const categoria  = localStorage.getItem('categoria')
+       obtenerAutoparte(categoria,data)
     })
 }
 
@@ -30,6 +32,12 @@ const filtrar_subcategorias = () => {
 const reset_categorias = () => {
     $('#btnResetCategorias').on('click',function(){
         obtener_auto()
+    })
+}
+const reset_subcategorias = () => {
+    $('#btnResetSubcategorias').on('click',function(){
+        const categoria  = localStorage.getItem('categoria')
+        obtenerAutoparte(categoria,'')
     })
 }
 
@@ -382,8 +390,7 @@ function mostrarAutoparte(autoparte) {
 function obtenerAutoparte(categoria, filtro = '') {
 
 
-    const localCategoria = localStorage.setItem('categoria',categoria)
-    //alert(local.getItem('categoria'))
+    localStorage.setItem('categoria',categoria)
 
     var titulo = document.getElementById("autoparte_seccion_titulo");
     var cotenido = document.getElementById("autoparte_seccion_contenido");
@@ -403,6 +410,12 @@ function obtenerAutoparte(categoria, filtro = '') {
 
                 return autoparte.autoparte === filtro
             })
+
+            if(data2.length === 0) return Swal.fire(
+                'Sin resultados!!',
+                'No se encontrarón resultados para esta busqueda',
+                'error'
+            )
 
             data2.forEach(autoparte => {
                 html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
@@ -449,7 +462,7 @@ const obtener_auto = function(filtro = '') {
     const module = urlParams.get('module');
     const validar = window.location.pathname
     if (!validar.includes('galeria')) {
-        console.log('no es galeria');
+
         $.ajax({
             url: 'administrador/controller/frontend',
             method: 'POST',
