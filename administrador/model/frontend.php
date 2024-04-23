@@ -154,6 +154,7 @@ class Frontend extends Conectar
 
     public function cargar_ultimo_registro($negocio)
     {
+        
         $buscar = "SELECT * FROM negocios WHERE razon_social = ?";
         $buscar = $this->db->prepare($buscar);
         $buscar->bindValue(1, $negocio);
@@ -161,7 +162,6 @@ class Frontend extends Conectar
         $negocio = $buscar->fetch(PDO::FETCH_ASSOC);
 
         if($negocio){
-            
             $registro = "SELECT * FROM autos WHERE negocio_id = ? ORDER BY id DESC LIMIT 1";
             $registro =  $this->db->prepare($registro);
             $registro->bindValue(1,$negocio['id']);

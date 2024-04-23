@@ -81,7 +81,6 @@ session_start();
     }
 
     .select_accesorios {
-        padding: 0;
         background: #ccc;
 
     }
@@ -92,7 +91,7 @@ session_start();
         color: #FFF;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     .stock {
@@ -125,9 +124,13 @@ session_start();
     }
 
     .carousel-cell {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #000;
         width: 200px;
         /* half-width */
-        height: 150px;
+        height: 200px;
         margin-right: 10px;
     }
 
@@ -167,6 +170,24 @@ session_start();
 
     .cont-multichat img {
         width: 70px;
+    }
+
+    .txtBusqueda{
+        outline: none;
+    }
+
+    .btnBusqueda{
+        border:none;
+        color:black;
+        padding: 3px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #e7e7e7;
+        margin-left: 3px;
+    }
+
+    .btnBusqueda:hover{
+        background: #ddd;
     }
 
     @media (max-width : 780px) {
@@ -243,7 +264,7 @@ session_start();
                 <div id='detalle_colores' class="col-md-12 colores">
                 </div>
                 <div class="col-md-12 titulo_categoria">
-                    Seleccione una categoria
+                    Seleccione una categoria <div><input type='text' class='txtBusqueda' placeholder="Filtrar" id='textCategorias' /><input id='btnCategorias' type='button' value='Buscar' class='btnBusqueda' /><input class='btnBusqueda' id='btnResetCategorias' type='button' value='Reset'/></div>
                 </div>
                 <div class="col-md-12 categorias">
                     <div id="carousel_categorias" class="carousel_categorias">
@@ -252,7 +273,7 @@ session_start();
                     </div>
                 </div>
                 <div id="autoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
-                    Seleccione un accesorio
+                    Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar" id='textSubcategorias' /><input id='btnSubcategorias' type='button' value='Buscar' class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias' type='button' value='Reset'/></div>
                 </div>
                 <div id="autoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
                     <div id="carousel_autopartes" class="carousel_autopartes">
@@ -296,7 +317,7 @@ session_start();
     <script src="js/app.js"></script>
     <script src="assets/js/notiflix.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     $(function() {
         $('[data-toggle="tooltip"]').tooltip();

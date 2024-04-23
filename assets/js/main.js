@@ -7,7 +7,31 @@ $(function() {
     buscar();
     obtener_auto();
     localStorage.removeItem('fullscreen');
+    filtrar_categorias()
+    filtrar_subcategorias()
+    reset_categorias()
 })
+
+const filtrar_categorias = () => {
+    $('#btnCategorias').on('click',function(){
+        const data = $('#textCategorias').val();
+        obtener_auto(data)
+    })
+}
+
+const filtrar_subcategorias = () => {
+    $('#btnSubcategorias').on('click',function(){
+        const data = $('#textSubcategorias').val();
+        //obtener_auto(data)
+    })
+}
+
+
+const reset_categorias = () => {
+    $('#btnResetCategorias').on('click',function(){
+        obtener_auto()
+    })
+}
 
 const login = () => {
 
@@ -355,7 +379,12 @@ function mostrarAutoparte(autoparte) {
     })
 }
 
-function obtenerAutoparte(categoria) {
+function obtenerAutoparte(categoria, filtro = '') {
+
+
+    const localCategoria = localStorage.setItem('categoria',categoria)
+    //alert(local.getItem('categoria'))
+
     var titulo = document.getElementById("autoparte_seccion_titulo");
     var cotenido = document.getElementById("autoparte_seccion_contenido");
     cotenido.classList.remove("d-none");
@@ -367,10 +396,16 @@ function obtenerAutoparte(categoria) {
         data: { opcion: 'obtener_autopartes', categoria },
         success: function(response) {
             const data = JSON.parse(response);
-            console.log(data);
             let html = ``;
-            data.forEach(autoparte => {
-                html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"></div>`;
+
+            const data2 = data.filter(autoparte => {
+                if(filtro === '') return autoparte.autoparte
+
+                return autoparte.autoparte === filtro
+            })
+
+            data2.forEach(autoparte => {
+                html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
             })
 
             $("#carousel_autopartes").flickity('destroy');
@@ -408,7 +443,7 @@ function fullScreen() {
 
 }
 
-const obtener_auto = function() {
+const obtener_auto = function(filtro = '') {
     const urlParams = new URLSearchParams(window.location.search);
     const auto = urlParams.get('auto');
     const module = urlParams.get('module');
@@ -434,13 +469,25 @@ const obtener_auto = function() {
                 })
 
                 let html_categorias = ``;
-                data.categorias.forEach(categoria => {
-                    html_categorias = html_categorias + `<div class="carousel-cell"><img src="assets/images/categorias/${categoria.cover}" onclick="obtenerAutoparte('${categoria.uuid}')" alt="${categoria.categoria}"></div>`;
+                let { categorias } = data
+                const categorias2 = categorias.filter(x => {
+                    if(filtro == '') return x.categoria
+                    return x.categoria === filtro
+                })
+
+                if(categorias2.length === 0) return Swal.fire(
+                    'Sin resultados!!',
+                    'No se encontrarón resultados para esta busqueda',
+                    'error'
+                )
+
+                categorias2.forEach(categoria => {
+                    html_categorias = html_categorias + `<div class="carousel-cell"><img src="assets/images/categorias/${categoria.cover}" onclick="obtenerAutoparte('${categoria.uuid}')" alt="${categoria.categoria}"><p class='text-center mt-2 text-white'>${categoria.categoria}</p></div>`;
                 })
 
                 html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
 
-                // $("carousel_categorias").flickity('destroy');
+                $("#carousel_categorias").flickity('destroy');
                 $("#carousel_categorias").html(html_categorias);
                 $("#carousel_categorias").flickity({
                     contain: true

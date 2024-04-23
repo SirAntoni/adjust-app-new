@@ -1,3 +1,7 @@
+var url = new URL(window.location.href);
+var params = new URLSearchParams(url.search);
+
+
 $(function() {
 
     cargar_web();
@@ -9,10 +13,11 @@ $(function() {
     obtener_fondos();
     filtrar();
 
+    console.log(params.get('negocio'))
+
 })
 
-var url = new URL(window.location.href);
-var params = new URLSearchParams(url.search);
+
 
 const obtener_fondos = async () => {
 
@@ -85,7 +90,6 @@ const filtrar = () => {
 }
 
 const cargar_imagenes = function(filtro = '*') {
-    console.log(filtro)
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
@@ -94,7 +98,6 @@ const cargar_imagenes = function(filtro = '*') {
             const data = JSON.parse(response);
             let html = `<div class="swiper">
             <div class="swiper-wrapper">`
-            console.log(data)
             if(filtro === '*'){
                 data.map(x=>{
                     html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
@@ -190,8 +193,7 @@ const cargar_ultimo_registro = function() {
             if (data.status === 'error') {
                 window.location = './';
             } else {
-                console.log(data);
-                document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid);
+                document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
             }
 
         }
