@@ -283,7 +283,7 @@ session_start();
                     </div>
                 </div>
                 <div id="subautoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
-                    Seleccione un accesorio
+                    Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar" id='textSubcategorias2' /><input id='btnSubcategorias2' type='button' value='Buscar' class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias2' type='button' value='Reset'/></div>
                 </div>
                 <div id="subautoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
                     <div id="subcarousel_autopartes" class="subcarousel_autopartes">

@@ -7,10 +7,14 @@ $(function() {
     buscar();
     obtener_auto();
     localStorage.removeItem('fullscreen');
+    localStorage.removeItem('categoria');
+    localStorage.removeItem('autoparte');
     filtrar_categorias()
     filtrar_subcategorias()
     reset_categorias()
     reset_subcategorias()
+    filtrar_subcategorias2()
+    reset_subcategorias2()
 })
 
 const filtrar_categorias = () => {
@@ -28,6 +32,14 @@ const filtrar_subcategorias = () => {
     })
 }
 
+const filtrar_subcategorias2 = () => {
+    $('#btnSubcategorias2').on('click',function(){
+        const data = $('#textSubcategorias2').val();
+        const autoparte  = localStorage.getItem('autoparte')
+        mostrarAutoparte(autoparte,data)
+    })
+}
+
 
 const reset_categorias = () => {
     $('#btnResetCategorias').on('click',function(){
@@ -38,6 +50,13 @@ const reset_subcategorias = () => {
     $('#btnResetSubcategorias').on('click',function(){
         const categoria  = localStorage.getItem('categoria')
         obtenerAutoparte(categoria,'')
+    })
+}
+
+const reset_subcategorias2 = () => {
+    $('#btnResetSubcategorias2').on('click',function(){
+        const autoparte  = localStorage.getItem('autoparte')
+        mostrarAutoparte(autoparte,'')
     })
 }
 
@@ -203,8 +222,6 @@ const listar_anios = () => {
             modelo
         }
 
-        console.log(body);
-
         $.ajax({
             url: 'administrador/controller/frontend',
             method: 'POST',
@@ -289,7 +306,10 @@ function cambiarColor(color) {
     })
 }
 
-function mostrarAutoparte(autoparte) {
+function mostrarAutoparte(autoparte, filtro = '') {
+
+    localStorage.setItem('autoparte', autoparte)
+
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
@@ -298,8 +318,6 @@ function mostrarAutoparte(autoparte) {
 
             const data = JSON.parse(response);
             if (data.autoparte.tipo === "subcategoria") {
-
-                alert('Paso por subcategorias')
 
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var cotenido = document.getElementById("subautoparte_seccion_contenido");
@@ -312,10 +330,23 @@ function mostrarAutoparte(autoparte) {
                     data: { opcion: 'obtener_subautopartes', padre_id: data.autoparte.uuid },
                     success: function(response) {
                         const data = JSON.parse(response);
-                        console.log(data);
+
                         let html = ``;
-                        data.forEach(autoparte => {
-                            html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"></div>`;
+
+                        const data2 = data.filter(autoparte => {
+                            if(filtro === '') return autoparte.autoparte
+                            const regex = new RegExp(filtro, "i");
+                            return regex.test(autoparte.autoparte)
+                        })
+            
+                        if(data2.length === 0) return Swal.fire(
+                            'Sin resultados!!',
+                            'No se encontrarón resultados para esta busqueda',
+                            'error'
+                        )
+
+                        data2.forEach(autoparte => {
+                            html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte('${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
                         })
 
                         $("#subcarousel_autopartes").flickity('destroy');
@@ -327,9 +358,6 @@ function mostrarAutoparte(autoparte) {
                 })
 
             } else {
-
-                alert('Paso por productos')
-
 
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var contenido = document.getElementById("subautoparte_seccion_contenido");
