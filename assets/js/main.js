@@ -361,8 +361,8 @@ function mostrarAutoparte(autoparte, filtro = '') {
 
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var contenido = document.getElementById("subautoparte_seccion_contenido");
-                titulo.className = "col-md-12 titulo_categoria select_accesorios d-none"
-                contenido.className = "col-md-12 select_accesorios d-none"
+               // titulo.className = "col-md-12 titulo_categoria select_accesorios d-none"
+                //contenido.className = "col-md-12 select_accesorios d-none"
 
                 let detalle_html = "";
                 let descgeneral = "";
