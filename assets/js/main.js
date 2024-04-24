@@ -298,6 +298,9 @@ function mostrarAutoparte(autoparte) {
 
             const data = JSON.parse(response);
             if (data.autoparte.tipo === "subcategoria") {
+
+                alert('Paso por subcategorias')
+
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var cotenido = document.getElementById("subautoparte_seccion_contenido");
                 cotenido.classList.remove("d-none");
@@ -324,6 +327,9 @@ function mostrarAutoparte(autoparte) {
                 })
 
             } else {
+
+                alert('Paso por productos')
+
 
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var contenido = document.getElementById("subautoparte_seccion_contenido");
@@ -407,8 +413,8 @@ function obtenerAutoparte(categoria, filtro = '') {
 
             const data2 = data.filter(autoparte => {
                 if(filtro === '') return autoparte.autoparte
-
-                return autoparte.autoparte === filtro
+                const regex = new RegExp(filtro, "i");
+                return regex.test(autoparte.autoparte)
             })
 
             if(data2.length === 0) return Swal.fire(
@@ -485,7 +491,8 @@ const obtener_auto = function(filtro = '') {
                 let { categorias } = data
                 const categorias2 = categorias.filter(x => {
                     if(filtro == '') return x.categoria
-                    return x.categoria === filtro
+                    const regex = new RegExp(filtro, "i");
+                    return regex.test(x.categoria)
                 })
 
                 if(categorias2.length === 0) return Swal.fire(

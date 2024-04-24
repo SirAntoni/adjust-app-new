@@ -282,6 +282,16 @@ session_start();
                         <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
                     </div>
                 </div>
+                <div id="subautoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
+                    Seleccione un accesorio
+                </div>
+                <div id="subautoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
+                    <div id="subcarousel_autopartes" class="subcarousel_autopartes">
+                        <div class="carousel-cell"><img src="assets/images/body_kits.jpeg" alt=""></div>
+                        <div class="carousel-cell"><img src="assets/images/fr_bumper.jpeg" alt=""></div>
+                        <div class="carousel-cell"><img src="assets/images/fr_wheels.jpeg" alt=""></div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div id="carousel_accesorios" class="carousel_accesorios">
                     </div>
