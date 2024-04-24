@@ -190,6 +190,29 @@ session_start();
         background: #ddd;
     }
 
+    #detalles-producto {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 300px;
+            height: 300px;
+            text-align: left;
+        }
+
+        #detalles-producto h4{
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        .descgeneral{
+            position:absolute;
+            top:50px;
+            right: 70px !important;
+            width: 300px !important;
+            text-align: right;
+        }
+
     @media (max-width : 780px) {
         .color img {
             width: 20px;
@@ -254,13 +277,26 @@ session_start();
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
                 <div class="col-md-12 auto">
+                    <div id="detalles-producto" class="info">
+
+                    </div>
                     <div id='auto360' class="img-wrap">
                         <div id="circlrDiv">
 
 
                         </div>
                     </div>
+                    <div id="descgeneral" class="descgeneral">
+                    </div>
                 </div>
+                <!--div class="col-md-12 auto">
+                    <div id='auto360' class="img-wrap">
+                        <div id="circlrDiv">
+
+
+                        </div>
+                    </div>
+                </div-->
                 <div id='detalle_colores' class="col-md-12 colores">
                 </div>
                 <div class="col-md-12 titulo_categoria">
