@@ -268,7 +268,7 @@ class Frontend extends Conectar
 
         $resultado['imagenes'] = $imagenes;
 
-        $color = "SELECT * FROM colores WHERE auto_uuid = ?";
+        $color = "SELECT * FROM colores WHERE auto_uuid = ? AND estado = 1";
         $color =  $this->db->prepare($color);
         $color->bindValue(1, $autoparte['uuid']);
         $color->execute();
