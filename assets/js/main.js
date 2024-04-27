@@ -368,23 +368,12 @@ function mostrarAutoparte(autoparte, filtro = '') {
                 let descgeneral = "";
                 
                 if(data.autoparte.descgeneral != ""){
-                    descgeneral = `<h1>Descripción</h1><p>${data.autoparte.descgeneral}</p>` 
+                    descgeneral = `<div>${data.autoparte.descgeneral}</div>` 
                 }
 
 
-                if (data.autoparte.t1 !== "") {
-                    detalle_html = `<div class="info-detalle py-3">
-                    <h4>${data.autoparte.t1}</h4>
-                    <p>${data.autoparte.d1}</p>
-                </div>
-                <div class="info-detalle py-3">
-                <h4>${data.autoparte.t2}</h4>
-                <p>${data.autoparte.d2}</p>
-                </div>
-                <div class="info-detalle py-3">
-                <h4>${data.autoparte.t3}</h4>
-                <p>${data.autoparte.d3}</p>
-                </div>`;
+                if (data.autoparte.detalles !== "") {
+                    detalle_html = `<div>${data.autoparte.detalles}</div>`;
                 }
 
 

@@ -18,13 +18,8 @@ $tipo = '';
 $stock = '';
 $padre_id = '';
 $opcion = '';
-$titulo1 = '';
-$titulo2 = '';
-$titulo3= '';
-$desc1 = '';
-$desc2 = '';
-$desc3='';
 $descgeneral = '';
+$detalles = '';
 
 
 if(isset($_POST['id'])){
@@ -37,29 +32,16 @@ if(isset($_POST['color'])){
     $color = $_POST['color'];
 }
 
-if(isset($_POST['titulo1'])){
-    $titulo1 = $_POST['titulo1'];
-}
-if(isset($_POST['titulo2'])){
-    $titulo2 = $_POST['titulo2'];
-}
-if(isset($_POST['titulo3'])){
-    $titulo3 = $_POST['titulo3'];
+
+if(isset($_POST['descgeneralHtml'])){
+    $descgeneral = $_POST['descgeneralHtml'];
 }
 
-if(isset($_POST['desc1'])){
-    $desc1 = $_POST['desc1'];
-}
-if(isset($_POST['desc2'])){
-    $desc2 = $_POST['desc2'];
-}
-if(isset($_POST['desc3'])){
-    $desc3 = $_POST['desc3'];
+if(isset($_POST['detallesHtml'])){
+    $detalles= $_POST['detallesHtml'];
 }
 
-if(isset($_POST['descgeneral'])){
-    $descgeneral = $_POST['descgeneral'];
-}
+
 
 if(isset($_POST['uuid'])){
     $uuid = $_POST['uuid'];
@@ -114,14 +96,14 @@ switch ($opcion){
         $autopartes->crear_autoparte($uuid,$autoparte,$stock,$nombre_img,$categoria,$padre_id);
     break;
     case 'editar':
-
+        
         if (empty($_FILES['cover']['name'])) {
             $nombre_img = $_POST['archivo'];
         } else {
             $nombre_img = $_FILES['cover']['name'];
         }
 
-        $autopartes->editar_autoparte($id,$autoparte,$stock,$nombre_img,$color,$tipo,$titulo1,$titulo2,$titulo3,$desc1,$desc2,$desc3,$descgeneral);
+        $autopartes->editar_autoparte($id,$autoparte,$stock,$nombre_img,$color,$tipo,$detalles,$descgeneral);
 
     break;
     case 'eliminar':
@@ -135,5 +117,3 @@ switch ($opcion){
         echo 'Error';
     break;
 }
-
-?>

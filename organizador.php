@@ -22,222 +22,222 @@ session_start();
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
     <style>
-    body {
-        /* background: url(assets/images/bg/ ?>); */
-        background-size: cover;
-        background-repeat: no-repeat;
-        margin: 0;
-    }
+        body {
+            /* background: url(assets/images/bg/ ?>); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
 
-    .auto {
-        background: #FFF;
-    }
+        .auto {
+            background: #FFF;
+        }
 
-    #auto360 {
-        width: 500px;
-        margin: auto;
-        background: #FFF;
-        height: 300px;
-    }
+        #auto360 {
+            width: 500px;
+            margin: auto;
+            background: #FFF;
+            height: 300px;
+        }
 
-    .color img {
-        width: 30px;
-        border-radius: 50%;
-        margin: 10px 5px;
-        cursor: pointer;
-    }
+        .color img {
+            width: 30px;
+            border-radius: 50%;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
 
-    .colores {
-        display: flex;
-        justify-content: center;
-        background: #ccc;
-    }
+        .colores {
+            display: flex;
+            justify-content: center;
+            background: #ccc;
+        }
 
-    .accesorio {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0px 0px 0px 10px;
+        .accesorio {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px 0px 0px 10px;
 
-    }
+        }
 
-    .redes {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-right: 1px solid #fff;
-        border-left: 1px solid #fff;
-    }
+        .redes {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+        }
 
-    .categorias {
-        padding: 0;
-        background: #ccc;
-    }
+        .categorias {
+            padding: 0;
+            background: #ccc;
+        }
 
-    .select_accesorios {
-        background: #ccc;
+        .select_accesorios {
+            background: #ccc;
 
-    }
+        }
 
-    .titulo_categoria {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+        .titulo_categoria {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .stock {
-        background: #1c1c1c;
-        height: 60px;
-        color: #FFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0px 0px 10px 0px;
-    }
+        .stock {
+            background: #1c1c1c;
+            height: 60px;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px 0px 10px 0px;
+        }
 
-    .autopartes {
-        padding: 0;
-    }
+        .autopartes {
+            padding: 0;
+        }
 
-    .nombre_auto {
-        background: #1c1c1c;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60px;
-        color: #ffffff;
-        border-radius: 10px 10px 0px 0px;
-    }
+        .nombre_auto {
+            background: #1c1c1c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            color: #ffffff;
+            border-radius: 10px 10px 0px 0px;
+        }
 
-    .app {
-        margin: 40px auto;
-        width: 100%;
-    }
+        .app {
+            margin: 40px auto;
+            width: 100%;
+        }
 
-    .carousel-cell {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #000;
-        width: 200px;
-        /* half-width */
-        height: 200px;
-        margin-right: 10px;
-    }
+        .carousel-cell {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #000;
+            width: 200px;
+            /* half-width */
+            height: 200px;
+            margin-right: 10px;
+        }
 
-    .carousel-cell img {
-        height: 150px;
-    }
+        .carousel-cell img {
+            height: 150px;
+        }
 
-    .social {
-        color: #FFF;
-        margin-right: 10px;
-    }
+        .social {
+            color: #FFF;
+            margin-right: 10px;
+        }
 
-    .fullScreen {
-        margin: 8px 5px;
-        font-size: 25px;
-        cursor: pointer;
-    }
+        .fullScreen {
+            margin: 8px 5px;
+            font-size: 25px;
+            cursor: pointer;
+        }
 
-    .cont-multichat {
-        width: 70px;
-        bottom: 10px;
-        right: 16px;
-        position: fixed;
-        z-index: 1000
-    }
+        .cont-multichat {
+            width: 70px;
+            bottom: 10px;
+            right: 16px;
+            position: fixed;
+            z-index: 1000
+        }
 
-    .cont-multichat a {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 10px;
-        display: block;
-        box-shadow: 0 0 1px #999;
-        border-radius: 50%;
-        background: #fff;
-        color: #fff
-    }
+        .cont-multichat a {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+            display: block;
+            box-shadow: 0 0 1px #999;
+            border-radius: 50%;
+            background: #fff;
+            color: #fff
+        }
 
-    .cont-multichat img {
-        width: 70px;
-    }
+        .cont-multichat img {
+            width: 70px;
+        }
 
-    .txtBusqueda{
-        outline: none;
-    }
+        .txtBusqueda {
+            outline: none;
+        }
 
-    .btnBusqueda{
-        border:none;
-        color:black;
-        padding: 3px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        background-color: #e7e7e7;
-        margin-left: 3px;
-    }
+        .btnBusqueda {
+            border: none;
+            color: black;
+            padding: 3px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #e7e7e7;
+            margin-left: 3px;
+        }
 
-    .btnBusqueda:hover{
-        background: #ddd;
-    }
+        .btnBusqueda:hover {
+            background: #ddd;
+        }
 
-    #detalles-producto {
+        #detalles-producto {
             position: absolute;
-            top: 50px;
+            top: 10px;
             left: 50px;
             width: 300px;
             height: 300px;
             text-align: left;
         }
 
-        #detalles-producto h4{
+        #detalles-producto h4 {
             text-transform: uppercase;
             font-weight: bold;
             font-size: 28px;
         }
 
-        .descgeneral{
-            position:absolute;
-            top:50px;
+        .descgeneral {
+            position: absolute;
+            top: 10px;
             right: 70px !important;
             width: 300px !important;
             text-align: right;
         }
 
-    @media (max-width : 780px) {
-        .color img {
-            width: 20px;
+        @media (max-width : 780px) {
+            .color img {
+                width: 20px;
+            }
+
+            #auto360 {
+                width: 100%;
+                height: 250px;
+            }
+
+
+            .accesorio {
+                border-right: 0px solid !important;
+            }
+
+            .app {
+                width: 100%;
+            }
+
+            .fullScreen {
+                display: none;
+            }
+
+
         }
-
-        #auto360 {
-            width: 100%;
-            height: 250px;
-        }
-
-
-        .accesorio {
-            border-right: 0px solid !important;
-        }
-
-        .app {
-            width: 100%;
-        }
-
-        .fullScreen {
-            display: none;
-        }
-
-
-    }
     </style>
     <style>
 
@@ -261,11 +261,16 @@ session_start();
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Contacto</a></li>
-                        <li class="nav-item"><a id='organizador' class="nav-link" href="organizador">Organizador</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Inicio</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Nosotros</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Galeria</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick='window.history.go(-1)'>Contacto</a>
+                        </li>
+                        <li class="nav-item"><a id='organizador' class="nav-link" href="organizador">Organizador</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -300,7 +305,10 @@ session_start();
                 <div id='detalle_colores' class="col-md-12 colores">
                 </div>
                 <div class="col-md-12 titulo_categoria">
-                    Seleccione una categoria <div><input type='text' class='txtBusqueda' placeholder="Filtrar" id='textCategorias' /><input id='btnCategorias' type='button' value='Buscar' class='btnBusqueda' /><input class='btnBusqueda' id='btnResetCategorias' type='button' value='Reset'/></div>
+                    Seleccione una categoria <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
+                            id='textCategorias' /><input id='btnCategorias' type='button' value='Buscar'
+                            class='btnBusqueda' /><input class='btnBusqueda' id='btnResetCategorias' type='button'
+                            value='Reset' /></div>
                 </div>
                 <div class="col-md-12 categorias">
                     <div id="carousel_categorias" class="carousel_categorias">
@@ -309,7 +317,10 @@ session_start();
                     </div>
                 </div>
                 <div id="autoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
-                    Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar" id='textSubcategorias' /><input id='btnSubcategorias' type='button' value='Buscar' class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias' type='button' value='Reset'/></div>
+                    Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
+                            id='textSubcategorias' /><input id='btnSubcategorias' type='button' value='Buscar'
+                            class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias' type='button'
+                            value='Reset' /></div>
                 </div>
                 <div id="autoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
                     <div id="carousel_autopartes" class="carousel_autopartes">
@@ -319,7 +330,10 @@ session_start();
                     </div>
                 </div>
                 <div id="subautoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
-                    Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar" id='textSubcategorias2' /><input id='btnSubcategorias2' type='button' value='Buscar' class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias2' type='button' value='Reset'/></div>
+                    Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
+                            id='textSubcategorias2' /><input id='btnSubcategorias2' type='button' value='Buscar'
+                            class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias2' type='button'
+                            value='Reset' /></div>
                 </div>
                 <div id="subautoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
                     <div id="subcarousel_autopartes" class="subcarousel_autopartes">
@@ -353,11 +367,11 @@ session_start();
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
-    </script>
-    
+        </script>
+
     <script src="assets/js/circlr.min.js"></script>
     <script src="assets/js/main.js?code=<?php echo date('ymdsis') ?>"></script>
     <script src="js/app.js"></script>
@@ -365,39 +379,39 @@ session_start();
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        cargar_logo();
-    })
-
-    const cargar_logo = function() {
-
-        var url = new URL(window.location.href);
-        var params = new URLSearchParams(url.search);
-
-        $.ajax({
-            url: 'administrador/controller/frontend.php',
-            method: 'POST',
-            data: {
-                opcion: 'cargar_web',
-                negocio: params.get('negocio')
-            },
-            success: function(response) {
-                const data = JSON.parse(response);
-
-                if (data.status === 'error') {
-                    window.location = './';
-                } else {
-
-                    $("#webLogo").html(`<img width=200px' src="./assets/img/${data.logo}" alt="">`);
-                }
-
-            }
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            cargar_logo();
         })
 
-    }
+        const cargar_logo = function () {
 
-   
+            var url = new URL(window.location.href);
+            var params = new URLSearchParams(url.search);
+
+            $.ajax({
+                url: 'administrador/controller/frontend.php',
+                method: 'POST',
+                data: {
+                    opcion: 'cargar_web',
+                    negocio: params.get('negocio')
+                },
+                success: function (response) {
+                    const data = JSON.parse(response);
+
+                    if (data.status === 'error') {
+                        window.location = './';
+                    } else {
+
+                        $("#webLogo").html(`<img width=200px' src="./assets/img/${data.logo}" alt="">`);
+                    }
+
+                }
+            })
+
+        }
+
+
     </script>
 </body>
 

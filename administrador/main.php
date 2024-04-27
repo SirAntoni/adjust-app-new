@@ -10,7 +10,7 @@ if (!isset($_GET['module'])) {
     header('Location:main?module=dashboard');
 }
 
-if($_GET['module'] == 'dashboard' && $_SESSION['id'] !== "1") {
+if ($_GET['module'] == 'dashboard' && $_SESSION['id'] !== "1") {
     header('Location:main?module=negocios');
 }
 
@@ -100,11 +100,11 @@ require "config/conexion.php";
                     case 'autos':
                         require_once "views/autos.php";
                         break;
-                    
+
                     case 'configurar-auto':
                         require_once "views/configurar-auto.php";
                         break;
-                    
+
                     case 'configurar-color':
                         require_once "views/configurar-color.php";
                         break;
@@ -150,6 +150,7 @@ require "config/conexion.php";
     <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
     <script src="assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="assets/vendors/tinymce/tinymce.min.js"></script>
     <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <script src="assets/vendors/jquery-tags-input/jquery.tagsinput.min.js"></script>
     <script src="assets/vendors/moment/moment.min.js"></script>
@@ -169,7 +170,32 @@ require "config/conexion.php";
     <script src="app/app.js"></script>
     <script>
     </script>
-        <script src="assets/vendors/feather-icons/feather.min.js"></script>
+    <script src="assets/vendors/feather-icons/feather.min.js"></script>
+
+    <script>
+        $(function () {
+            'use strict';
+
+            if ($("#descgeneral").length) {
+                tinymce.init({
+                    selector: '#descgeneral',
+                    min_height: 350,
+                    default_text_color: 'black',
+                    toolbar1: 'insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
+                });
+            }
+
+            if ($("#detalles").length) {
+                tinymce.init({
+                    selector: '#detalles',
+                    min_height: 350,
+                    default_text_color: 'black',
+                    toolbar1: 'insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
+                });
+            }
+
+        });
+    </script>
 </body>
 
 </html>

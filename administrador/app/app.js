@@ -3352,11 +3352,6 @@ var listar_autopartes = function() {
             { bSearchable: false, bVisible: false, aTargets: [7] },
             { bSearchable: false, bVisible: false, aTargets: [8] },
             { bSearchable: false, bVisible: false, aTargets: [9] },
-            { bSearchable: false, bVisible: false, aTargets: [10] },
-            { bSearchable: false, bVisible: false, aTargets: [11] },
-            { bSearchable: false, bVisible: false, aTargets: [12] },
-            { bSearchable: false, bVisible: false, aTargets: [13] },
-            { bSearchable: false, bVisible: false, aTargets: [14] }
 
         ],
         columns: [
@@ -3382,12 +3377,7 @@ var listar_autopartes = function() {
             { data: "color_uuid" },
             { data: "categoria_uuid" },
             { data: "tipo" },
-            { data: "t1" },
-            { data: "t2" },
-            { data: "t3" },
-            { data: "d1" },
-            { data: "d2" },
-            { data: "d3" },
+            { data: "detalles" },
             { data: "descgeneral" },
             {
                 defaultContent: "<div style='cursor:pointer;' class='d-flex justify-content-center'><a title='Editar' class='editar mr-1 text-success'><i class='fas fa-edit fa-lg'></i></a><a title='Configurar' class='configurar mr-1 text-primary'><i class='fas fa-cog fa-lg'></i></a><a title='Eliminar' class='eliminar text-danger' ><i class='fas fa-trash fa-lg'></i></a></div>",
@@ -3427,13 +3417,8 @@ var data_editar_autoparte = function(tbody, table) {
         $("#stock").val(data.stock);
         $("#archivo_autoparte").val(data.cover);
         $("#tipo").val(data.tipo);
-        $("#t1").val(data.t1);
-        $("#t2").val(data.t2);
-        $("#t3").val(data.t3);
-        $("#d1").val(data.d1);
-        $("#d2").val(data.d2);
-        $("#d3").val(data.d3);
-        $("#descgeneral").val(data.descgeneral);
+        tinymce.get('detalles').setContent(data.detalles)
+        tinymce.get('descgeneral').setContent(data.descgeneral)
         $.ajax({
             url: 'controller/colores.php',
             method: 'POST',
@@ -3533,6 +3518,8 @@ var editar_autoparte = function() {
     $("#formEditarAutoparte").submit(function(e) {
         e.preventDefault();
         const formData = new FormData($('#formEditarAutoparte')[0]);
+        formData.append('descgeneralHtml',tinymce.get('descgeneral').getContent())
+        formData.append('detallesHtml',tinymce.get('detalles').getContent())
         $.ajax({
             url: "controller/autopartes.php",
             method: "POST",

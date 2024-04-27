@@ -43,12 +43,7 @@
                                     <th>COLOR</th>
                                     <th>CATEGORIA</th>
                                     <th>TIPO</th>
-                                    <th>t1</th>
-                                    <th>t2</th>
-                                    <th>t3</th>
-                                    <th>d1</th>
-                                    <th>d2</th>
-                                    <th>d3</th>
+                                    <th>detalles</th>
                                     <th>descgeneral</th>
                                     <th width="10px">Acción</th>
                                 </tr>
@@ -116,7 +111,7 @@
 
 <div class="modal fade" id="modalEditarAutoparte" tabindex="-1" role="dialog" aria-labelledby="modalEditarAutoparte"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Editar autoparte</h5>
@@ -164,32 +159,17 @@
                                     <option value="subcategoria">Subcategoria</option>
                                 </select>
                             </div>
+                           
+                        </div>
+                        <div class='col-md-6'>
                             <div class="form-group">
-                                <input type="text" id="t1" name='titulo1' placeholder='Escriba 1 titulo'
-                                    class='form-control'>
+                                <textarea class="form-control" name="detalles" placeholder="Agregar detalles" id="detalles" rows="10"></textarea>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="d1" name='desc1' placeholder='Escriba 1 descripcion'
-                                    class='form-control'>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="t2"  name='titulo2' placeholder='Escriba 1 titulo'
-                                    class='form-control'>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="d2" name='desc2' placeholder='Escriba 1 descripcion'
-                                    class='form-control'>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="t3" name='titulo3' placeholder='Escriba 1 titulo'
-                                    class='form-control'>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="d3" name='desc3' placeholder='Escriba 1 descripcion'
-                                    class='form-control'>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="descgeneral" class='form-control' id="descgeneral" cols="30" rows="6" placeholder='Escriba una descripcion general'></textarea>
+                            
+                        </div>
+                        <div class='col-md-6'>
+                        <div class="form-group">
+                                <textarea class="form-control" name="descgeneral" placeholder="Agregar descripcion" id="descgeneral" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
