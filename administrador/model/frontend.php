@@ -236,7 +236,7 @@ class Frontend extends Conectar
         $colores = $color->fetchAll(PDO::FETCH_ASSOC);
         $resultado['colores'] = $colores;
 
-        $categoria = "SELECT * FROM categorias WHERE auto_uuid = ?";
+        $categoria = "SELECT * FROM categorias WHERE auto_uuid = ? AND estado = 1";
         $categoria =  $this->db->prepare($categoria);
         $categoria->bindValue(1, $auto['uuid']);
         $categoria->execute();
