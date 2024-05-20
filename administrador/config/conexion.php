@@ -8,7 +8,7 @@ class Conectar
         try {
 
             if($_SERVER['SERVER_NAME'] == "adjust-app.com"){
-                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=yqfxijun_adjust","yqfxijun_adjust","bs@TsOd39IyO");
+                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=gnpufoqa_adjust","gnpufoqa_adjust","bs@TsOd39IyO");
             }else{
                 $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=yqfxijun_adjust","root","root");
             }
