@@ -3,8 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 id='nombre_auto' class="card-title">[NOMBRE AUTO]</h6>
-                <p>En este modulo podrás configurar los colores del auto, agregar categorias y asignarle autopartes. Si
-                    deseas volver atrás da <a href="#" onclick="window.history.back()">click aqui</a>.</p>
+                <p><a href="#" onclick="window.history.back()">Atras</a>.</p>
             </div>
         </div>
     </div>
