@@ -121,7 +121,7 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="#about">Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
                     <li class="nav-item"><a class="nav-link" href="#signup">Contacto</a></li>
-                    <li class="nav-item"><a id='organizador' class="nav-link" href="organizador">Organizador</a></li>
+                    <li class="nav-item"><a id='organizador' class="nav-link" href="organizador">Productos</a></li>
                 </ul>
             </div>
         </div>
@@ -136,6 +136,7 @@ session_start();
                         adipisicing
                         elit. Reprehenderit.</h2>
                     <a class="btn btn-primary" href="#about">Conocenos</a>
+                    <a class="btn btn-primary" id='productos' href="organizador">Productos</a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 id='nombre_autoparte' class="card-title">[NOMBRE AUTOPARTE]</h6>
-                <p>En este modulo podrás configurar los colores de la autoparte. <a href="#" onclick="window.history.back()">click aqui</a>.</p>
+                <button class='btn btn-primary' onclick="window.history.back()">Volver</button>
             </div>
         </div>
     </div>

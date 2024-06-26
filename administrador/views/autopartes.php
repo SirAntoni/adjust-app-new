@@ -37,7 +37,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th width='100px'>UUID</th>
-                                    <th>AUTOPARTE</th>
+                                    <th>SUBCATEGORIA</th>
                                     <th>STOCK</th>
                                     <th>COVER</th>
                                     <th>COLOR</th>

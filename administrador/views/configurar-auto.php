@@ -3,13 +3,12 @@
         <div class="card">
             <div class="card-body">
                 <h6 id='nombre_auto' class="card-title">[NOMBRE AUTO]</h6>
-                <p><a href="#" onclick="window.history.back()">Atras</a>.</p>
+                <button class='btn btn-primary'  onclick="window.history.back()">Volver</button>
             </div>
         </div>
     </div>
 </div>
 <!-- row -->
-
 <div class="row">
     <div class="col-12 col-xl-12 grid-margin stretch-card">
         <div class="card overflow-hidden">
