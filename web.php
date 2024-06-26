@@ -135,7 +135,7 @@ session_start();
                     <h2 id='webSlogan' class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur
                         adipisicing
                         elit. Reprehenderit.</h2>
-                    <a class="btn btn-primary" href="#about">Conocenos</a>
+                    <a class="btn btn-primary" style='margin-right:30px;' href="#about">Conocenos</a>
                     <a class="btn btn-primary" id='productos' href="organizador">Productos</a>
                 </div>
             </div>

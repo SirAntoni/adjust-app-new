@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
     <div>
-        <h4 class="mb-3 mb-md-0">Autos</h4>
+        <h4 class="mb-3 mb-md-0"></h4>
     </div>
     <div id="btn-crear" class="d-flex align-items-center flex-wrap text-nowrap">
-       
+    
     </div>
 </div>
 <!-- row -->
@@ -95,7 +95,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Auto</h5>
+                <h5 class="modal-title">Editar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
