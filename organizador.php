@@ -102,6 +102,7 @@ session_start();
             justify-content: space-between;
         }
 
+
         .stock {
             background: #1c1c1c;
             height: 60px;
@@ -221,6 +222,10 @@ session_start();
             text-align: right;
         }
 
+        .app{
+            margin-top: 120px;
+        }
+
         @media (max-width : 780px) {
             .color img {
                 width: 20px;
@@ -242,6 +247,17 @@ session_start();
 
             .fullScreen {
                 display: none;
+            }
+
+            .app{
+                margin-top: 4.8rem;
+            }
+
+            .titulo_categoria {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                height: 80px;
+                display: block;
             }
 
 
@@ -284,7 +300,7 @@ session_start();
             </div>
         </nav>
 
-        <div class="app" style='margin-top:120px'>
+        <div class="app">
             <div class="row">
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
@@ -317,7 +333,7 @@ session_start();
                 <div id='detalle_colores' class="col-md-12 colores">
                 </div>
                 <div class="col-md-12 titulo_categoria">
-                    Seleccione una categoria <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
+                    <div>Seleccione una categoria</div> <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
                             id='textCategorias' /><input id='btnCategorias' type='button' value='Buscar'
                             class='btnBusqueda' /><input class='btnBusqueda' id='btnResetCategorias' type='button'
                             value='Reset' /></div>
