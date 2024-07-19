@@ -376,7 +376,7 @@ function mostrarAutoparte(autoparte, filtro = '') {
                     detalle_html = `<div>${data.autoparte.detalles}</div>`;
                 }
 
-
+               
 
                 $("#detalles-producto").html(detalle_html)
                 $("#descgeneral").html(descgeneral)
@@ -399,7 +399,7 @@ function mostrarAutoparte(autoparte, filtro = '') {
                 $("#auto360").html('<div id="circlrDiv"></div>');
                 $("#circlrDiv").html(html);
                 $("#detalle_colores").html(html_colores);
-                $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="tooltip"]').tooltip();
                 var crl = circlr('circlrDiv', {
                     loader: 'loader'
                 });
@@ -469,7 +469,7 @@ function fullScreen() {
         localStorage.setItem('fullscreen', true);
     } else {
         area.style.width = '500px';
-        area.style.height = '400px';
+        area.style.heigth = '400px';
         $(".fullScreen").html('<i class="fas fa-expand fa-lg"></i>');
         localStorage.setItem('fullscreen', false);
     }

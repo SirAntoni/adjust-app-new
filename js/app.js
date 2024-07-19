@@ -146,8 +146,8 @@ const cargar_imagenes = function(filtro = '*') {
 
 const cargar_web = function() {
 
-    document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
-    document.getElementById('productos').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
+    //document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
+    //document.getElementById('productos').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',

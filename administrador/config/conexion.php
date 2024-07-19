@@ -10,7 +10,7 @@ class Conectar
             if($_SERVER['SERVER_NAME'] == "adjust-app.com"){
                 $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=gnpufoqa_adjust","gnpufoqa_adjust","bs@TsOd39IyO");
             }else{
-                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=yqfxijun_adjust","root","root");
+                $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=adjust","root","");
             }
            
              $conectar->query("SET NAMES 'utf8'");
