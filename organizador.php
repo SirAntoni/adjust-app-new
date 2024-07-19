@@ -29,6 +29,14 @@ session_start();
             margin: 0;
         }
 
+        #desc-producto-movil{
+            background: #fff;
+        }
+
+        #detalles-producto-movil{
+            background: #fff;
+        }
+
         .auto {
             background: #FFF;
         }
@@ -281,8 +289,10 @@ session_start();
                 <div class="col-md-12 nombre_auto">
                     <h3 id='detalle_nombre_auto'>[NOMBRE AUTO]</h3>
                 </div>
+                <div id="detalles-producto-movil" class="col-md-12 d-block d-md-none"></p>
+                </div>
                 <div class="col-md-12 auto">
-                    <div id="detalles-producto" class="info">
+                    <div id="detalles-producto" class="info d-none d-md-block">
 
                     </div>
                     <div id='auto360' class="img-wrap">
@@ -291,8 +301,10 @@ session_start();
 
                         </div>
                     </div>
-                    <div id="descgeneral" class="descgeneral">
+                    <div id="descgeneral" class="descgeneral d-none d-md-block">
                     </div>
+                </div>
+                <div id="desc-producto-movil" class="col-md-12 d-block d-md-none">
                 </div>
                 <!--div class="col-md-12 auto">
                     <div id='auto360' class="img-wrap">

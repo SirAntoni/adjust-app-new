@@ -379,7 +379,9 @@ function mostrarAutoparte(autoparte, filtro = '') {
                
 
                 $("#detalles-producto").html(detalle_html)
+                $("#detalles-producto-movil").html(detalle_html)
                 $("#descgeneral").html(descgeneral)
+                $("#desc-producto-movil").html(descgeneral);
                 $("#accesorio").html(data.autoparte.autoparte)
                 $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
                 let html = ``;
