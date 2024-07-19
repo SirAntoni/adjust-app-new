@@ -26,56 +26,53 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        .masthead {
-            position: relative;
-            width: 100%;
-            height: auto;
-            min-height: 35rem;
-            padding: 15rem 0;
-            /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/"); */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            background-size: cover;
-        }
-
-        .cont-multichat {
-            width: 70px;
-            bottom: 10px;
-            right: 16px;
-            position: fixed;
-            z-index: 1000
-        }
-
-        .cont-multichat a {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 10px;
-            display: block;
-            box-shadow: 0 0 1px #999;
-            border-radius: 50%;
-            background: #fff;
-            color: #fff
-        }
-
-        .cont-multichat img {
-            width: 70px;
-        }
-
-        #filter {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        #filter li {
-            margin: 10px;
-            cursor: pointer;
-        }
-
+    .masthead {
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: auto;
+        min-height: 35rem;
+        padding: 15rem 0;
+        /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/"); */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
     }
+
+    .cont-multichat {
+        width: 70px;
+        bottom: 10px;
+        right: 16px;
+        position: fixed;
+        z-index: 1000
+    }
+
+    .cont-multichat a {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 10px;
+        display: block;
+        box-shadow: 0 0 1px #999;
+        border-radius: 50%;
+        background: #fff;
+        color: #fff
+    }
+
+    .cont-multichat img {
+        width: 70px;
+    }
+
+    #filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #filter li {
+        margin: 10px;
+        cursor: pointer;
+    }
+
 
     .swiper-slide {
         text-align: center;
@@ -97,9 +94,23 @@ session_start();
         align-items: center;
     }
 
-    .swiper-slide img{
+    .swiper-slide img {
         max-width: 300px;
         max-height: 300x;
+    }
+
+    #btnConocenos {
+        margin-right: 30px;
+        margin-bottom: 0px;
+    }
+
+    @media (max-width : 450px) {
+
+        #btnConocenos {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+
     }
     </style>
 </head>
@@ -135,7 +146,7 @@ session_start();
                     <h2 id='webSlogan' class="text-white-50 mx-auto  mb-5">Lorem ipsum, dolor sit amet consectetur
                         adipisicing
                         elit. Reprehenderit.</h2>
-                    <a class="btn btn-primary" style='margin-right:30px;' href="#about">Conocenos</a>
+                    <a class="btn btn-primary" id="btnConocenos" href="#about">Conocenos</a>
                     <a class="btn btn-primary" id='productos' href="organizador">Productos</a>
                 </div>
             </div>
