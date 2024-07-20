@@ -313,7 +313,7 @@ class Frontend extends Conectar
     }
 
     public function obtener_fondo($negocio){
-        $sql = "SELECT fondo_home,fondo_galeria FROM negocios WHERE razon_social = ?";
+        $sql = "SELECT fondo_home,fondo_home_movil,fondo_galeria,fondo_galeria_movil FROM negocios WHERE razon_social = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $negocio);
         $sql->execute();

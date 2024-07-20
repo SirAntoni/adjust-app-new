@@ -33,7 +33,9 @@
                                 <th>YOUTUBE</th>
                                 <th>TELEFONO</th>
                                 <th>HOME</th>
+                                <th>HOME MOVIL</th>
                                 <th>GALERIA</th>
+                                <th>GALERIA MOVIL</th>
                                 <th width="10px">Acción</th>
                             </tr>
                         </thead>
@@ -161,9 +163,33 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label>Fondo Home/Web Movil (Recomendado 720px x 1280px)</label>
+                                <input type="hidden" id='archivo_movil' name='archivo_movil'>
+                                <input type="file" name="cover_movil" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled=""
+                                        placeholder="Subir Imagen">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label>Fondo Galeria (Recomendado 5472px x 3648px)</label>
                                 <input type="hidden" id='archivo1' name='archivo1'>
                                 <input type="file" name="cover1" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled=""
+                                        placeholder="Subir Imagen">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Fondo Galeria Movil (Recomendado 720px x 1280px)</label>
+                                <input type="hidden" id='archivo1_movil' name='archivo1_movil'>
+                                <input type="file" name="cover1_movil" class="file-upload-default">
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled=""
                                         placeholder="Subir Imagen">

@@ -79,13 +79,25 @@ switch($opcion){
             $nombre_img = $_FILES['cover']['name'];
         }
 
+        if (empty($_FILES['cover_movil']['name'])) {
+            $nombre_img_movil = $_POST['archivo_movil'];
+        } else {
+            $nombre_img_movil = $_FILES['cover_movil']['name'];
+        }
+
         if (empty($_FILES['cover1']['name'])) {
             $nombre_img1 = $_POST['archivo1'];
         } else {
             $nombre_img1 = $_FILES['cover1']['name'];
         }
 
-        $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube, $telefono,$nombre_img,$nombre_img1);
+        if (empty($_FILES['cover1_movil']['name'])) {
+            $nombre_img1_movil = $_POST['archivo1_movil'];
+        } else {
+            $nombre_img1_movil = $_FILES['cover1_movil']['name'];
+        }
+
+        $negocios->editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube, $telefono,$nombre_img,$nombre_img_movil,$nombre_img1,$nombre_img1_movil);
     break;
     case 'duplicar':
         echo json_encode($negocios->duplicar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$usuario));

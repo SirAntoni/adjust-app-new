@@ -2,7 +2,7 @@ var url = new URL(window.location.href);
 var params = new URLSearchParams(url.search);
 
 
-$(function() {
+$(function () {
 
     cargar_web();
     cargar_redes();
@@ -11,11 +11,11 @@ $(function() {
     obtener_negocio();
     obtener_fondos();
     filtrar();
-    
-    if(params.get('type') !== 'organizador'){
+
+    if (params.get('type') !== 'organizador') {
         cargar_imagenes();
     }
-    
+
 
 })
 
@@ -26,32 +26,54 @@ const obtener_fondos = async () => {
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
-        data: { opcion: 'obtener_fondo', negocio: params.get('negocio')  },
-        success: function(response) {
+        data: { opcion: 'obtener_fondo', negocio: params.get('negocio') },
+        success: function (response) {
             const data = JSON.parse(response);
             const mastheadElement = document.querySelector(".masthead");
             const mastheadElementGaleria = document.querySelector(".masthead-galeria");
 
-            if(mastheadElement){
-                mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_home}")`;
+
+            // Obtener el ancho y alto de la pantalla
+            var screenWidth = window.screen.width;
+            console.log("fondo home movil: ",data.fondo_home_movil);
+            console.log("fondo galeria movil: ",data.fondo_galeria_movil);
+            if (screenWidth >= 768) {
+
+                if (mastheadElement) {
+                    mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_home}")`;
+                }
+
+                if (mastheadElementGaleria) {
+                    mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_galeria}")`;
+                }
+
+            }else{
+
+                if (mastheadElement) {
+                    mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_home_movil}")`;
+                }
+
+                if (mastheadElementGaleria) {
+                    mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_galeria_movil}")`;
+               }
+
             }
 
-            if(mastheadElementGaleria){
-                mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_galeria}")`;
-            }
 
-           // mastheadElementGaleria.style.background = `url("./assets/images/bg/${data.fondo_home}")`
+
+
+            // mastheadElementGaleria.style.background = `url("./assets/images/bg/${data.fondo_home}")`
         }
     })
 }
 
-const obtener_negocio = function() {
+const obtener_negocio = function () {
 
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
-        data: { opcion: 'obtener_negocio' , negocio: params.get('negocio')},
-        success: function(response) {
+        data: { opcion: 'obtener_negocio', negocio: params.get('negocio') },
+        success: function (response) {
 
             const data = JSON.parse(response);
             const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=Hola,%20necesito%20sus%20informacion' title="Whatsapp" target="_blank" style="cursor:pointer;">
@@ -66,13 +88,13 @@ const obtener_negocio = function() {
 
 }
 
-const cargar_filtros = function() {
+const cargar_filtros = function () {
 
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
         data: { opcion: 'cargar_filtros', negocio: params.get('negocio') },
-        success: function(response) {
+        success: function (response) {
             const data = JSON.parse(response);
 
             let htmlHead = `<li><a class="categories text-white active" data-filter="*">Todo</a></li>`;
@@ -86,27 +108,27 @@ const cargar_filtros = function() {
 }
 
 const filtrar = () => {
-    $(document).on('click','.categories',function(){
+    $(document).on('click', '.categories', function () {
         cargar_imagenes(this.getAttribute('data-filter'))
     })
 }
 
-const cargar_imagenes = function(filtro = '*') {
+const cargar_imagenes = function (filtro = '*') {
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
         data: { opcion: 'cargar_imagenes', negocio: params.get('negocio') },
-        success: function(response) {
+        success: function (response) {
             const data = JSON.parse(response);
             let html = `<div class="swiper">
             <div class="swiper-wrapper">`
-            if(filtro === '*'){
-                data.map(x=>{
+            if (filtro === '*') {
+                data.map(x => {
                     html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
                 })
-            }else{
-                data.map(x=>{
-                    if(x.filtro === filtro){
+            } else {
+                data.map(x => {
+                    if (x.filtro === filtro) {
                         html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
                     }
                 })
@@ -127,16 +149,16 @@ const cargar_imagenes = function(filtro = '*') {
                 autoplay: {
                     delay: 2500,
                     disableOnInteraction: false,
-                  },
+                },
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
-                  },
-                pagination: {
-                  el: ".swiper-pagination",
-                  clickable: true,
                 },
-              });
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
 
         }
     })
@@ -144,7 +166,7 @@ const cargar_imagenes = function(filtro = '*') {
 }
 
 
-const cargar_web = function() {
+const cargar_web = function () {
 
     //document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
     //document.getElementById('productos').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio'));
@@ -152,12 +174,14 @@ const cargar_web = function() {
         url: 'administrador/controller/frontend.php',
         method: 'POST',
         data: { opcion: 'cargar_web', negocio: params.get('negocio') },
-        success: function(response) {
+        success: function (response) {
             const data = JSON.parse(response);
 
             if (data.status === 'error') {
                 window.location = './';
             } else {
+
+
 
                 let mapa = data.mapa.replace('width="600"', 'width="100%"');
 
@@ -181,7 +205,7 @@ const cargar_web = function() {
 
 }
 
-const cargar_ultimo_registro = function() {
+const cargar_ultimo_registro = function () {
 
     var url = new URL(window.location.href);
     var params = new URLSearchParams(url.search);
@@ -190,7 +214,7 @@ const cargar_ultimo_registro = function() {
         url: 'administrador/controller/frontend.php',
         method: 'POST',
         data: { opcion: 'cargar_ultimo_registro', negocio: params.get('negocio') },
-        success: function(response) {
+        success: function (response) {
             const data = JSON.parse(response);
 
             if (data.status === 'error') {
@@ -206,14 +230,14 @@ const cargar_ultimo_registro = function() {
 }
 
 
-const cargar_redes = function() {
+const cargar_redes = function () {
     var url = new URL(window.location.href);
     var params = new URLSearchParams(url.search);
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
         data: { opcion: 'cargar_redes', negocio: params.get('negocio') },
-        success: function(response) {
+        success: function (response) {
             const data = JSON.parse(response);
             const facebook = (data.facebook === '') ? '#!' : data.facebook;
             const instagram = (data.instagram === '') ? '#!' : data.instagram;

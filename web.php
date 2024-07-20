@@ -104,7 +104,7 @@ session_start();
         margin-bottom: 0px;
     }
 
-    @media (max-width : 450px) {
+    @media (max-width : 390px) {
 
         #btnConocenos {
             margin-right: 0;

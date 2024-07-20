@@ -17,12 +17,12 @@ class Negocios extends Conectar
     public function listar_negocios($negocio){
 
         if($negocio === "0"){
-            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono, fondo_home, fondo_galeria FROM negocios WHERE estado in (1,3)";
+            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono, fondo_home,fondo_home_movil, fondo_galeria, fondo_galeria_movil FROM negocios WHERE estado in (1,3)";
             $sql = $this->db->prepare($sql);
             $sql->execute();
             return $sql->fetchAll(PDO::FETCH_ASSOC);
         }else{
-            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono, fondo_home, fondo_galeria FROM negocios WHERE estado in (1,3) AND id = ?";
+            $sql = "SELECT id,ruc,razon_social,rango,estado, facebook, instagram, tiktok, youtube, telefono, fondo_home,fondo_home_movil, fondo_galeria, fondo_galeria_movil FROM negocios WHERE estado in (1,3) AND id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1,$negocio);
             $sql->execute();
@@ -100,7 +100,7 @@ class Negocios extends Conectar
     }
 
 
-    public function editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube,$telefono,$cover,$cover1){
+    public function editar_negocio($id,$ruc,$razon_social,$contrasena,$rango,$estado,$facebook,$instagram,$tiktok,$youtube,$telefono,$cover,$cover_movil,$cover1,$cover1_movil){
 
         if(empty($ruc) || empty($razon_social) || empty($rango) || empty($estado) || empty($telefono)){
             
@@ -112,7 +112,7 @@ class Negocios extends Conectar
         }else{
     
                 if(empty($contrasena)){
-                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fondo_home = ?, fondo_galeria = ?, fecha_modificacion = now() WHERE id = ?";
+                    $query = "UPDATE negocios SET  ruc= ?, razon_social = ?, rango = ?, estado = ?, facebook = ?, instagram = ?, tiktok = ?, youtube = ?,telefono = ?, fondo_home = ?,fondo_home_movil = ?, fondo_galeria = ?, fondo_galeria_movil = ?, fecha_modificacion = now() WHERE id = ?";
 
                     if(empty($_FILES["cover"]['name'])){
                         $nombre_img = $cover;
@@ -122,12 +122,28 @@ class Negocios extends Conectar
                         move_uploaded_file($_FILES["cover"]['tmp_name'], $ruta);
                     }
 
+                    if(empty($_FILES["cover_movil"]['name'])){
+                        $nombre_img_movil = $cover_movil;
+                    }else{
+                        $nombre_img_movil = uniqid() . "-" . $_FILES["cover_movil"]['name'];
+                        $ruta = "../../assets/images/bg/" . $nombre_img_movil;
+                        move_uploaded_file($_FILES["cover_movil"]['tmp_name'], $ruta);
+                    }
+
                     if(empty($_FILES["cover1"]['name'])){
                         $nombre_img1 = $cover1;
                     }else{
                         $nombre_img1 = uniqid() . "-" . $_FILES["cover1"]['name'];
                         $ruta = "../../assets/images/bg/" . $nombre_img1;
                         move_uploaded_file($_FILES["cover1"]['tmp_name'], $ruta);
+                    }
+
+                    if(empty($_FILES["cover1_movil"]['name'])){
+                        $nombre_img1_movil = $cover1_movil;
+                    }else{
+                        $nombre_img1_movil = uniqid() . "-" . $_FILES["cover1_movil"]['name'];
+                        $ruta = "../../assets/images/bg/" . $nombre_img1_movil;
+                        move_uploaded_file($_FILES["cover1_movil"]['tmp_name'], $ruta);
                     }
 
                     $query = $this->db->prepare($query);    
@@ -141,8 +157,10 @@ class Negocios extends Conectar
                     $query->bindValue(8,$youtube);
                     $query->bindValue(9,$telefono);
                     $query->bindValue(10,$nombre_img);
-                    $query->bindValue(11,$nombre_img1);
-                    $query->bindValue(12,$id);
+                    $query->bindValue(11,$nombre_img_movil);
+                    $query->bindValue(12,$nombre_img1);
+                    $query->bindValue(13,$nombre_img1_movil);
+                    $query->bindValue(14,$id);
                    
 
                 }else{
