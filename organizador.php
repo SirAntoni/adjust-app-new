@@ -250,7 +250,7 @@ session_start();
             }
 
             .app{
-                margin-top: 200px;
+                margin-top: 150px;
             }
 
             .titulo_categoria {
