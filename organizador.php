@@ -256,8 +256,12 @@ session_start();
             .titulo_categoria {
                 padding-top: 10px;
                 padding-bottom: 10px;
-                height: 105px;
+                height: 80px;
                 display: block;
+            }
+
+            .titulo_categoria .txtBusqueda {
+                width: 170px;
             }
 
 
