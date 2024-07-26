@@ -256,7 +256,7 @@ session_start();
             .titulo_categoria {
                 padding-top: 10px;
                 padding-bottom: 10px;
-                height: 80px;
+                height: 105px;
                 display: block;
             }
 
@@ -402,7 +402,7 @@ session_start();
 
     <script src="assets/js/circlr.min.js"></script>
     <script src="assets/js/main.js?code=<?php echo date('ymdsis') ?>"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js?code=<?php echo date('ymdsis') ?>"></script>
     <script src="assets/js/notiflix.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
