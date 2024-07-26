@@ -11907,10 +11907,10 @@ body {
     padding: 5rem 0;
 }
 
-@media (max-width : 390px) {
+@media (max-width : 500px) {
 
     .swiper-slide img {
-    max-width: 100%;
+    width: 100%;
 }
 
 
