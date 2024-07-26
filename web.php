@@ -21,7 +21,7 @@ session_start();
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/styles.css<?php echo date('ymdsis') ?>" rel="stylesheet" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -106,9 +106,6 @@ session_start();
 
     @media (max-width : 390px) {
 
-        .swiper-slide img {
-        max-width: 100%;
-    }
 
         #btnConocenos {
             margin-right: 0;

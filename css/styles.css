@@ -11906,3 +11906,13 @@ body {
 .footer {
     padding: 5rem 0;
 }
+
+@media (max-width : 390px) {
+
+    .swiper-slide img {
+    max-width: 100%;
+}
+
+    
+
+}
