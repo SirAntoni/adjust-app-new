@@ -106,6 +106,10 @@ session_start();
 
     @media (max-width : 390px) {
 
+        .swiper-slide img {
+        max-width: 100%;
+    }
+
         #btnConocenos {
             margin-right: 0;
             margin-bottom: 10px;
