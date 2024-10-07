@@ -95,8 +95,8 @@ session_start();
     }
 
     .swiper-slide img {
-        max-width: 300px;
-        max-height: 300x;
+        max-width: 100%;
+        max-height: 100%;
     }
 
     #btnConocenos {
