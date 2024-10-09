@@ -180,9 +180,6 @@ const cargar_web = function () {
             if (data.status === 'error') {
                 window.location = './';
             } else {
-
-
-
                 let mapa = data.mapa.replace('width="600"', 'width="100%"');
 
                 $("#webLogo").html(`<img width=200px' src="./assets/img/${data.logo}" alt="">`);
@@ -193,6 +190,7 @@ const cargar_web = function () {
                 $("#webDireccion").html(data.direccion);
                 $("#webEmail").html(data.email);
                 $("#mapa").html(mapa);
+                $(".titulo").html(data.titulo_galeria);
                 $("#webTelefono").html(data.telefono);
                 $("#webNosotrosImg").html(`<img class="img-fluid mb-3 mb-lg-0" src="assets/img/${data.nosotrosImg}"
                 alt="..." />`);

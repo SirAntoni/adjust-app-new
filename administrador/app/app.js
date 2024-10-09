@@ -118,7 +118,11 @@ $(function() {
     eliminar_usuario();
     btn_crear();
 
+    cambiar_titulo_web();
+
 })
+
+
 
 const btn_crear = function() {
     const data = {
@@ -198,6 +202,43 @@ const crear_filtro = function() {
 
         })
     })
+}
+
+const cambiar_titulo_web = function() {
+  $("#formCambiarTitulo").submit(function(e) {
+      e.preventDefault();
+      const data = $(this).serialize();
+      $.ajax({
+          url: './controller/web.php',
+          method: 'POST',
+          data: data,
+          success: function(response) {
+              const data = JSON.parse(response);
+              if (data.status == "success") {
+                  Swal.fire({
+                      title: 'Success!',
+                      text: data.message,
+                      icon: 'success',
+                      confirmButtonText: 'Ok'
+                  })
+
+                
+                  $("#formCambiarTitulo").trigger('reset');
+                  $("#modalCambiarTitulo").modal("hide");
+                  cargar_web();
+
+              } else {
+                  Swal.fire({
+                      title: 'Error!',
+                      text: data.message,
+                      icon: 'error',
+                      confirmButtonText: 'Ok'
+                  })
+              }
+          }
+
+      })
+  })
 }
 
 const crear_usuario = function() {
@@ -634,6 +675,8 @@ const cargar_web = function() {
             $("#divNosotros").html(`<img src='../assets/img/${data.nosotrosImg}' width='100px'>`);
             $("#divMision").html(`<img src='../assets/img/${data.misionImg}' width='100px'>`);
             $("#divVision").html(`<img src='../assets/img/${data.visionImg}' width='100px'>`);
+            $(".tituloGaleria").text(data.titulo_galeria);
+            $(".tituloGaleria").val(data.titulo_galeria);
         }
     })
 }

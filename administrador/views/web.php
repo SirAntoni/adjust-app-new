@@ -325,7 +325,7 @@
     <div class="col-12 col-md-12 grid-margin stretch-card">
         <div class="card overflow-hidden">
             <div class="card-header">
-                Galeria
+                <span class="tituloGaleria">Galeria</span> <button class="btn btn-x btn-primary" data-toggle="modal" data-target="#modalCambiarTitulo">Cambiar</button>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -382,6 +382,37 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCambiarTitulo" tabindex="-1" role="dialog" aria-labelledby="modalCambiarTitulo"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar Titulo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formCambiarTitulo">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" name='opcion' value='cambiar_titulo'>
+                                <input type="hidden" name='negocio' value='<?php echo $_GET['negocio']; ?>'>
+                                <input type="text" name="titulo" class="form-control tituloGaleria" placeholder="Titulo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Cambiar</button>
                 </div>
             </form>
         </div>

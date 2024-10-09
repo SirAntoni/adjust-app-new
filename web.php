@@ -209,7 +209,7 @@ session_start();
         <div class="container px-4 px-lg-5">
             <!-- Featured Project Row-->
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center text-center">
-                <h1 class='text-white'>Galeria</h1>
+                <h1 class='text-white titulo'>Galeria</h1>
 
                 <section class="section">
                     <div class="container">

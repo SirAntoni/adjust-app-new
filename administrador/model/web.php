@@ -409,4 +409,30 @@ class Web extends Conectar
 
     }
 
+    public function cambiar_titulo($negocio,$titulo){
+
+        
+      if(empty($titulo)){
+          $response = [
+              "status" => "error",
+              "message" => "Campos vacios"
+          ];
+      }else{
+          $sql = "UPDATE web SET titulo_galeria = ? WHERE negocio =?";
+          $sql = $this->db->prepare($sql);
+          $sql->bindValue(1,$titulo);
+          $sql->bindValue(2,$negocio);
+          $sql->execute();
+
+          $response = [
+              "status" => "success",
+              "message" => "Titulo cambiado con exito.",
+          ];
+
+      }
+
+      echo json_encode($response);
+
+  }
+
 }
