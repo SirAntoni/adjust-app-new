@@ -315,8 +315,9 @@ function mostrarAutoparte(autoparte, filtro = '') {
         method: 'POST',
         data: { opcion: 'mostrar_autoparte', autoparte },
         success: function(response) {
-
+          $('html, body').animate({ scrollTop: 0 }, 'slow');
             const data = JSON.parse(response);
+
             if (data.autoparte.tipo === "subcategoria") {
 
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
