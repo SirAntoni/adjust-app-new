@@ -28,6 +28,9 @@ session_start();
             background-repeat: no-repeat;
             margin: 0;
         }
+        #circlrDiv{
+          z-index:1;
+        }
 
         #desc-producto-movil{
             background: #fff;
@@ -334,21 +337,21 @@ session_start();
                         </div>
                     </div>
                 </div-->
-                <div id='detalle_colores' class="col-md-12 colores">
+                <div id='detalle_colores' class="col-md-12 colores" style="z-index:1;">
                 </div>
-                <div class="col-md-12 titulo_categoria">
+                <div class="col-md-12 titulo_categoria" style="z-index:1;">
                     <div>Seleccione una categoria</div> <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
                             id='textCategorias' /><input id='btnCategorias' type='button' value='Buscar'
                             class='btnBusqueda' /><input class='btnBusqueda' id='btnResetCategorias' type='button'
                             value='Reset' /></div>
                 </div>
                 <div class="col-md-12 categorias">
-                    <div id="carousel_categorias" class="carousel_categorias">
+                    <div id="carousel_categorias" class="carousel_categorias" style="z-index:1;">
 
 
                     </div>
                 </div>
-                <div id="autoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
+                <div id="autoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none" style="z-index:1;">
                     Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
                             id='textSubcategorias' /><input id='btnSubcategorias' type='button' value='Buscar'
                             class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias' type='button'

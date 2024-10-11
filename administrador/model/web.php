@@ -435,4 +435,30 @@ class Web extends Conectar
 
   }
 
+  public function toggle_myv($negocio,$toggle_myv){
+
+        
+    if(empty($toggle_myv)){
+        $response = [
+            "status" => "error",
+            "message" => "Campos vacios"
+        ];
+    }else{
+        $sql = "UPDATE web SET mision_vision = ? WHERE negocio =?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1,$toggle_myv);
+        $sql->bindValue(2,$negocio);
+        $sql->execute();
+
+        $response = [
+            "status" => "success",
+            "message" => "Se ha hecho el cambio con exito.",
+        ];
+
+    }
+
+    echo json_encode($response);
+
+}
+
 }

@@ -196,6 +196,9 @@ const cargar_web = function () {
                 alt="..." />`);
                 $("#webMisionImg").html(`<img class="img-fluid" src="assets/img/${data.misionImg}" alt="..." />`);
                 $("#webVisionImg").html(`<img class="img-fluid" src="assets/img/${data.visionImg}" alt="..." />`);
+                if(data.mision_vision === "2"){
+                  $(".toggle_myv").addClass('d-none');
+                }
             }
 
         }

@@ -70,6 +70,10 @@ if (isset($_POST['titulo'])) {
   $titulo = $_POST['titulo'];
 }
 
+if (isset($_POST['toggle_myv'])) {
+  $toggle_myv = $_POST['toggle_myv'];
+}
+
 
 switch ($opcion) {
   case 'guardar_datos_generales':
@@ -133,6 +137,9 @@ switch ($opcion) {
     break;
   case 'cambiar_titulo':
     $web->cambiar_titulo($negocio, $titulo);
+    break;
+  case 'toggle_myv':
+    $web->toggle_myv($negocio, $toggle_myv);
     break;
   case 'eliminar_filtro':
     $web->eliminar_filtro($id);

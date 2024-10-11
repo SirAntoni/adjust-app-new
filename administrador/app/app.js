@@ -119,6 +119,7 @@ $(function() {
     btn_crear();
 
     cambiar_titulo_web();
+    toggle_myv();
 
 })
 
@@ -226,6 +227,38 @@ const cambiar_titulo_web = function() {
                   $("#formCambiarTitulo").trigger('reset');
                   $("#modalCambiarTitulo").modal("hide");
                   cargar_web();
+
+              } else {
+                  Swal.fire({
+                      title: 'Error!',
+                      text: data.message,
+                      icon: 'error',
+                      confirmButtonText: 'Ok'
+                  })
+              }
+          }
+
+      })
+  })
+}
+
+const toggle_myv = function() {
+  $("#formToggleMyV").submit(function(e) {
+      e.preventDefault();
+      const data = $(this).serialize();
+      $.ajax({
+          url: './controller/web.php',
+          method: 'POST',
+          data: data,
+          success: function(response) {
+              const data = JSON.parse(response);
+              if (data.status == "success") {
+                  Swal.fire({
+                      title: 'Success!',
+                      text: data.message,
+                      icon: 'success',
+                      confirmButtonText: 'Ok'
+                  })
 
               } else {
                   Swal.fire({
@@ -677,6 +710,7 @@ const cargar_web = function() {
             $("#divVision").html(`<img src='../assets/img/${data.visionImg}' width='100px'>`);
             $(".tituloGaleria").text(data.titulo_galeria);
             $(".tituloGaleria").val(data.titulo_galeria);
+            $("#toggle_myv").val(data.mision_vision);
         }
     })
 }

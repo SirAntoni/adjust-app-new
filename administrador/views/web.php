@@ -300,6 +300,33 @@
     <div class="col-12 col-md-12 grid-margin stretch-card">
         <div class="card overflow-hidden">
             <div class="card-header">
+                Deseas mostrar <b>Misión</b> y <b>Visión</b>?
+            </div>
+            <div class="card-body">
+                <form id="formToggleMyV">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="hidden" name='opcion' value='toggle_myv'>
+                                <input type="hidden" name='negocio' value='<?php echo $_GET['negocio'] ?>'>
+                                <select name="toggle_myv" id="toggle_myv">
+                                  <option value="1">Mostrar</option>
+                                  <option value="2">No Mostrar</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class='btn btn-primary' value='Guardar'>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 grid-margin stretch-card">
+        <div class="card overflow-hidden">
+            <div class="card-header">
                 Mapa
             </div>
             <div class="card-body">

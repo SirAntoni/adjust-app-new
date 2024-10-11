@@ -157,7 +157,7 @@ session_start();
     <section class="projects-section bg-black" id="about">
         <div class="container px-4 px-lg-5">
             <!-- Featured Project Row-->
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+            <div class="row gx-0 mb-4 mb-lg-5 align-items-center ">
                 <div class="col-xl-8 col-lg-7" id='webNosotrosImg'></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
@@ -170,7 +170,7 @@ session_start();
                 </div>
             </div>
             <!-- Project One Row-->
-            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center toggle_myv">
                 <div class="col-lg-6" id='webMisionImg'></div>
                 <div class="col-lg-6">
                     <div class="bg-black text-center h-100 project">
@@ -187,7 +187,7 @@ session_start();
                 </div>
             </div>
             <!-- Project Two Row-->
-            <div class="row gx-0 justify-content-center">
+            <div class="row gx-0 justify-content-center toggle_myv">
                 <div class="col-lg-6" id='webVisionImg'></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project">
@@ -203,6 +203,7 @@ session_start();
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
     <section class="galeria-section bg-black" id="galeria">
