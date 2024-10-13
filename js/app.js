@@ -67,16 +67,20 @@ const obtener_fondos = async () => {
     })
 }
 
-const obtener_negocio = function () {
-
+const obtener_negocio = function (mensaje = null) {
+  
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
         data: { opcion: 'obtener_negocio', negocio: params.get('negocio') },
         success: function (response) {
 
+            if(mensaje === null){
+              mensaje = "Hola,%20necesito%20más%20informacion.";
+            }
+            
             const data = JSON.parse(response);
-            const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=Hola,%20necesito%20sus%20informacion' title="Whatsapp" target="_blank" style="cursor:pointer;">
+            const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=${mensaje}' title="Whatsapp" target="_blank" style="cursor:pointer;">
             <img src="assets/images/wp.png" alt="Whatsapp">
         </a>`;
             $(".cont-multichat").html(wsp)

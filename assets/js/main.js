@@ -309,7 +309,7 @@ function cambiarColor(color) {
 function mostrarAutoparte(autoparte, filtro = '') {
 
     localStorage.setItem('autoparte', autoparte)
-
+   
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
@@ -359,6 +359,9 @@ function mostrarAutoparte(autoparte, filtro = '') {
                 })
 
             } else {
+
+                let mensaje =`Hola,%20necesito%20más%20informacion%20sobre%20el%20siguiente%20producto:%20${data.autoparte.autoparte}`;
+                obtener_negocio(mensaje);
 
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var contenido = document.getElementById("subautoparte_seccion_contenido");
