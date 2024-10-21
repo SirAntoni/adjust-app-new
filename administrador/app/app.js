@@ -3500,8 +3500,8 @@ var data_editar_autoparte = function(tbody, table) {
         $("#stock").val(data.stock);
         $("#archivo_autoparte").val(data.cover);
         $("#tipo").val(data.tipo);
-        tinymce.get('detalles').setContent(data.detalles)
-        tinymce.get('descgeneral').setContent(data.descgeneral)
+        tinymce.get('detalles').setContent(data.detalles || "")
+        tinymce.get('descgeneral').setContent(data.descgeneral || "")
         $.ajax({
             url: 'controller/colores.php',
             method: 'POST',
@@ -3509,7 +3509,7 @@ var data_editar_autoparte = function(tbody, table) {
             success: function(response) {
 
                 const colores = JSON.parse(response);
-                console.log(colores);
+                
                 let html = `<option value=''>Seleccione un color</option>`;
                 colores['data'].forEach((color) => {
                     console.log(color);
