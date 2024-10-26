@@ -195,12 +195,23 @@ const cargar_web = function () {
                 $("#webEmail").html(data.email);
                 $("#mapa").html(mapa);
                 $(".titulo").html(data.titulo_galeria);
+                $(".titulo_uno").html(data.titulo_uno);
+                $(".titulo_dos").html(data.titulo_dos);
                 $("#webTelefono").html(data.telefono);
+                let formato = data.nosotrosImg.split(".");
                 $("#webNosotrosImg").html(`<img class="img-fluid mb-3 mb-lg-0" src="assets/img/${data.nosotrosImg}"
                 alt="..." />`);
+                if(formato[1] == "mp4")  $("#webNosotrosImg").html(`<video width="817" height="600" controls>
+                  <source src="assets/img/${data.nosotrosImg}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>`);
                 $("#webMisionImg").html(`<img class="img-fluid" src="assets/img/${data.misionImg}" alt="..." />`);
                 $("#webVisionImg").html(`<img class="img-fluid" src="assets/img/${data.visionImg}" alt="..." />`);
-                if(data.mision_vision === "2"){
+                if(data.hide_vision === "2"){
+                  $(".toggle_myv").addClass('d-none');
+                }
+
+                if(data.hide_mision === "2"){
                   $(".toggle_myv").addClass('d-none');
                 }
             }

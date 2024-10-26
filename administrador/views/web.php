@@ -113,7 +113,7 @@
     <div class="col-12 col-md-6 grid-margin stretch-card">
         <div class="card overflow-hidden">
             <div class="card-header">
-                Imagen Nosotros
+                Imagen o Video Nosotros
             </div>
             <div class="card-body">
 

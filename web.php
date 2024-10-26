@@ -170,13 +170,13 @@ session_start();
                 </div>
             </div>
             <!-- Project One Row-->
-            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center toggle_myv">
+            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center hide_mision">
                 <div class="col-lg-6" id='webMisionImg'></div>
                 <div class="col-lg-6">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h4 class="text-white">Mision</h4>
+                                <h4 class="text-white titulo_uno">Mision</h4>
                                 <p class="mb-0 text-white" id='webMision'>Lorem ipsum, dolor sit amet consectetur
                                     adipisicing elit.
                                     Itaque molestiae ea eveniet natus esse ex ratione corrupti. Atque, incidunt dolorem.
@@ -187,13 +187,13 @@ session_start();
                 </div>
             </div>
             <!-- Project Two Row-->
-            <div class="row gx-0 justify-content-center toggle_myv">
+            <div class="row gx-0 justify-content-center hide_vision">
                 <div class="col-lg-6" id='webVisionImg'></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white">Vision</h4>
+                                <h4 class="text-white titulo_dos">Vision</h4>
                                 <p class="mb-0 text-white" id='webVision'>Lorem, ipsum dolor sit amet consectetur
                                     adipisicing elit.
                                     Ad cum suscipit expedita blanditiis autem itaque, optio architecto at quod. Quasi

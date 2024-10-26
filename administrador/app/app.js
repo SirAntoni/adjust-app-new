@@ -782,7 +782,12 @@ const cargar_web = function() {
             $("#archivoVision").val(data.visionImg);
             $("#mapa").val(data.mapa);
             $("#divLogo").html(`<img src='../assets/img/${data.logo}'>`);
+            let formato = data.nosotrosImg.split(".");
             $("#divNosotros").html(`<img src='../assets/img/${data.nosotrosImg}' width='100px'>`);
+            if(formato[1] == "mp4")  $("#divNosotros").html(`<video width="320" height="240" controls>
+  <source src="../assets/img/${data.nosotrosImg}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>`);
             $("#divMision").html(`<img src='../assets/img/${data.misionImg}' width='100px'>`);
             $("#divVision").html(`<img src='../assets/img/${data.visionImg}' width='100px'>`);
             $(".tituloGaleria").text(data.titulo_galeria);
