@@ -50,8 +50,16 @@ if (isset($_POST['mision'])) {
   $mision = $_POST['mision'];
 }
 
+if (isset($_POST['hide_mision'])) {
+  $hide_mision = $_POST['hide_mision'];
+}
+
 if (isset($_POST['vision'])) {
   $vision = $_POST['vision'];
+}
+
+if (isset($_POST['hide_vision'])) {
+  $hide_vision = $_POST['hide_vision'];
 }
 
 if (isset($_POST['email'])) {
@@ -73,7 +81,6 @@ if (isset($_POST['titulo'])) {
 if (isset($_POST['toggle_myv'])) {
   $toggle_myv = $_POST['toggle_myv'];
 }
-
 
 switch ($opcion) {
   case 'guardar_datos_generales':
@@ -138,8 +145,14 @@ switch ($opcion) {
   case 'cambiar_titulo':
     $web->cambiar_titulo($negocio, $titulo);
     break;
-  case 'toggle_myv':
-    $web->toggle_myv($negocio, $toggle_myv);
+  case 'cambiar_titulo_uno':
+    $web->cambiar_titulo_uno($negocio, $titulo);
+    break;
+  case 'cambiar_titulo_dos':
+    $web->cambiar_titulo_dos($negocio, $titulo);
+    break;
+  case 'hide_modules':
+    $web->hide_modules($negocio,$hide_mision,$hide_vision);
     break;
   case 'eliminar_filtro':
     $web->eliminar_filtro($id);

@@ -210,10 +210,11 @@
             </div>
         </div>
     </div>
+   
     <div class="col-12 col-md-6 grid-margin stretch-card">
         <div class="card overflow-hidden">
             <div class="card-header">
-                Mision
+                <span class="tituloUno">Misión</span> <button class="btn btn-x btn-primary" data-toggle="modal" data-target="#modalCambiarTituloUno">Cambiar</button>
             </div>
             <div class="card-body">
                 <form id="formMision">
@@ -272,10 +273,11 @@
             </div>
         </div>
     </div>
+    
     <div class="col-12 col-md-6 grid-margin stretch-card">
         <div class="card overflow-hidden">
-            <div class="card-header">
-                Vision
+        <div class="card-header">
+                <span class="tituloDos">Visión</span> <button class="btn btn-x btn-primary" data-toggle="modal" data-target="#modalCambiarTituloDos">Cambiar</button>
             </div>
             <div class="card-body">
                 <form id="formVision">
@@ -300,22 +302,32 @@
     <div class="col-12 col-md-12 grid-margin stretch-card">
         <div class="card overflow-hidden">
             <div class="card-header">
-                Deseas mostrar <b>Misión</b> y <b>Visión</b>?
+                Deseas mostrar <b>el modulo 1</b> y <b>2</b>?
             </div>
             <div class="card-body">
-                <form id="formToggleMyV">
+                <form id="formHideModules">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="form-group">
-                                <input type="hidden" name='opcion' value='toggle_myv'>
+                                <input type="hidden" name='opcion' value='hide_modules'>
                                 <input type="hidden" name='negocio' value='<?php echo $_GET['negocio'] ?>'>
-                                <select name="toggle_myv" id="toggle_myv">
+                                <label for="mision">Modulo 1:</label>
+                                <select name="hide_mision" id="hide_mision">
                                   <option value="1">Mostrar</option>
                                   <option value="2">No Mostrar</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class='btn btn-primary' value='Guardar'>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="vision">Modulo 2:</label>
+                                <select name="hide_vision" id="hide_vision">
+                                  <option value="1">Mostrar</option>
+                                  <option value="2">No Mostrar</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -433,6 +445,68 @@
                                 <input type="hidden" name='opcion' value='cambiar_titulo'>
                                 <input type="hidden" name='negocio' value='<?php echo $_GET['negocio']; ?>'>
                                 <input type="text" name="titulo" class="form-control tituloGaleria" placeholder="Titulo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Cambiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCambiarTituloUno" tabindex="-1" role="dialog" aria-labelledby="modalCambiarTituloUno"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar Titulo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formCambiarTituloUno">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" name='opcion' value='cambiar_titulo_uno'>
+                                <input type="hidden" name='negocio' value='<?php echo $_GET['negocio']; ?>'>
+                                <input type="text" name="titulo" class="form-control tituloUno" placeholder="Titulo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Cambiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCambiarTituloDos" tabindex="-1" role="dialog" aria-labelledby="modalCambiarTituloDos"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar Titulo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formCambiarTituloDos">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" name='opcion' value='cambiar_titulo_dos'>
+                                <input type="hidden" name='negocio' value='<?php echo $_GET['negocio']; ?>'>
+                                <input type="text" name="titulo" class="form-control tituloDos" placeholder="Titulo">
                             </div>
                         </div>
                     </div>
