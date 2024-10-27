@@ -110,7 +110,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 grid-margin stretch-card">
+    <div class="col-12 col-md-6 grid-margin stretch-card nosotros-content">
         <div class="card overflow-hidden">
             <div class="card-header">
                 Imagen o Video Nosotros

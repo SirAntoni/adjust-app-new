@@ -627,13 +627,13 @@ var guardar_nosotrosImg = function() {
             cache: false,
             processData: false,
             beforeSend: function() {
-                Notiflix.Block.Pulse('.modal-content');
+                Notiflix.Block.Pulse('.nosotros-content');
             },
             complete: function() {
-                Notiflix.Block.Remove('.modal-content');
+                Notiflix.Block.Remove('.nosotros-content');
             },
             success: function(response) {
-                Notiflix.Block.Remove('.modal-content');
+                Notiflix.Block.Remove('.nosotros-content');
                 var response = JSON.parse(response);
 
                 if (response.status == "success") {
