@@ -614,7 +614,7 @@ var guardar_logo = function() {
 }
 
 var guardar_nosotrosImg = function() {
-
+  Notiflix.Block.Pulse('.nosotros-content');
     $("#formNosotrosImg").submit(function(e) {
         e.preventDefault();
         const formData = new FormData($('#formNosotrosImg')[0]);
