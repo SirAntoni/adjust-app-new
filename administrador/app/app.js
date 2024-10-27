@@ -646,6 +646,12 @@ var guardar_nosotrosImg = function () {
       return;
     }
 
+     // Mostrar el contenedor de progreso
+     const progressContainer = $('#progressContainer');
+     const progressBar = $('#progressBar');
+     const progressText = $('#progressText');
+     progressContainer.show();
+
     const formData = new FormData($('#formNosotrosImg')[0]);
     console.log(formData)
     $.ajax({
@@ -655,14 +661,28 @@ var guardar_nosotrosImg = function () {
       contentType: false,
       cache: false,
       processData: false,
+      xhr: function () {
+        const xhr = new window.XMLHttpRequest();
+        
+        // Evento de progreso de carga
+        xhr.upload.addEventListener('progress', function (e) {
+          if (e.lengthComputable) {
+            const percentComplete = Math.round((e.loaded / e.total) * 100);
+            progressBar.val(percentComplete);
+            progressText.text(percentComplete + '%');
+          }
+        }, false);
+
+        return xhr;
+      },
       beforeSend: function () {
-        Notiflix.Block.Pulse('.nosotros-content');
+        //Notiflix.Block.Pulse('.nosotros-content');
       },
       complete: function () {
-        Notiflix.Block.Remove('.nosotros-content');
+        //Notiflix.Block.Remove('.nosotros-content');
       },
       success: function (response) {
-        Notiflix.Block.Remove('.nosotros-content');
+        //Notiflix.Block.Remove('.nosotros-content');
         var response = JSON.parse(response);
 
         if (response.status == "success") {
