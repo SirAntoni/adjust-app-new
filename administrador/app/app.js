@@ -680,6 +680,7 @@ var guardar_nosotrosImg = function () {
       },
       complete: function () {
         //Notiflix.Block.Remove('.nosotros-content');
+        progressContainer.hide();
       },
       success: function (response) {
         //Notiflix.Block.Remove('.nosotros-content');
