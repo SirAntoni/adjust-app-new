@@ -50,6 +50,9 @@ $(function () {
   editar_color();
   eliminar_color();
 
+  //video
+  agregar_video();
+
   //Categorias
 
   listar_categorias();
@@ -3290,6 +3293,55 @@ var crear_color = function () {
 
   $("#formCrearColor").submit(function (e) {
     e.preventDefault();
+    const formData = new FormData($('#formCrearColor')[0]);
+    $.ajax({
+      url: "controller/colores.php",
+      method: "POST",
+      data: formData,
+      contentType: false,
+      cache: false,
+      processData: false,
+      beforeSend: function () {
+        Notiflix.Block.Pulse('.modal-content');
+      },
+      complete: function () {
+        Notiflix.Block.Remove('.modal-content');
+      },
+      success: function (response) {
+        var response = JSON.parse(response);
+        if (response.status == "success") {
+          Swal.fire({
+            title: 'Success!',
+            text: response.message,
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+
+          $("#dataTableColores").DataTable().ajax.reload();
+          $("#formCrearColor").trigger('reset');
+          $("#modalCrearColor").modal("hide");
+
+
+        } else {
+          Swal.fire({
+            title: 'Error!',
+            text: response.message,
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+        }
+      }
+    })
+  })
+
+}
+
+var agregar_video = function () {
+
+  $("#formAddVideo").submit(function (e) {
+    e.preventDefault();
+    alert();
+    return;
     const formData = new FormData($('#formCrearColor')[0]);
     $.ajax({
       url: "controller/colores.php",
