@@ -13,6 +13,7 @@ $id = '';
 $uuid = Uuid::uuid4()->toString();
 $color = '';
 $auto = '';
+$video = '';
 $opcion = '';
 
 if(isset($_POST['id'])){
@@ -25,6 +26,10 @@ if(isset($_POST['color'])){
 
 if(isset($_POST['auto'])){
     $auto = $_POST['auto'];
+}
+
+if(isset($_POST['linkVideo'])){
+  $video = $_POST['linkVideo'];
 }
 
 if(isset($_POST['data'])){
@@ -60,6 +65,12 @@ switch ($opcion){
     break;
     case 'eliminar':
         $colores->eliminar_color($id);
+    break;
+    case 'linkVideo':
+      $colores->linkVideo($auto, $video);
+    break;
+    case 'mostrar_video':
+      echo json_encode($colores->mostrar_video($auto));
     break;
     default:
         echo 'ERROR';

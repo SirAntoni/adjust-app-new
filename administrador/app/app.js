@@ -99,6 +99,11 @@ $(function () {
     editar_filtro();
     eliminar_filtro();
   }
+
+  if(params.get("module") === "configurar-color-autoparte"){
+    mostrar_video();
+  }
+
   guardar_datos_generales();
   guardar_slogan();
   guardar_nosotros();
@@ -3264,6 +3269,7 @@ var listar_colores = function () {
   });
 
 };
+
 var data_editar_color = function (tbody, table) {
   $(tbody).on("click", ".editar", function () {
     var data = table.row($(this).parents("tr")).data();
@@ -3340,22 +3346,11 @@ var agregar_video = function () {
 
   $("#formAddVideo").submit(function (e) {
     e.preventDefault();
-    alert();
-    return;
-    const formData = new FormData($('#formCrearColor')[0]);
+    const data = $(this).serialize();
     $.ajax({
       url: "controller/colores.php",
       method: "POST",
-      data: formData,
-      contentType: false,
-      cache: false,
-      processData: false,
-      beforeSend: function () {
-        Notiflix.Block.Pulse('.modal-content');
-      },
-      complete: function () {
-        Notiflix.Block.Remove('.modal-content');
-      },
+      data: data,
       success: function (response) {
         var response = JSON.parse(response);
         if (response.status == "success") {
@@ -3365,11 +3360,6 @@ var agregar_video = function () {
             icon: 'success',
             confirmButtonText: 'Ok'
           })
-
-          $("#dataTableColores").DataTable().ajax.reload();
-          $("#formCrearColor").trigger('reset');
-          $("#modalCrearColor").modal("hide");
-
 
         } else {
           Swal.fire({
@@ -3381,6 +3371,30 @@ var agregar_video = function () {
         }
       }
     })
+  })
+
+}
+
+var mostrar_video = function () {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const module = urlParams.get('module');
+  let uuid = '';
+  if (module === 'configurar-color-autoparte') {
+    uuid = urlParams.get('autoparte');
+  } else {
+    uuid = urlParams.get('auto');
+  }
+
+  $.ajax({
+    url: "controller/colores.php",
+    method: "POST",
+    data: {opcion:"mostrar_video",auto: uuid},
+    success: function (response) {
+      var response = JSON.parse(response);
+      const video = response.video ?? ""
+      $("#linkVideo").val(video);
+    }
   })
 
 }

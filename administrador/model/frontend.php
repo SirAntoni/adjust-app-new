@@ -275,6 +275,13 @@ class Frontend extends Conectar
         $colores = $color->fetchAll(PDO::FETCH_ASSOC);
         $resultado['colores'] = $colores;
 
+        $video = "SELECT * FROM videos WHERE auto_uuid = ?";
+        $video =  $this->db->prepare($video);
+        $video->bindValue(1, $autoparte['uuid']);
+        $video->execute();
+        $videos = $video->fetch(PDO::FETCH_ASSOC);
+        $resultado['videos'] = $videos;
+
 
         return $resultado;
         

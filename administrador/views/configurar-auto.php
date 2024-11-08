@@ -17,40 +17,6 @@
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
           <div>
-            <h4 class="mb-3 mb-md-0">Agregar video</h4>
-          </div>
-          <form id="formAddVideo">
-            <div class="d-flex align-items-center flex-wrap text-nowrap">
-              <button type="submit" class="btn btn-primary btn-icon-text mb-2 mb-md-0 mr-2">
-                <i class="btn-icon-prepend mr-2" data-feather="plus-square"></i>
-                Guardar
-              </button>
-            </div>
-        </div>
-        <div class='row'>
-
-          <div class="col-md-12">
-            <div class="from-grup">
-              <label for="video">Insertar Link de video</label>
-              <input type="text" placeholder="Link video youtube" class="form-control">
-            </div>
-          </div>
-
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-12 col-xl-12 grid-margin stretch-card">
-    <div class="card overflow-hidden">
-
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-          <div>
             <h4 class="mb-3 mb-md-0">Colores</h4>
           </div>
           <div class="d-flex align-items-center flex-wrap text-nowrap">

@@ -397,6 +397,11 @@ function mostrarAutoparte(autoparte, filtro = '') {
                     html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
                 src="assets/images/colores/${color.cover}" alt=""></div>`;
                 })
+                
+                if(data.videos.video){
+                    console.log(data.videos);
+                   html_colores = html_colores + `<div class='fullScreen' onclick="ver_video('${data.videos.video}')" data-toggle="tooltip" data-placement="top" title="Ver Video"><i class="fas fa-video fa-lg"></i></div>`
+                }
 
                 html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
 
@@ -415,6 +420,70 @@ function mostrarAutoparte(autoparte, filtro = '') {
         }
     })
 }
+
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+
+function ver_video(video){
+  player = new YT.Player("player", {
+    height: "100%",
+    width: "100%",
+    videoId: video,
+    playerVars: {
+      autoplay: 1,
+      mute: 1,
+      controls: 1,
+      info: 0,
+      showinfo: 0,
+      rel: 0,
+      modestbranding: 1,
+      wmode: "transparent"
+    },
+    events: {
+      onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange
+    }
+  });
+  var inst = $('[data-remodal-id=modal]').remodal();
+  inst.open();
+
+  player.playVideo();
+}
+
+function onPlayerReady(event) {
+  // event.target.playVideo();  
+}
+// 5. The API calls this function when the player's state changes.
+var done = false;
+
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    done = true;
+  }
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
+
+$(document).on('closing', '.remodal', function (e) {
+
+  // Reason: 'confirmation', 'cancellation'
+  player.stopVideo();
+  player.destroy();
+});
+
+
+
+
+
+
 
 function obtenerAutoparte(categoria, filtro = '') {
 
@@ -461,8 +530,6 @@ function obtenerAutoparte(categoria, filtro = '') {
 }
 
 function fullScreen() {
-
-
 
     if (!localStorage.getItem('fullscreen')) localStorage.setItem('fullscreen', 'false');
     let fullscreen = localStorage.getItem('fullscreen');
