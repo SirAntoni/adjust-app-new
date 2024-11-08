@@ -201,6 +201,12 @@ session_start();
       cursor: pointer;
     }
 
+    .ver_video {
+      margin: 8px 5px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
     .cont-multichat {
       width: 70px;
       bottom: 10px;
@@ -291,6 +297,12 @@ session_start();
       .fullScreen {
         display: none;
       }
+
+      .ver_video {
+      margin: 0px 5px;
+      font-size: 25px;
+      cursor: pointer;
+    }
 
       .app {
         margin-top: 100px;
