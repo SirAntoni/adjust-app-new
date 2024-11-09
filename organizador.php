@@ -202,7 +202,7 @@ session_start();
     }
 
     .ver_video {
-      margin: 8px 5px;
+      margin: 5px 5px;
       font-size: 25px;
       cursor: pointer;
     }
