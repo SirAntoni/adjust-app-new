@@ -400,7 +400,7 @@ function mostrarAutoparte(autoparte, filtro = '') {
                 
                 if(data.videos.video){
                     console.log(data.videos);
-                   html_colores = html_colores + `<div class='ver_video' onclick="ver_video('${data.videos.video}')" data-toggle="tooltip" data-placement="top" title="Ver Video"><img width="30px" src="assets/images/yt-icon.png"></div>`
+                   html_colores = html_colores + `<div class='ver_video' onclick="ver_video('${data.videos.video}')" data-toggle="tooltip" data-placement="top" title="Ver Video"><img width="3f0px" src="assets/images/yt-icon.png"></div>`
                 }
 
                 html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
@@ -569,7 +569,7 @@ const obtener_auto = function(filtro = '') {
                 $("#detalle_nombre_auto").html(data.auto.nombre);
                 let html = ``;
                 data.imagenes.forEach(imagen => {
-                    html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height="500px">`;
+                    html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" >`; //500
                 });
                 let html_colores = ``;
                 data.colores.forEach(color => {
