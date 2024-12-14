@@ -104,8 +104,10 @@ session_start();
         margin-bottom: 0px;
     }
 
-    @media (max-width : 390px) {
-
+    @media (max-width : 590px) {
+        video{
+          width: 100%;
+        }
         #btnConocenos {
             margin-right: 0;
             margin-bottom: 10px;
