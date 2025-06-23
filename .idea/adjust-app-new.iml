@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/ezyang/htmlpurifier" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/maennchen/zipstream-php" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/markbaker/complex" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/markbaker/matrix" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/myclabs/php-enum" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/phpoffice/phpspreadsheet" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/administrador/vendor/symfony/polyfill-php81" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -315,11 +315,11 @@ function mostrarAutoparte(autoparte, filtro = '') {
         method: 'POST',
         data: { opcion: 'mostrar_autoparte', autoparte },
         success: function(response) {
-          $('html, body').animate({ scrollTop: 0 }, 'slow');
+
             const data = JSON.parse(response);
 
             if (data.autoparte.tipo === "subcategoria") {
-
+              $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 'slow');
                 var titulo = document.getElementById("subautoparte_seccion_titulo");
                 var cotenido = document.getElementById("subautoparte_seccion_contenido");
                 cotenido.classList.remove("d-none");
@@ -359,7 +359,7 @@ function mostrarAutoparte(autoparte, filtro = '') {
                 })
 
             } else {
-
+              $('html, body').animate({ scrollTop: 0 }, 'slow');
                 let mensaje =`Hola,%20necesito%20más%20informacion%20sobre%20el%20siguiente%20producto:%20${data.autoparte.autoparte}`;
                 obtener_negocio(mensaje);
 
@@ -500,6 +500,7 @@ function obtenerAutoparte(categoria, filtro = '') {
         method: 'POST',
         data: { opcion: 'obtener_autopartes', categoria },
         success: function(response) {
+          $('html, body').animate({ scrollTop: $(document).height() - $(window).height() }, 'slow');
             const data = JSON.parse(response);
             let html = ``;
 

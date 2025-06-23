@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/administrador/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/administrador/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/administrador/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/administrador/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/administrador/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/administrador/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/administrador/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/administrador/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/administrador/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/administrador/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/administrador/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/administrador/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/administrador/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/administrador/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/administrador/vendor/composer" />
+      <path value="$PROJECT_DIR$/administrador/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/administrador/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/administrador/vendor/markbaker/complex" />
+    </include_path>
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>
