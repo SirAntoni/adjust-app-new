@@ -444,7 +444,7 @@ function ver_video(video) {
     videoId: video,
     playerVars: {
       autoplay: 1,
-      mute: 1,
+      mute: 0,
       controls: 1,
       info: 0,
       showinfo: 0,
