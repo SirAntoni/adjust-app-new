@@ -22,6 +22,22 @@ session_start();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal-default-theme.min.css">
 
   <style>
+
+    .active {
+      border: 4px solid yellow; /* o el color/grosor que prefieras */
+
+    }
+
+    .active2 {
+      border: 4px solid yellow; /* o el color/grosor que prefieras */
+
+    }
+
+    .active3 {
+      border: 4px solid yellow; /* o el color/grosor que prefieras */
+
+    }
+
     .remodal-close:before {
       left: 10px;
     }
