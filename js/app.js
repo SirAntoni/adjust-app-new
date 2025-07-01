@@ -237,8 +237,11 @@ const cargar_ultimo_registro = function () {
             if (data.status === 'error') {
                 window.location = './';
             } else {
-                document.getElementById('organizador').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
-                document.getElementById('productos').setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
+                const organizador = document.getElementById('organizador');
+                if(organizador != null) organizador.setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
+                const productos = document.getElementById('productos');
+                if(productos != null) productos.setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
+
             }
 
         }
