@@ -310,9 +310,7 @@ session_start();
         width: 100%;
       }
 
-      .fullScreen {
-        display: none;
-      }
+
 
       .ver_video {
       margin: 0px 5px;
