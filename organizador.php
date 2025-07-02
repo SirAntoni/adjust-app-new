@@ -20,6 +20,8 @@ session_start();
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.0/remodal-default-theme.min.css">
+  <link href="./node_modules/lightbox2/dist/css/lightbox.css" rel="stylesheet" />
+
 
   <style>
 
@@ -411,6 +413,9 @@ session_start();
                 </div-->
         <div id='detalle_colores' class="col-md-12 colores" style="z-index:1;">
         </div>
+        <div id="sliders">
+
+        </div>
         <div class="col-md-12 titulo_categoria" style="z-index:1;">
           <div>Seleccione una categoria</div>
           <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
@@ -520,6 +525,7 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
 
     }
   </script>
+<script src="./node_modules/lightbox2/dist/js/lightbox.js"></script>
 </body>
 
 </html>

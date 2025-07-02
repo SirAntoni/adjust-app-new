@@ -290,12 +290,15 @@ function cambiarColor(color) {
 
       const data = JSON.parse(response);
       let html = ``;
+      let html_sliders = ``;
       data.forEach(imagen => {
         html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='100%'>`;
+        html_sliders = html_sliders + `<a id='lcarousel' href="assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
       });
 
       console.log(html);
       html = html + '<div id="loader"></div>';
+      $('#sliders').html(html_sliders)
       $("#auto360").html('<div id="circlrDiv"></div>');
       $("#circlrDiv").html(html);
 
@@ -307,7 +310,6 @@ function cambiarColor(color) {
 }
 
 function mostrarAutoparte(elDiv,autoparte, filtro = '') {
-
 
   localStorage.setItem('autoparte', autoparte)
 
@@ -339,7 +341,6 @@ function mostrarAutoparte(elDiv,autoparte, filtro = '') {
             const data = JSON.parse(response);
 
             let html = ``;
-
             const data2 = data.filter(autoparte => {
               if (filtro === '') return autoparte.autoparte
               const regex = new RegExp(filtro, "i");
@@ -397,8 +398,10 @@ function mostrarAutoparte(elDiv,autoparte, filtro = '') {
         $("#accesorio").html(data.autoparte.autoparte)
         $("#stock").html((data.autoparte.stock === '1') ? 'Si' : 'No');
         let html = ``;
+        let html_sliders = ``;
         data.imagenes.forEach(imagen => {
           html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}">`;
+          html_sliders = html_sliders + `<a id='lcarousel' href="assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
         });
         let html_colores = ``;
         data.colores.forEach(color => {
@@ -414,6 +417,7 @@ function mostrarAutoparte(elDiv,autoparte, filtro = '') {
         html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
 
 
+        $("#sliders").html(html_sliders);
         $("#auto360").html('<div id="circlrDiv"></div>');
         $("#circlrDiv").html(html);
         $("#detalle_colores").html(html_colores);
@@ -547,6 +551,7 @@ function fullScreen() {
     area.style.height = '100%';
     $(".fullScreen").html('<i class="fas fa-compress fa-lg"></i>');
     localStorage.setItem('fullscreen', true);
+    $("#lcarousel").trigger('click');
   } else {
     area.style.width = '500px';
     area.style.heigth = '400px';
@@ -575,9 +580,13 @@ const obtener_auto = function (filtro = '') {
         const data = JSON.parse(response);
         $("#detalle_nombre_auto").html(data.auto.nombre);
         let html = ``;
+        let html_sliders = ``;
         data.imagenes.forEach(imagen => {
           html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" >`; //500
+          html_sliders = html_sliders + `<a id='lcarousel' href="assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
         });
+
+
         let html_colores = ``;
         data.colores.forEach(color => {
           html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
@@ -604,6 +613,7 @@ const obtener_auto = function (filtro = '') {
 
         html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
 
+        $("#sliders").html(html_sliders);
         $("#carousel_categorias").flickity('destroy');
         $("#carousel_categorias").html(html_categorias);
         $("#carousel_categorias").flickity({
