@@ -201,7 +201,7 @@ const cargar_web = function () {
                 let formato = data.nosotrosImg.split(".");
                 $("#webNosotrosImg").html(`<img class="img-fluid mb-3 mb-lg-0" src="assets/img/${data.nosotrosImg}"
                 alt="..." />`);
-                if(formato[1] == "mp4" || formato[1] == "MOV")  $("#webNosotrosImg").html(`<video width="817" height="600" controls>
+                if(formato[1] == "mp4" || formato[1] == "MOV")  $("#webNosotrosImg").html(`<video width="100%" height="auto" controls>
                   <source src="assets/img/${data.nosotrosImg}" type="video/mp4">
                   <source src="assets/img/${data.nosotrosImg}" type="video/mov">
                   Your browser does not support the video tag.

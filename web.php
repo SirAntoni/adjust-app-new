@@ -341,7 +341,7 @@ session_start();
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js?code=<?php echo date('ymdsis') ?>"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
