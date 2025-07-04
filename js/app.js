@@ -1,7 +1,7 @@
 var url = new URL(window.location.href);
 var params = new URLSearchParams(url.search);
 var set_negocio = "BRAYAN PREMIUM";
-
+var set_domain_assets = "https://adjustapp.store";
 
 $(function () {
 
@@ -41,21 +41,21 @@ const obtener_fondos = async () => {
             if (screenWidth >= 768) {
 
                 if (mastheadElement) {
-                    mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_home}")`;
+                    mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("${set_domain_assets}/assets/images/bg/${data.fondo_home}")`;
                 }
 
                 if (mastheadElementGaleria) {
-                    mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_galeria}")`;
+                    mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("${set_domain_assets}/assets/images/bg/${data.fondo_galeria}")`;
                 }
 
             }else{
 
                 if (mastheadElement) {
-                    mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_home_movil}")`;
+                    mastheadElement.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("${set_domain_assets}/assets/images/bg/${data.fondo_home_movil}")`;
                 }
 
                 if (mastheadElementGaleria) {
-                    mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("./assets/images/bg/${data.fondo_galeria_movil}")`;
+                    mastheadElementGaleria.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("${set_domain_assets}/assets/images/bg/${data.fondo_galeria_movil}")`;
                }
 
             }
@@ -82,7 +82,7 @@ const obtener_negocio = function (mensaje = null) {
             
             const data = JSON.parse(response);
             const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=${mensaje}' title="Whatsapp" target="_blank" style="cursor:pointer;">
-            <img src="https://adjustapp.store/assets/images/wp.png" alt="Whatsapp">
+            <img src="${set_domain_assets}/assets/images/wp.png" alt="Whatsapp">
         </a>`;
             $(".cont-multichat").html(wsp)
 
@@ -129,12 +129,12 @@ const cargar_imagenes = function (filtro = '*') {
             <div class="swiper-wrapper">`
             if (filtro === '*') {
                 data.map(x => {
-                    html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
+                    html = html + `<div class="swiper-slide"><img src='${set_domain_assets}/assets/img/${x.imagen}'></div>`
                 })
             } else {
                 data.map(x => {
                     if (x.filtro === filtro) {
-                        html = html + `<div class="swiper-slide"><img src='./assets/img/${x.imagen}'></div>`
+                        html = html + `<div class="swiper-slide"><img src='${set_domain_assets}/assets/img/${x.imagen}'></div>`
                     }
                 })
             }
@@ -187,7 +187,7 @@ const cargar_web = function () {
             } else {
                 let mapa = data.mapa.replace('width="600"', 'width="100%"');
 
-                $("#webLogo").html(`<img width=200px' src="./assets/img/${data.logo}" alt="">`);
+                $("#webLogo").html(`<img width=200px' src="${set_domain_assets}/assets/img/${data.logo}" alt="">`);
                 $("#webSlogan").html(data.slogan);
                 $("#webNosotros").html(data.nosotros);
                 $("#webMision").html(data.mision);
@@ -200,15 +200,15 @@ const cargar_web = function () {
                 $(".titulo_dos").html(data.titulo_dos);
                 $("#webTelefono").html(data.telefono);
                 let formato = data.nosotrosImg.split(".");
-                $("#webNosotrosImg").html(`<img class="img-fluid mb-3 mb-lg-0" src="assets/img/${data.nosotrosImg}"
+                $("#webNosotrosImg").html(`<img class="img-fluid mb-3 mb-lg-0" src="${set_domain_assets}/assets/img/${data.nosotrosImg}"
                 alt="..." />`);
                 if(formato[1] == "mp4" || formato[1] == "MOV")  $("#webNosotrosImg").html(`<video width="100%" height="auto" controls>
-                  <source src="assets/img/${data.nosotrosImg}" type="video/mp4">
-                  <source src="assets/img/${data.nosotrosImg}" type="video/mov">
+                  <source src="${set_domain_assets}/assets/img/${data.nosotrosImg}" type="video/mp4">
+                  <source src="${set_domain_assets}/assets/img/${data.nosotrosImg}" type="video/mov">
                   Your browser does not support the video tag.
                 </video>`);
-                $("#webMisionImg").html(`<img class="img-fluid" src="assets/img/${data.misionImg}" alt="..." />`);
-                $("#webVisionImg").html(`<img class="img-fluid" src="assets/img/${data.visionImg}" alt="..." />`);
+                $("#webMisionImg").html(`<img class="img-fluid" src="${set_domain_assets}/assets/img/${data.misionImg}" alt="..." />`);
+                $("#webVisionImg").html(`<img class="img-fluid" src="${set_domain_assets}/assets/img/${data.visionImg}" alt="..." />`);
                 if(data.hide_vision === "2"){
                   $(".toggle_myv").addClass('d-none');
                 }
