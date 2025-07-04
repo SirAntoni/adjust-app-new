@@ -417,7 +417,7 @@ session_start();
 
         </div>
         <div class="col-md-12 titulo_categoria" style="z-index:1;">
-          <div>Seleccione una categoria</div>
+          <div>Seleccione la marca de su vehículo</div>
           <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
               id='textCategorias' /><input id='btnCategorias' type='button' value='Buscar'
               class='btnBusqueda' /><input class='btnBusqueda' id='btnResetCategorias' type='button'
@@ -430,7 +430,7 @@ session_start();
           </div>
         </div>
         <div id="autoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none" style="z-index:1;">
-          Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
+          Seleccione el modelo/año de su vehículo <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
               id='textSubcategorias' /><input id='btnSubcategorias' type='button' value='Buscar'
               class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias' type='button'
               value='Reset' /></div>
@@ -443,7 +443,7 @@ session_start();
           </div>
         </div>
         <div id="subautoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
-          Seleccione un accesorio <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
+          Seleccione el aro de su preferencia <div><input type='text' class='txtBusqueda' placeholder="Filtrar"
               id='textSubcategorias2' /><input id='btnSubcategorias2' type='button' value='Buscar'
               class='btnBusqueda' /><input class='btnBusqueda' id='btnResetSubcategorias2' type='button'
               value='Reset' /></div>
