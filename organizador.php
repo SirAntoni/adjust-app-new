@@ -459,14 +459,8 @@ session_start();
           <div id="carousel_accesorios" class="carousel_accesorios">
           </div>
         </div>
-        <div id='accesorio' class="col-md-4 accesorio">
-          Seleccione un accesorio
-        </div>
-        <div id='redes' class="col-md-4 redes">
+        <div id='redes' class="col-md-12 redes">
 
-        </div>
-        <div class=" col-md-4 stock">
-          <span id='stock'>Seleccione un accesorio</span>
         </div>
       </div>
     </div>
