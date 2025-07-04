@@ -140,8 +140,6 @@ session_start();
       display: flex;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid #fff;
-      border-left: 1px solid #fff;
     }
 
     .categorias {
