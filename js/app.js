@@ -1,5 +1,6 @@
 var url = new URL(window.location.href);
 var params = new URLSearchParams(url.search);
+var set_negocio = "BRAYAN PREMIUM";
 
 
 $(function () {
@@ -26,7 +27,7 @@ const obtener_fondos = async () => {
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
-        data: { opcion: 'obtener_fondo', negocio: params.get('negocio') },
+        data: { opcion: 'obtener_fondo', negocio: set_negocio },
         success: function (response) {
             const data = JSON.parse(response);
             const mastheadElement = document.querySelector(".masthead");
@@ -72,7 +73,7 @@ const obtener_negocio = function (mensaje = null) {
     $.ajax({
         url: 'administrador/controller/frontend',
         method: 'POST',
-        data: { opcion: 'obtener_negocio', negocio: params.get('negocio') },
+        data: { opcion: 'obtener_negocio', negocio: set_negocio },
         success: function (response) {
 
             if(mensaje === null){
@@ -97,7 +98,7 @@ const cargar_filtros = function () {
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
-        data: { opcion: 'cargar_filtros', negocio: params.get('negocio') },
+        data: { opcion: 'cargar_filtros', negocio: set_negocio },
         success: function (response) {
             const data = JSON.parse(response);
 
@@ -121,7 +122,7 @@ const cargar_imagenes = function (filtro = '*') {
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
-        data: { opcion: 'cargar_imagenes', negocio: params.get('negocio') },
+        data: { opcion: 'cargar_imagenes', negocio: set_negocio },
         success: function (response) {
             const data = JSON.parse(response);
             let html = `<div class="swiper">
@@ -177,7 +178,7 @@ const cargar_web = function () {
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
-        data: { opcion: 'cargar_web', negocio: params.get('negocio') },
+        data: { opcion: 'cargar_web', negocio: set_negocio },
         success: function (response) {
             const data = JSON.parse(response);
 
@@ -230,7 +231,7 @@ const cargar_ultimo_registro = function () {
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
-        data: { opcion: 'cargar_ultimo_registro', negocio: params.get('negocio') },
+        data: { opcion: 'cargar_ultimo_registro', negocio: set_negocio },
         success: function (response) {
             const data = JSON.parse(response);
 
@@ -238,9 +239,9 @@ const cargar_ultimo_registro = function () {
                 window.location = './';
             } else {
                 const organizador = document.getElementById('organizador');
-                if(organizador != null) organizador.setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
+                if(organizador != null) organizador.setAttribute('href', 'organizador' + '?auto=' + data.uuid + '&type=organizador');
                 const productos = document.getElementById('productos');
-                if(productos != null) productos.setAttribute('href', 'organizador' + '?negocio=' + params.get('negocio') + '&auto=' + data.uuid + '&type=organizador');
+                if(productos != null) productos.setAttribute('href', 'organizador' + '?auto=' + data.uuid + '&type=organizador');
 
             }
 
@@ -256,7 +257,7 @@ const cargar_redes = function () {
     $.ajax({
         url: 'administrador/controller/frontend.php',
         method: 'POST',
-        data: { opcion: 'cargar_redes', negocio: params.get('negocio') },
+        data: { opcion: 'cargar_redes', negocio: set_negocio},
         success: function (response) {
             const data = JSON.parse(response);
             const facebook = (data.facebook === '') ? '#!' : data.facebook;

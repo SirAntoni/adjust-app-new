@@ -508,7 +508,7 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
         method: 'POST',
         data: {
           opcion: 'cargar_web',
-          negocio: params.get('negocio')
+          negocio: set_negocio
         },
         success: function(response) {
           const data = JSON.parse(response);
@@ -516,7 +516,6 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
           if (data.status === 'error') {
             window.location = './';
           } else {
-
             $("#webLogo").html(`<img width=200px' src="./assets/img/${data.logo}" alt="">`);
           }
 
