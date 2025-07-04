@@ -140,6 +140,9 @@ session_start();
       display: flex;
       align-items: center;
       justify-content: center;
+      align-content: center;
+      padding-top: 18px;
+      font-size: 12px;
     }
 
     .categorias {
@@ -458,7 +461,7 @@ session_start();
           </div>
         </div>
         <div id='redes' class="col-md-12 redes">
-
+<p>Todos los derechos reservados © AdjustApp</p>
         </div>
       </div>
     </div>
