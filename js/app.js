@@ -82,7 +82,7 @@ const obtener_negocio = function (mensaje = null) {
             
             const data = JSON.parse(response);
             const wsp = `<a href='https://api.whatsapp.com/send?phone=${data.telefono}&text=${mensaje}' title="Whatsapp" target="_blank" style="cursor:pointer;">
-            <img src="assets/images/wp.png" alt="Whatsapp">
+            <img src="../public_html/assets/images/wp.png" alt="Whatsapp">
         </a>`;
             $(".cont-multichat").html(wsp)
 
