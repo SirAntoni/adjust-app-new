@@ -292,8 +292,8 @@ function cambiarColor(color) {
       let html = ``;
       let html_sliders = ``;
       data.forEach(imagen => {
-        html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" height='100%'>`;
-        html_sliders = html_sliders + `<a id='lcarousel' href="assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
+        html = html + `<img data-src="${set_domain_assets}/assets/images/autopartes/${imagen.imagen}" height='100%'>`;
+        html_sliders = html_sliders + `<a id='lcarousel' href="${set_domain_assets}/assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
       });
 
       console.log(html);
@@ -354,7 +354,7 @@ function mostrarAutoparte(elDiv,autoparte, filtro = '') {
             )
 
             data2.forEach(autoparte => {
-              html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte(this,'${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
+              html = html + `<div class="carousel-cell"><img src="${set_domain_assets}/assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte(this,'${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
             })
 
             $("#subcarousel_autopartes").flickity('destroy');
@@ -400,18 +400,18 @@ function mostrarAutoparte(elDiv,autoparte, filtro = '') {
         let html = ``;
         let html_sliders = ``;
         data.imagenes.forEach(imagen => {
-          html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}">`;
-          html_sliders = html_sliders + `<a id='lcarousel' href="assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
+          html = html + `<img data-src="${set_domain_assets}/assets/images/autopartes/${imagen.imagen}">`;
+          html_sliders = html_sliders + `<a id='lcarousel' href="${set_domain_assets}/assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
         });
         let html_colores = ``;
         data.colores.forEach(color => {
           html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
-                src="assets/images/colores/${color.cover}" alt=""></div>`;
+                src="${set_domain_assets}/assets/images/colores/${color.cover}" alt=""></div>`;
         })
 
         if (data.videos.video) {
           console.log(data.videos);
-          html_colores = html_colores + `<div class='ver_video' onclick="ver_video('${data.videos.video}')" data-toggle="tooltip" data-placement="top" title="Ver Video"><img width="30px" src="assets/images/yt-icon.png"></div>`
+          html_colores = html_colores + `<div class='ver_video' onclick="ver_video('${data.videos.video}')" data-toggle="tooltip" data-placement="top" title="Ver Video"><img width="30px" src="${set_domain_assets}/assets/images/yt-icon.png"></div>`
         }
 
         html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
@@ -527,7 +527,7 @@ function obtenerAutoparte(elDiv, categoria, filtro = '') {
       )
 
       data2.forEach(autoparte => {
-        html = html + `<div class="carousel-cell"><img src="assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte(this,'${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
+        html = html + `<div class="carousel-cell"><img src="${set_domain_assets}/assets/images/autopartes/${autoparte.cover}" onclick="mostrarAutoparte(this,'${autoparte.uuid}')" alt="${autoparte.autoparte}"><p class='text-center mt-2 text-white'>${autoparte.autoparte}</p></div>`;
       })
 
       $("#carousel_autopartes").flickity('destroy');
@@ -582,15 +582,15 @@ const obtener_auto = function (filtro = '') {
         let html = ``;
         let html_sliders = ``;
         data.imagenes.forEach(imagen => {
-          html = html + `<img data-src="assets/images/autopartes/${imagen.imagen}" >`; //500
-          html_sliders = html_sliders + `<a id='lcarousel' href="assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
+          html = html + `<img data-src="${set_domain_assets}/assets/images/autopartes/${imagen.imagen}" >`; //500
+          html_sliders = html_sliders + `<a id='lcarousel' href="${set_domain_assets}/assets/images/autopartes/${imagen.imagen}" data-lightbox="carousel"></a>`;
         });
 
 
         let html_colores = ``;
         data.colores.forEach(color => {
           html_colores = html_colores + `<div class="color" onclick="cambiarColor('${color.uuid}')" data-toggle="tooltip" data-placement="top" title="${color.color}"><img
-                    src="assets/images/colores/${color.cover}" alt=""></div>`;
+                    src="${set_domain_assets}/assets/images/colores/${color.cover}" alt=""></div>`;
         })
 
         let html_categorias = ``;
@@ -608,7 +608,7 @@ const obtener_auto = function (filtro = '') {
         )
 
         categorias2.forEach(categoria => {
-          html_categorias = html_categorias + `<div class="carousel-cell"><img src="assets/images/categorias/${categoria.cover}" onclick="obtenerAutoparte(this,'${categoria.uuid}')" alt="${categoria.categoria}"><p class='text-center mt-2 text-white'>${categoria.categoria}</p></div>`;
+          html_categorias = html_categorias + `<div class="carousel-cell"><img src="${set_domain_assets}/assets/images/categorias/${categoria.cover}" onclick="obtenerAutoparte(this,'${categoria.uuid}')" alt="${categoria.categoria}"><p class='text-center mt-2 text-white'>${categoria.categoria}</p></div>`;
         })
 
         html_colores = html_colores + `<div class='fullScreen' onclick="fullScreen()" data-toggle="tooltip" data-placement="top" title="Pantalla Completa"><i class="fas fa-expand fa-lg"></i></div>`;
