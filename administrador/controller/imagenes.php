@@ -12,6 +12,7 @@ $id = '';
 $uuid = Uuid::uuid4()->toString();
 $color = '';
 $imagen = '';
+$opcion = '';
 
 if(isset($_POST['id'])){
     $id = $_POST['id'];

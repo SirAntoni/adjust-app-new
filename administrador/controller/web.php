@@ -17,6 +17,10 @@ $vision = '';
 $filtro = '';
 $id = '';
 $mapa = '';
+$hide_mision = '';
+$hide_vision = '';
+$titulo = '';
+$toggle_myv = '';
 
 if (isset($_POST['opcion'])) {
   $opcion = $_POST['opcion'];

@@ -309,7 +309,7 @@ class Negocios extends Conectar
                     $insertar_imagen_auto = $this->db->prepare($insertar_imagen_auto);
                     $imagen_auto_uuid = Uuid::uuid4()->toString();
                     $insertar_imagen_auto->bindValue(1,$imagen_auto_uuid);
-                    $insertar_imagen_auto->bindvalue(2,$color_auto_uuid);
+                    $insertar_imagen_auto->bindValue(2,$color_auto_uuid);
                     $insertar_imagen_auto->bindValue(3,$imagen['imagen']);
                     $insertar_imagen_auto->execute();
 

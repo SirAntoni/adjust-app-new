@@ -90,7 +90,7 @@ switch ($opcion){
     break;
     case 'obtener_nombre_auto':
         $nombre = $autos->obtener_nombre_auto($uuid);
-        echo $nombre['nombre'];
+        echo $nombre ? $nombre['nombre'] : '';
     break;
     case 'listar_anios':
         $anios = $autos->listar_anios($uuid);

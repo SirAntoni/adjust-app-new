@@ -111,7 +111,7 @@ switch ($opcion){
     break;
     case 'obtener_nombre_autoparte':
         $nombre = $autopartes->obtener_nombre_autoparte($uuid);
-        echo $nombre['autoparte'];
+        echo $nombre ? $nombre['autoparte'] : '';
     break;
     default:
         echo 'Error';

@@ -30,7 +30,7 @@ class Dashboard extends Conectar
         
         $cantidad_autopartes = $autopartes->fetch(PDO::FETCH_ASSOC);
 
-        $contador = [ $cantidad_negocios['negocios'],$cantidad_autos['autos'],$cantidad_autopartes['autopartes']];
+        $contador = [ $cantidad_negocios ? $cantidad_negocios['negocios'] : 0, $cantidad_autos ? $cantidad_autos['autos'] : 0, $cantidad_autopartes ? $cantidad_autopartes['autopartes'] : 0];
 
         return $contador;
 

@@ -74,7 +74,7 @@ switch ($opcion){
     break;
     case 'obtener_nombre_categoria':
         $nombre = $categorias->obtener_nombre_categoria($uuid);
-        echo $nombre['categoria'];
+        echo $nombre ? $nombre['categoria'] : '';
         break;
     default:
         echo 'Error';

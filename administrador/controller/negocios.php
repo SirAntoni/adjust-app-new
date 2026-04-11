@@ -16,6 +16,7 @@ $tiktok = '';
 $youtube = '';
 $opcion = '';
 $telefono = '';
+$estado = '';
 $negocio = '';
 $usuario = '';
 if(isset($_SESSION['negocio'])) $negocio = $_SESSION['negocio'];

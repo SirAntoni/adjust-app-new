@@ -219,6 +219,8 @@ class Frontend extends Conectar
         $sql->execute();
 
         $auto = $sql->fetch(PDO::FETCH_ASSOC);
+        if(!$auto) return ['auto' => false, 'imagenes' => [], 'colores' => [], 'categorias' => []];
+
         $resultado['auto'] = $auto;
 
         $img = "SELECT imagen FROM imagenes WHERE color_uuid = ?";
@@ -258,6 +260,8 @@ class Frontend extends Conectar
         $sql->execute();
 
         $autoparte = $sql->fetch(PDO::FETCH_ASSOC);
+        if(!$autoparte) return ['autoparte' => false, 'imagenes' => [], 'colores' => [], 'videos' => false];
+
         $resultado['autoparte'] = $autoparte;
 
         $img = "SELECT imagen FROM imagenes WHERE color_uuid = ?";

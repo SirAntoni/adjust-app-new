@@ -12,6 +12,7 @@ $titulo = '';
 $descripcion = '';
 $imagen = '';
 $negocio = '';
+$opcion = '';
 
 
 if(isset($_POST['id'])){
