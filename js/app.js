@@ -1,7 +1,7 @@
 var url = new URL(window.location.href);
 var params = new URLSearchParams(url.search);
 var set_negocio = "BRAYAN PREMIUM";
-var set_domain_assets = "https://adjustapp.store";
+var set_domain_assets = "https://v1.adjustapp.store";
 
 $(function () {
 

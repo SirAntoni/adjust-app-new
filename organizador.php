@@ -438,9 +438,9 @@ session_start();
         </div>
         <div id="autoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
           <div id="carousel_autopartes" class="carousel_autopartes">
-            <div class="carousel-cell"><img src="https://adjustapp.store/assets/images/body_kits.jpeg" alt=""></div>
-            <div class="carousel-cell"><img src="https://adjustapp.store/assets/images/fr_bumper.jpeg" alt=""></div>
-            <div class="carousel-cell"><img src="https://adjustapp.store/assets/images/fr_wheels.jpeg" alt=""></div>
+            <div class="carousel-cell"><img src="https://v1.adjustapp.store/assets/images/body_kits.jpeg" alt=""></div>
+            <div class="carousel-cell"><img src="https://v1.adjustapp.store/assets/images/fr_bumper.jpeg" alt=""></div>
+            <div class="carousel-cell"><img src="https://v1.adjustapp.store/assets/images/fr_wheels.jpeg" alt=""></div>
           </div>
         </div>
         <div id="subautoparte_seccion_titulo" class="col-md-12 titulo_categoria select_accesorios d-none">
@@ -451,9 +451,9 @@ session_start();
         </div>
         <div id="subautoparte_seccion_contenido" class="col-md-12 select_accesorios d-none">
           <div id="subcarousel_autopartes" class="subcarousel_autopartes">
-            <div class="carousel-cell"><img src="https://adjustapp.store/assets/images/body_kits.jpeg" alt=""></div>
-            <div class="carousel-cell"><img src="https://adjustapp.store/assets/images/fr_bumper.jpeg" alt=""></div>
-            <div class="carousel-cell"><img src="https://adjustapp.store/assets/images/fr_wheels.jpeg" alt=""></div>
+            <div class="carousel-cell"><img src="https://v1.adjustapp.store/assets/images/body_kits.jpeg" alt=""></div>
+            <div class="carousel-cell"><img src="https://v1.adjustapp.store/assets/images/fr_bumper.jpeg" alt=""></div>
+            <div class="carousel-cell"><img src="https://v1.adjustapp.store/assets/images/fr_wheels.jpeg" alt=""></div>
           </div>
         </div>
         <div class="col-md-12">
@@ -511,7 +511,7 @@ integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="ano
           if (data.status === 'error') {
             window.location = './';
           } else {
-            $("#webLogo").html(`<img width=200px' src="https://adjustapp.store/assets/img/${data.logo}" alt="">`);
+            $("#webLogo").html(`<img width=200px' src="https://v1.adjustapp.store/assets/img/${data.logo}" alt="">`);
           }
 
         }
