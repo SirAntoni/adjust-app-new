@@ -92,7 +92,7 @@ class Usuarios extends Conectar
 
                     if (password_verify($contrasena, $contrasenaEncriptada) == true) {
 
-                        $_SESSION['id']              = $data['id'];
+                        $_SESSION['id']              = (string) $data['id'];
                         $_SESSION['usuario']     = $data['usuario'];
                         $_SESSION['negocio']     = $data['negocio'];
                         

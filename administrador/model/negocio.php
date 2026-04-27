@@ -363,7 +363,7 @@ class Negocios extends Conectar
                     $contrasenaEncriptada = $data['contrasena'];
                     if (password_verify($contrasena, $contrasenaEncriptada) == true) {
 
-                        $_SESSION['id']              = $data['id'];
+                        $_SESSION['id']              = (string) $data['id'];
                         $_SESSION['ruc']              = $data['ruc'];
                         $_SESSION['razon_social']              = $data['razon_social'];
                         $_SESSION['rango']     = $data['rango'];
